@@ -1,0 +1,9 @@
+{
+    "path" : "~/R/alex-blogdown/content/blog",
+    "sortOrder" : [
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}
