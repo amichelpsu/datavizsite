@@ -1,0 +1,24 @@
+---
+title: 'This is a new post '
+author: Alex Michel
+date: '2018-06-13'
+slug: How do I make a post?
+categories:
+  - R
+tags:
+  - sad plot
+  - R Markdown
+description: Desc
+hacker_news_id: ''
+lobsters_id: ''
+meta_img: /images/image.jpg
+---
+
+Is this how you add in stuff? 
+
+```{r}
+1 + 1
+rnorm(10)  # 10 random numbers
+plot(dist ~ speed, cars)  # a scatterplot
+```
+
