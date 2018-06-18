@@ -6,20 +6,18 @@
     <description>Recent content in Projects on It works</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Sun, 01 Jan 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/projects/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>A small project example : add yours !</title>
+      <title>What&#39;s Up With Colorado River Basin Water Use?</title>
       <link>/projects/small-project/</link>
-      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/projects/small-project/</guid>
-      <description>Along with Ford Prefect, Dent barely escapes the Earth&amp;rsquo;s destruction as it is demolished to make way for a hyperspace bypass. Arthur spends the next several years, still wearing his dressing gown, helplessly launched from crisis to crisis while trying to straighten out his lifestyle.
- He rather enjoys tea, but seems to have trouble obtaining it in the far reaches of the galaxy.
- In time, he learns how to fly and carves a niche for himself as a sandwich-maker.</description>
+      <description>Here are some of my slides
+John Fleck is a professor of water management at the University of New Mexico. He is the father of one of my good friends from high school and he is like, the guy on water policy in the Southwest. I was trying to come up with some ideas for my final visualization project when I saw John going back and forth with some people on Twitter over data that shows that water usage across the Southwest is actually going down &amp;ndash; and has been for some time (this is not at all what you see in the news).</description>
     </item>
     
   </channel>

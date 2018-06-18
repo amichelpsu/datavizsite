@@ -1,0 +1,80 @@
+---
+title: "Tada!"
+subtitle: Check this out
+author: "Alexandra Michel"
+  output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: xaringan-themer.css
+---
+
+```{r xaringan-themer, include = FALSE}
+library(xaringanthemer)
+mono_light(
+  base_color = "#1c5253",
+  header_font_google = google_font("Josefin Sans"),
+  text_font_google   = google_font("Montserrat", "300", "300i"),
+  code_font_google   = google_font("Droid Mono")
+)
+```
+
+class:middle, center, top 
+#You get a slide!
+
+---
+
+#and you get a slide!
+
+---
+class:middle, center, top 
+.pull-left[
+on your left
+]
+
+.pull-right[
+on your right
+]
+
+---
+
+.pull-left[
+you get a slide
+]
+
+--
+.pull-right[
+and you get a slide
+]
+
+-- 
+
+and you get a slide!
+
+---
+background-image: url("http://bit.ly/cs631-donkey")
+background-size: cover
+
+---
+
+```{r}
+knitr::include_graphics("http://bit.ly/cs631-pygmy")
+```
+
+---
+
+.pull-right[
+```{r echo = FALSE}
+knitr::include_graphics("http://bit.ly/cs631-pygmy")
+```
+
+]
+
+--
+
+.pull-left[
+```{r echo = FALSE}
+knitr::include_graphics("http://bit.ly/cs631-pygmy")
+```
+
+]
+

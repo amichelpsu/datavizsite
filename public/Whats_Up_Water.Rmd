@@ -1,0 +1,247 @@
+---
+title: "What's Up With Colorado River Basin Water Usage?"
+subtitle: "when ggplot2 meets a Twitter flame war "
+author: "Alexandra Michel"
+date: "6/18/2018"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: xaringan-themer.css 
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+    
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+```{r xaringan-themer, include = FALSE}
+library(xaringanthemer)
+mono_light(base_color = "#23395b")
+```
+##I was trying to think of an idea for the final visualization when I saw this...
+.pull-left[ 
+```{r echo = FALSE}
+knitr::include_graphics("images/JohnFleckTwitter_1.JPG")
+```
+]
+
+.pull-right[
+```{r echo = FALSE}
+knitr::include_graphics("images/JohnFleckTwitter_3.JPG")
+```
+]
+
+---
+
+background-image: url("http://i0.wp.com/www.kuddly.co/wp-content/uploads/2015/10/Kitten-Banana-Scare.gif")
+background-size: cover
+
+---
+
+class: center, middle
+
+## I grew up in very arid, drought-prone New Mexico and it has been hammered into me for years that we are imminently headed to a Mad Max future where there is no water left in the Southwest. What is up with John's data?
+
+---
+
+class: inverse, left, top
+
+#### John kindly sent me his USGS data from Southern California and Las Vegas.
+
+His graphs were okay I guess, but I thought I might be able to make them a little swankier and easier to understand.
+
+```{r out.width = "70%", fig.align = "center", echo = FALSE}
+knitr::include_graphics("images/JohnFleckTwitter_2.JPG")
+```
+
+---
+
+## Step 1) Horrible Fail
+
+```{r include=FALSE}
+library(ggplot2)
+library(dplyr)
+library(tidyverse)
+library(scales)
+library(wesanderson)
+library(ggthemes)
+library(viridis)
+
+Water <- read_csv("~/WaterData.csv")
+```
+
+
+```{r graph_1, fig.height=3, dev='svg'}
+
+population_time <- Water %>% 
+  group_by(Location)
+
+population_plot <- ggplot(Water, aes(x = Year, y = Population)) +
+  geom_area()
+
+population_plot
+
+```
+
+
+---
+
+## Step 2) Slightly better?
+Looks like an oily mess, but at least we're getting somewhere
+
+```{r graph_2, fig.height=3, dev='svg', warning=FALSE}
+
+LasVegas <- Water %>% 
+  filter(Location == "Las Vegas")
+  
+Vegas_Plot <- ggplot(LasVegas, aes(x=Year, y=Population)) + geom_area()
+
+Vegas_Plot
+```
+
+---
+
+class: inverse
+
+## Step 3) Hmmm...
+So, my first thought was using geom_area to give John's graph a little more color and make the difference in the two lines more obvious. 
+
+```{r graph_3, fig.height=2.8, dev='svg', warning=FALSE}
+
+Vegas_Plot <- ggplot(LasVegas, aes(x = Year, y = Population)) +
+  geom_area(fill = "blue", alpha = 0.3)
+
+Vegas_Plot +
+  geom_line(data=LasVegas, color = "azure", aes(x=Year, y=Acre_Feet)) +
+  theme_minimal()
+```
+
+---
+
+
+background-image: url("https://media.giphy.com/media/KKgS5LM08ifKM/giphy.gif")
+background-size: cover
+
+---
+
+## What about something really simple?
+```{r simple_line, fig.height=6, fig.width=11, echo=FALSE, results='hide', warning = FALSE, message=FALSE}
+
+VegasWater <- read_csv("~/LasVegasWater2.csv")
+
+VegasWater2 <- VegasWater %>% 
+  group_by(Measure)
+
+ggplot(VegasWater2, aes(Year, Measure, group = Type, color = Type)) +
+  geom_line() +
+  geom_point() +
+  labs(x = "Year", y = "Measure") +
+  ggtitle("Water Usage Trends, Las Vegas and Southern California") +
+  scale_y_continuous(labels = comma) +
+  theme_minimal()
+
+
+```
+
+
+---
+## Step 4) Lots of Tinkering
+I could not figure out how to include a label for "Peak Water" in the legend (I also could not figure out how to change the legend most of the time)
+
+```{r graph_4, fig.height=6, fig.width=11, echo=FALSE, results='hide', warning = FALSE, message=FALSE}
+
+LV_PeakWater <- LasVegas %>% 
+  mutate(PeakWater = case_when(
+           Year < 1999 ~ "Increasing Water Useage",
+           Year == c(1999,2000,2001,2002,2003) ~ "Peak Water Useage",
+           Year > 2003 ~ "Decreasing Water Useage"
+         ))
+
+Vegas_Plot +
+  geom_col(data=LV_PeakWater, color = "navyblue", aes(x=Year, y=Acre_Feet, fill = PeakWater))
+
+```
+
+
+---
+
+### Step 5) A double Y-axis is generally a no-no, so how about this?
+I think this makes it pretty clear that water use is actually pretty stable relative to population? I tried faceting this with the Southern California data but the scale was pretty funky because SoCal has a much larger population.
+
+```{r graph_5, fig.height=6, fig.width=12, echo=FALSE, results='hide', warning = FALSE, message=FALSE}
+
+VegasWater <- read_csv("~/LasVegasWater2.csv")
+
+p <-ggplot(VegasWater, aes(Year, Measure))
+
+vegas_bars <- p + geom_bar(stat = "identity", aes(fill = Type), position = "dodge", width = 0.65) +
+  labs(x = "Year", y = "Measure") +
+  ggtitle("Water Usage Trends, Las Vegas") +
+  scale_fill_manual(values = c('#1231B2','#73a089'),
+                    name = "",
+                      labels=c("Water Use in Acre Feet", "Population of Las Vegas")) + scale_color_hue(l = 75, c = 50) +
+  scale_y_continuous(labels = comma) +
+  theme(panel.grid.major = element_blank()) +
+    theme_economist_white()
+
+vegas_bars +
+  geom_vline(xintercept = 2002, linetype="dashed", color = "snow4", size=0.8) +
+  annotate('text', x=2000, y=1650000, label="Peak Water Use", color="#2277A0", family="Lato", hjust=0.5, size = 3) 
+
+```
+
+---
+
+## Or, Do you get more information from a facet comparison using a proportion?
+
+```{r graph_6, fig.height=6, fig.width=12, echo=FALSE, results='hide', warning = FALSE, message=FALSE}
+
+Water_Measure <- Water %>% 
+  mutate(Acre_Pop = Acre_Feet/Population)
+
+glimpse(Water_Measure)
+
+facet_locations <- ggplot(Water_Measure, aes(Year, Acre_Pop, color = Acre_Pop)) +
+  geom_line() +
+  geom_point(size = 2) + 
+  labs(x = "Year", 
+       y = "Proportion of Acre Feet of Water to Pop.") +
+  ylim(0, 0.3)
+  
+  facet_locations +
+  scale_color_viridis(trans = "reverse") +
+  facet_wrap(~Location) +
+    ggtitle("Water Usage Trends, Las Vegas and Southern CA") +
+        theme_fivethirtyeight() +
+    theme(axis.title = element_text(), axis.title.x = element_blank()) + ylab('Water Acre Feet Use per Total Population')
+
+```
+
+---
+
+background-image: url("https://media.giphy.com/media/arnpnZSdzywFi/giphy.gif")
+background-size: cover
+
+---
+class: inverse
+
+## Reminder of where we started
+
+Which visualization will help us win the Twitter flame war? One that communicates information quickly (social media lightening speed) to a lay audience who is unfamiliar with water management research.
+
+.pull-left[
+```{r echo = FALSE}
+knitr::include_graphics("images/JohnFleckTwitter_2.JPG")
+```
+]
+
+.pull-right[
+```{r echo = FALSE}
+knitr::include_graphics("images/JohnFleckTwitter_4.JPG")
+```
+]
+

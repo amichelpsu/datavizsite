@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>What’s Up With Colorado River Basin Water Usage?</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Alexandra Michel" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# What’s Up With Colorado River Basin Water Usage?
+## when ggplot2 meets a Twitter flame war
+### Alexandra Michel
+### 6/18/2018
+
+---
+
+
+
+
+
+##I was trying to think of an idea for the final visualization when I saw this...
+.pull-left[ 
+&lt;img src="images/JohnFleckTwitter_1.JPG" width="843" /&gt;
+]
+
+.pull-right[
+&lt;img src="images/JohnFleckTwitter_3.JPG" width="752" /&gt;
+]
+
+---
+
+background-image: url("http://i0.wp.com/www.kuddly.co/wp-content/uploads/2015/10/Kitten-Banana-Scare.gif")
+background-size: cover
+
+---
+
+class: center, middle
+
+## I grew up in very arid, drought-prone New Mexico and it has been hammered into me for years that we are imminently headed to a Mad Max future where there is no water left in the Southwest. What is up with John's data?
+
+---
+
+class: inverse, left, top
+
+#### John kindly sent me his USGS data from Southern California and Las Vegas.
+
+His graphs were okay I guess, but I thought I might be able to make them a little swankier and easier to understand.
+
+&lt;img src="images/JohnFleckTwitter_2.JPG" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Step 1) Horrible Fail
+
+
+
+
+
+```r
+population_time &lt;- Water %&gt;% 
+  group_by(Location)
+
+population_plot &lt;- ggplot(Water, aes(x = Year, y = Population)) +
+  geom_area()
+
+population_plot
+```
+
+![](Whats_Up_Water_files/figure-html/graph_1-1.svg)&lt;!-- --&gt;
+
+
+---
+
+## Step 2) Slightly better?
+Looks like an oily mess, but at least we're getting somewhere
+
+
+```r
+LasVegas &lt;- Water %&gt;% 
+  filter(Location == "Las Vegas")
+  
+Vegas_Plot &lt;- ggplot(LasVegas, aes(x=Year, y=Population)) + geom_area()
+
+Vegas_Plot
+```
+
+![](Whats_Up_Water_files/figure-html/graph_2-1.svg)&lt;!-- --&gt;
+
+---
+
+class: inverse
+
+## Step 3) Hmmm...
+So, my first thought was using geom_area to give John's graph a little more color and make the difference in the two lines more obvious. 
+
+
+```r
+Vegas_Plot &lt;- ggplot(LasVegas, aes(x = Year, y = Population)) +
+  geom_area(fill = "blue", alpha = 0.3)
+
+Vegas_Plot +
+  geom_line(data=LasVegas, color = "azure", aes(x=Year, y=Acre_Feet)) +
+  theme_minimal()
+```
+
+![](Whats_Up_Water_files/figure-html/graph_3-1.svg)&lt;!-- --&gt;
+
+---
+
+
+background-image: url("https://media.giphy.com/media/KKgS5LM08ifKM/giphy.gif")
+background-size: cover
+
+---
+
+## What about something really simple?
+![](Whats_Up_Water_files/figure-html/simple_line-1.png)&lt;!-- --&gt;
+
+
+---
+## Step 4) Lots of Tinkering
+I could not figure out how to include a label for "Peak Water" in the legend (I also could not figure out how to change the legend most of the time)
+
+![](Whats_Up_Water_files/figure-html/graph_4-1.png)&lt;!-- --&gt;
+
+
+---
+
+### Step 5) A double Y-axis is generally a no-no, so how about this?
+I think this makes it pretty clear that water use is actually pretty stable relative to population? I tried faceting this with the Southern California data but the scale was pretty funky because SoCal has a much larger population.
+
+![](Whats_Up_Water_files/figure-html/graph_5-1.png)&lt;!-- --&gt;
+
+---
+
+## Or, Do you get more information from a facet comparison using a proportion?
+
+![](Whats_Up_Water_files/figure-html/graph_6-1.png)&lt;!-- --&gt;
+
+---
+
+background-image: url("https://media.giphy.com/media/arnpnZSdzywFi/giphy.gif")
+background-size: cover
+
+---
+class: inverse
+
+## Reminder of where we started
+
+Which visualization will help us win the Twitter flame war? One that communicates information quickly (social media lightening speed) to a lay audience who is unfamiliar with water management research.
+
+.pull-left[
+&lt;img src="images/JohnFleckTwitter_2.JPG" width="823" /&gt;
+]
+
+.pull-right[
+&lt;img src="images/JohnFleckTwitter_4.JPG" width="759" /&gt;
+]
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+  }
+});
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

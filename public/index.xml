@@ -6,20 +6,48 @@
     <description>Recent content on It works</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Sun, 01 Jan 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 18 Jun 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>A small project example : add yours !</title>
-      <link>/projects/small-project/</link>
-      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      <title>Projects</title>
+      <link>/projects/projects/</link>
+      <pubDate>Mon, 18 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>/projects/small-project/</guid>
-      <description>Along with Ford Prefect, Dent barely escapes the Earth&amp;rsquo;s destruction as it is demolished to make way for a hyperspace bypass. Arthur spends the next several years, still wearing his dressing gown, helplessly launched from crisis to crisis while trying to straighten out his lifestyle.
- He rather enjoys tea, but seems to have trouble obtaining it in the far reaches of the galaxy.
- In time, he learns how to fly and carves a niche for himself as a sandwich-maker.</description>
+      <guid>/projects/projects/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Alex&#39;s Bio</title>
+      <link>/about/</link>
+      <pubDate>Wed, 13 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/about/</guid>
+      <description>I&amp;rsquo;ve been using R for about&amp;hellip;4 months now! Ironically, I have written and edited several stories about very cool things that scientists have made with R.
+My BA is in neuroscience, but I discovered I liked writing about science more than working in a lab. I lived in Washington, DC for about 7 years where I worked in health/science communication and policy.
+Currently, I&amp;rsquo;m a first year MPH student in the OHSU-PSU School of Public Health where my concentration is Health Promotion.</description>
+    </item>
+    
+    <item>
+      <title>This is a new post </title>
+      <link>/blog/how-do-i-make-a-post/</link>
+      <pubDate>Wed, 13 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/how-do-i-make-a-post/</guid>
+      <description>Is this how you add in stuff?
+1 + 1## [1] 2rnorm(10) # 10 random numbers## [1] -1.5886654 1.1284864 -0.3875953 0.9609226 0.2651718 -1.1880202## [7] -2.1602092 0.1576354 0.6326995 -1.3576546plot(dist ~ speed, cars) # a scatterplot</description>
+    </item>
+    
+    <item>
+      <title>This is a new post </title>
+      <link>/post/how-do-i-make-a-post/</link>
+      <pubDate>Wed, 13 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/how-do-i-make-a-post/</guid>
+      <description></description>
     </item>
     
     <item>
@@ -29,26 +57,6 @@
       
       <guid>/blog/example-article/</guid>
       <description>Text This is some text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium at ipsum eu pharetra. Proin ac ante et leo ultrices bibendum. Vivamus id ipsum fermentum, aliquam nunc mollis, tempus sapien. Praesent scelerisque cursus eros vitae pretium. Etiam sit amet ligula in leo euismod malesuada. Proin eleifend pulvinar ipsum, eu lobortis ante pharetra eu. Vivamus sem elit, venenatis eget ornare nec, ullamcorper non tellus. Duis quis massa finibus, euismod erat quis, fermentum nunc.</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>/about/</link>
-      <pubDate>Sat, 22 Aug 2015 00:00:00 +0000</pubDate>
-      
-      <guid>/about/</guid>
-      <description>With this theme, it is possible to add small sections that only contains one page like this. It will automatically appears in the header, at the end.
-Along with Ford Prefect, Dent barely escapes the Earth&amp;rsquo;s destruction as it is demolished to make way for a hyperspace bypass. Arthur spends the next several years, still wearing his dressing gown, helplessly launched from crisis to crisis while trying to straighten out his lifestyle.</description>
-    </item>
-    
-    <item>
-      <title>Projects</title>
-      <link>/projects/projects/</link>
-      <pubDate>Wed, 19 Aug 2015 20:29:37 -0700</pubDate>
-      
-      <guid>/projects/projects/</guid>
-      <description>In this theme, it is possible to add sections like a Projects one for example. You can add plenty of articles about your projects and a presentation page that will be displayed before the list. All is modulable, if you don&amp;rsquo;t want something.
-A Hollywood-funded film version, produced and filmed in the UK, was released in April 2005, and radio adaptations of the third, fourth, and fifth novels were broadcast from 2004 to 2005.</description>
     </item>
     
     <item>
@@ -97,6 +105,15 @@ Follow the following steps:
     </item>
     
     <item>
+      <title></title>
+      <link>/projects/small-project/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/projects/small-project/</guid>
+      <description>code{white-space: pre;}pre:not([class]) {background-color: white;}if (window.hljs) {hljs.configure({languages: []});hljs.initHighlightingOnLoad();if (document.readyState &amp;&amp; document.readyState === &#34;complete&#34;) {window.setTimeout(function() { hljs.initHighlighting(); }, 0);}}h1 {font-size: 34px;}h1.title {font-size: 38px;}h2 {font-size: 30px;}h3 {font-size: 24px;}h4 {font-size: 18px;}h5 {font-size: 16px;}h6 {font-size: 12px;}.</description>
+    </item>
+    
+    <item>
       <title>Home</title>
       <link>/home/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -116,6 +133,16 @@ Hey ! Welcome to My Cat Pic!. Here are some cats :</description>
  The MIT License (MIT)
 Copyright &amp;copy; 2015 Nishanth Shanmughamnishanth.gerrard@gmail.com
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &amp;ldquo;Software&amp;rdquo;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</description>
+    </item>
+    
+    <item>
+      <title>What&#39;s Up With Colorado River Basin Water Use?</title>
+      <link>/projects/small-project/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/projects/small-project/</guid>
+      <description>Here are some of my slides
+John Fleck is a professor of water management at the University of New Mexico. He is the father of one of my good friends from high school and he is like, the guy on water policy in the Southwest. I was trying to come up with some ideas for my final visualization project when I saw John going back and forth with some people on Twitter over data that shows that water usage across the Southwest is actually going down &amp;ndash; and has been for some time (this is not at all what you see in the news).</description>
     </item>
     
   </channel>

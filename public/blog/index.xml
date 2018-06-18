@@ -6,10 +6,20 @@
     <description>Recent content in Blog on It works</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Mon, 28 Sep 2015 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 13 Jun 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>This is a new post </title>
+      <link>/blog/how-do-i-make-a-post/</link>
+      <pubDate>Wed, 13 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/how-do-i-make-a-post/</guid>
+      <description>Is this how you add in stuff?
+1 + 1## [1] 2rnorm(10) # 10 random numbers## [1] -1.5886654 1.1284864 -0.3875953 0.9609226 0.2651718 -1.1880202## [7] -2.1602092 0.1576354 0.6326995 -1.3576546plot(dist ~ speed, cars) # a scatterplot</description>
+    </item>
     
     <item>
       <title>Example article</title>
