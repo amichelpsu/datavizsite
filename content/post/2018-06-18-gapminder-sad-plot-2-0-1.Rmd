@@ -1,0 +1,72 @@
+---
+title: 'Gapminder: Sad Plot 2.0.1'
+author: Alexandra Michel
+date: '2018-06-18'
+slug: gapminder-sad-plot-2-0-1
+categories:
+  - R
+  - visualization
+  - Gapminder
+  - Sad Plot 2
+tags:
+  - plot
+  - R Markdown
+  - sad plot
+description: Desc
+hacker_news_id: ''
+lobsters_id: ''
+meta_img: /images/image.jpg
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(gapminder)
+library(dplyr)
+library(ggplot2)
+library(tidyverse)
+library(ggthemes)
+library(plotly)
+library(RColorBrewer)
+```
+
+### 1) Gapminder Task 2 Reproducible Code
+
+## Brief Part 1 - Reproducible Code
+
+I wanted to make a simple graph showing the change in world life expectancy from 1965 - 2015. I spent a few hours messing with the sort and filter commands and just could not figure out how to filter for year 1965 AND 2015. As it turns out (which I figured out with some help during the lab!) the reason I could not figure out this super simple tidyverse task is because there was no gapminder data for those particular years :/
+
+I improved the graph by getting a set of countries that had data on life expectancy available for 1967 and 2007 instead. I also wanted to include some text so that a viewer could easily check which countries were outliers (life expectancy decreased sharply relative to other countries et cet). 
+
+#### Call up gapminder dataset and filter for relevant years, group by country
+
+```{r}
+task2_data <- gapminder %>% 
+  filter(year %in% c(1967, 2007)) %>% 
+  group_by(year, country) %>% 
+  arrange(country)
+  
+  
+ 
+```
+
+#### Use plotly to add interactive text annotations so a viewer can easily pick out any outliers or interesting patterns
+
+With some help during the lab, I downloaded the plotly package, which allowed me to include text annotations that show up when you mouse over a particular line. It's a much cleaner graph when sorted by continent, but it's interesting to me to see which countries actually had life expectancy go down.
+
+Next task: figuring out how to make the downward lines pop somehow (color change, texture?).
+
+```{r}
+p <- task2_data %>%
+  ggplot(aes(x = year, y = lifeExp, colour = continent, group = country)) +
+  geom_point(alpha = .5) +
+  geom_line() +
+  labs(title = "World Life Expectancy Change 1967 - 2007",
+       subtitle = "Organized by continent",
+       caption = "Source for slope graph idea: http://asda.stat.ubc.ca/", 
+       x = "Year", y = "Average Life Expectancy in Years") +
+  scale_color_brewer(palette = "Set1") 
+
+ggplotly(p)
+```
