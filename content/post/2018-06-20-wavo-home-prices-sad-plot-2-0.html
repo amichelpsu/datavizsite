@@ -57,7 +57,7 @@ waco_homes +
 </div>
 <div id="data-description" class="section level3">
 <h3>3) Data Description</h3>
-<p>The data for this graph was pre-included in the R package. The data includes quantitative data on real estate prices for Texas, including the city of Waco. The data has been pre-cleaned so that it is easy to work with right out of the box. The raw data includes 11 variables with 139 observations.</p>
+<p>The data for this graph was pre-included in the R package. The data includes quantitative data on real estate prices for housing in Texas, including the city of Waco. The data has been pre-cleaned so that it is easy to work with right out of the box. The raw data includes 11 variables with 139 observations, with a .</p>
 </div>
 <div id="intended-audience" class="section level3">
 <h3>4) Intended Audience</h3>
@@ -84,8 +84,25 @@ waco_homes +
 <p>There are so many different variations for this type of graph. One that I see a lot is the use of bubbles that are sized according to the magnitude of values such that larger bubbles represent larger values.</p>
 </div>
 <div id="how-i-created-it-methods-section" class="section level3">
-<h3>9) How I Created It: Methods Section</h3>
+<h3>9) How I Created It Methods Section</h3>
 <p>I initially made this graph as part of the color lab. I initially used continuous colors to help illustrate changes in price overall (higher prices were darker red, lowest prices were yellow).</p>
-<p>I started off with a simple scatterplot using median and year variables. I noticed that there were several years in the dataset that didn’t have the needed values, so I filtered for years after 2004.</p>
-<p>With help from Emile, I created a new indicator variable (a logical TRUE or FALSE) using mutate to show whether the home prices in a given year were above or below a threshold of the median home price for that year.</p>
+<p>I started off with the dataset for all of Texas and decided to filter just for Waco after a 24-year old classmate asked me “What’s Waco?”. Also, in Cecile Richards’ new book she talks about Waco as being famous for Chip and Johanna and HGTV, which is uh…not what the city of Waco brings to mind for me.</p>
+<p>Anyway, I started with a simple scatterplot using median house sale price and year variables. I noticed that there were several years in the dataset that didn’t have the needed values, so I filtered for years after 2004. I played around with some of these values until I got a satisfactory looking scatterplot, then I added color using the ColorBrewer package.</p>
+<pre class="r"><code>waco &lt;- txhousing %&gt;% 
+  filter(city == &quot;Waco&quot;, year &gt;= 2004) %&gt;% 
+  group_by(year) 
+
+waco_homes &lt;- ggplot(waco, aes(x = year, y = median, color = median)) + 
+    geom_point(alpha = 0.7) + labs(title = &quot;Waco, TX median sale price over time&quot;, 
+    subtitle = &quot;Note, the show Fixer Upper debuted in 2013&quot;, caption = &quot;Source: ggplot2 txhousing data&quot;) + 
+    xlab(&quot;Year&quot;) + 
+    ylab(&quot;Median sale price&quot;) + 
+  scale_x_continuous(breaks = seq(2004, 2015, by = 2)) +
+  scale_y_continuous(breaks = seq(90000, 175000, by = 10000)) 
+
+waco_homes +
+  scale_color_gradientn(colours = brewer.pal(n=7, name=&quot;YlOrRd&quot;)) +
+  theme_minimal()</code></pre>
+<p><img src="/post/2018-06-20-wavo-home-prices-sad-plot-2-0_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>With help from Emile during our lab, I created a new indicator variable (a logical TRUE or FALSE) using mutate to show whether the home prices in a given year were above or below a threshold of the median home price for that year (which is the sad plot 2.0 at the top of the page). One of the things I like about the 2.0 version of the graph is that the viewer can compare across the full timescale as well as across individual years much more easily. The continuous color is helpful for a big picture impression (and it looks pretty) but it ultimately doesn’t include as much information.</p>
 </div>
