@@ -13,17 +13,6 @@
     
     <item>
       <title>This is a new post </title>
-      <link>/blog/how-do-i-make-a-post/</link>
-      <pubDate>Wed, 13 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/blog/how-do-i-make-a-post/</guid>
-      <description>Is this how you add in stuff?
-1 + 1## [1] 2rnorm(10) # 10 random numbers## [1] -0.4324180 0.2561106 0.0100047 0.9054032 0.0193092 -0.9927873## [7] -0.3972822 -2.6278047 -2.0962900 -1.3466407plot(dist ~ speed, cars) # a scatterplotThis is another test at how to add in stuff
-library(babynames)## Warning: package &amp;#39;babynames&amp;#39; was built under R version 3.4.4library(dplyr)## Warning: package &amp;#39;dplyr&amp;#39; was built under R version 3.</description>
-    </item>
-    
-    <item>
-      <title>This is a new post </title>
       <link>/post/how-do-i-make-a-post/</link>
       <pubDate>Wed, 13 Jun 2018 00:00:00 +0000</pubDate>
       

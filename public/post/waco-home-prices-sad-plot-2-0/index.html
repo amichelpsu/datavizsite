@@ -15,24 +15,24 @@
 <meta property="og:site_name" content="It works" />
 <meta property="og:locale" content="nn_NO" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/tags/sad-plot/" />
-<meta property="og:title" content="Sad Plot" />
-<meta property="twitter:title" content="Sad Plot">
+<meta property="og:url" content="/post/waco-home-prices-sad-plot-2-0/" />
+<meta property="og:title" content="Waco Home Prices Sad Plot 2.0" />
+<meta property="twitter:title" content="Waco Home Prices Sad Plot 2.0">
 
-    <meta property="og:image" content="/img/banner.png">
+    <meta property="og:image" content="//images/image.jpg">
     <meta property="twitter:card" content="summary">
-    <meta property="twitter:image" content="/img/banner.png">
+    <meta property="twitter:image" content="//images/image.jpg">
 
-<meta property="og:description" content="">
-<meta property="twitter:description" content="">
+<meta property="og:description" content="Desc">
+<meta property="twitter:description" content="Desc">
 
 <title>
 
 
-     It works - Sad Plot 
+     It works - Waco Home Prices Sad Plot 2.0 
 
 </title>
-<link rel="canonical" href="/tags/sad-plot/">
+<link rel="canonical" href="/post/waco-home-prices-sad-plot-2-0/">
 
 
 <style media="screen">
@@ -1056,8 +1056,6 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 
 
 
-  <link href="/tags/sad-plot/index.xml" rel="alternate" type="application/rss+xml" title="It works" />
-
 
 </head>
 
@@ -1065,7 +1063,7 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 <body>
 
 
-<div class="header header-home column">
+<div class="header column">
 
     <div class="container">
         
@@ -1113,29 +1111,107 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 <div class="main column">
     <div class="container">
         <div class="content">
-            <div class="posts">
-                <div class="page-heading">Posts about Sad Plot</div>
-                <ul>
-                    
-                        <li class="post-item">
-    <span class="meta">Jun 13, 2018</span>
-    <a href="/post/how-do-i-make-a-post/"><span>This is a new post </span></a>
-</li>
+            <div class="page-heading">
 
-                    
-                        <li class="post-item">
-    <span class="meta">Jun 20, 2018</span>
-    <a href="/post/star-wars-baby-names-sad-plot-2-0/"><span>Star Wars Baby Names Sad Plot 2.0</span></a>
-</li>
+    Waco Home Prices Sad Plot 2.0
 
-                    
-                        <li class="post-item">
-    <span class="meta">Jun 20, 2018</span>
-    <a href="/post/waco-home-prices-sad-plot-2-0/"><span>Waco Home Prices Sad Plot 2.0</span></a>
-</li>
+</div>
 
-                    
-                </ul>
+            <div class="markdown">
+                
+    
+    <div id="clean-reproducible-code" class="section level3">
+<h3>1) Clean Reproducible Code</h3>
+<pre class="r"><code>knitr::opts_chunk$set(echo = TRUE)
+
+library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>library(ggplot2)
+library(tidyverse)</code></pre>
+<pre><code>## -- Attaching packages -------------------------------------------------- tidyverse 1.2.1 --</code></pre>
+<pre><code>## v tibble  1.4.2     v purrr   0.2.5
+## v tidyr   0.8.1     v stringr 1.3.1
+## v readr   1.1.1     v forcats 0.3.0</code></pre>
+<pre><code>## -- Conflicts ----------------------------------------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(ggthemes)
+library(plotly)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;plotly&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
+## 
+##     last_plot</code></pre>
+<pre><code>## The following object is masked from &#39;package:stats&#39;:
+## 
+##     filter</code></pre>
+<pre><code>## The following object is masked from &#39;package:graphics&#39;:
+## 
+##     layout</code></pre>
+<pre class="r"><code>library(RColorBrewer)
+
+waco &lt;- txhousing %&gt;% 
+  filter(city == &quot;Waco&quot;, year &gt;= 2004) %&gt;% 
+  group_by(year) %&gt;% 
+  mutate(median_waco = median(median), 
+         gt_median = median &gt;= median_waco)
+
+waco_homes &lt;- ggplot(waco, aes(x = year, y = median, color = gt_median)) + 
+    geom_point(alpha = 0.7) + labs(title = &quot;Waco, TX median Sale Price Over Time&quot;, 
+    subtitle = &quot;Note, the show Fixer Upper debuted in 2013&quot;, caption = &quot;Source: ggplot2 txhousing data&quot;) + 
+    xlab(&quot;Year&quot;) + 
+    ylab(&quot;Median sale price by month&quot;) + 
+  scale_x_continuous(breaks = seq(2004, 2015, by = 2)) +
+  scale_y_continuous(breaks = seq(90000, 175000, by = 10000)) +
+  scale_color_discrete(name=&quot;Yearly Median Home Prices&quot;,
+                      breaks=c(&quot;FALSE&quot;, &quot;TRUE&quot;),
+                      labels=c(&quot;Below Median&quot;, &quot;Above Median&quot;)) 
+  
+
+waco_homes +
+  theme_minimal() </code></pre>
+<p><img src="/post/2018-06-20-wavo-home-prices-sad-plot-2-0_files/figure-html/unnamed-chunk-1-1.png" width="672" /> ### 2) What Type of Graph?</p>
+<p>This is a scatterplot.</p>
+</div>
+<div id="data-description" class="section level3">
+<h3>3) Data Description</h3>
+<p>The data for this graph was pre-included in the R package. The data includes quantitative data on real estate prices for Texas, including the city of Waco. The data has been pre-cleaned so that it is easy to work with right out of the box. The raw data includes 11 variables with 139 observations.</p>
+</div>
+<div id="intended-audience" class="section level3">
+<h3>4) Intended Audience</h3>
+<p>This could be useful for a homebuyer or a real estate agent, someone interested in whether a particular house is priced high or low for the overall market.</p>
+</div>
+<div id="what-am-i-trying-to-show" class="section level3">
+<h3>5) What Am I Trying to Show?</h3>
+<p>There are two main things that I wanted to show with this graph: 1) The general trend in Waco real estate – which is clearly going up over time. 2) Whether particular houses are above or below the median valuation for Waco that year (i.e., is this a good deal or not?). Obviously there’s a lot of other factors to consider, but it’s an interesting way to see the market differences between “low value” real estate and “high value” real estate over time.</p>
+</div>
+<div id="how-do-i-read-this" class="section level3">
+<h3>6) How Do I Read This?</h3>
+<p>This scatterplot graph uses a cartesian coordinate system where the year is along the x-axis and the median sale prices are along the y-axis. Each dot represents the median sale price for all houses sold during one month. This graph type is helpful at showing the relationship between house pricing and time – it’s very clear that home prices (even lower valued ones) are going up over time regardless of the economic recession from 2008.</p>
+</div>
+<div id="presentation-tips" class="section level3">
+<h3>7) Presentation Tips</h3>
+<p>It’s important to note that the dots in the plot are monthly medians, so if I had more time to get to play with analyzing this I would want to know whether particular months are just bad for sales (maybe including some lines grouped by month?).</p>
+</div>
+<div id="variations-and-alternatives" class="section level3">
+<h3>8) Variations and Alternatives</h3>
+<p>There are so many different variations for this type of graph. One that I see a lot is the use of bubbles that are sized according to the magnitude of values such that larger bubbles represent larger values.</p>
+</div>
+<div id="how-i-created-it-methods-section" class="section level3">
+<h3>9) How I Created It: Methods Section</h3>
+<p>I initially made this graph as part of the color lab. I initially used continuous colors to help illustrate changes in price overall (higher prices were darker red, lowest prices were yellow).</p>
+<p>I started off with a simple scatterplot using median and year variables. I noticed that there were several years in the dataset that didn’t have the needed values, so I filtered for years after 2004.</p>
+<p>With help from Emile, I created a new indicator variable (a logical TRUE or FALSE) using mutate to show whether the home prices in a given year were above or below a threshold of the median home price for that year.</p>
+</div>
+
+
             </div>
         </div>
     </div>

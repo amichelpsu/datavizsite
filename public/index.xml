@@ -24,10 +24,10 @@ Adding a few more names to it to make it a little more interesting (Luke, Han, L
     
     <item>
       <title>Waco Home Prices Sad Plot 2.0</title>
-      <link>/post/wavo-home-prices-sad-plot-2-0/</link>
+      <link>/post/waco-home-prices-sad-plot-2-0/</link>
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/wavo-home-prices-sad-plot-2-0/</guid>
+      <guid>/post/waco-home-prices-sad-plot-2-0/</guid>
       <description>1) Clean Reproducible Codeknitr::opts_chunk$set(echo = TRUE)library(dplyr)## ## Attaching package: &amp;#39;dplyr&amp;#39;## The following objects are masked from &amp;#39;package:stats&amp;#39;:## ## filter, lag## The following objects are masked from &amp;#39;package:base&amp;#39;:## ## intersect, setdiff, setequal, unionlibrary(ggplot2)library(tidyverse)## -- Attaching packages -------------------------------------------------- tidyverse 1.2.1 --## v tibble 1.4.2 v purrr 0.2.5## v tidyr 0.8.1 v stringr 1.3.1## v readr 1.1.1 v forcats 0.3.0## -- Conflicts ----------------------------------------------------- tidyverse_conflicts() --## x dplyr::filter() masks stats::filter()## x dplyr::lag() masks stats::lag()library(ggthemes)library(plotly)## ## Attaching package: &amp;#39;plotly&amp;#39;## The following object is masked from &amp;#39;package:ggplot2&amp;#39;:## ## last_plot## The following object is masked from &amp;#39;package:stats&amp;#39;:## ## filter## The following object is masked from &amp;#39;package:graphics&amp;#39;:## ## layoutlibrary(RColorBrewer)waco &amp;lt;- txhousing %&amp;gt;% filter(city == &amp;quot;Waco&amp;quot;, year &amp;gt;= 2004) %&amp;gt;% group_by(year) %&amp;gt;% mutate(median_waco = median(median), gt_median = median &amp;gt;= median_waco)waco_homes &amp;lt;- ggplot(waco, aes(x = year, y = median, color = gt_median)) + geom_point(alpha = 0.</description>
     </item>
     
@@ -38,15 +38,6 @@ Adding a few more names to it to make it a little more interesting (Luke, Han, L
       
       <guid>/projects/projects/</guid>
       <description></description>
-    </item>
-    
-    <item>
-      <title>Sad Plot #1 Star Wars Baby Names</title>
-      <link>/post/sad-plot-1-star-wars-baby-names/</link>
-      <pubDate>Mon, 18 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/sad-plot-1-star-wars-baby-names/</guid>
-      <description>1) Clean Reproducible Codestar_wars &amp;lt;- babynames %&amp;gt;%filter(name == &amp;quot;Leah&amp;quot; | name == &amp;quot;Leia&amp;quot;) %&amp;gt;% filter(sex == &amp;quot;F&amp;quot;) %&amp;gt;% filter(year &amp;gt;= 1975)## Warning: package &amp;#39;bindrcpp&amp;#39; was built under R version 3.4.4plot &amp;lt;- ggplot(star_wars, aes(x = year, y = prop, group = name,color = name)) + geom_line(size = 2) +geom_vline(xintercept = 1977, linetype=&amp;quot;dashed&amp;quot;, color = &amp;quot;blue&amp;quot;, size=1) +geom_vline(xintercept = 1999, linetype=&amp;quot;dashed&amp;quot;, color = &amp;quot;blue&amp;quot;, size=1) +geom_vline(xintercept = 2014, linetype=&amp;quot;dashed&amp;quot;, color = &amp;quot;blue&amp;quot;, size=1) +annotate(&amp;quot;text&amp;quot;, x = 1980, y = 0.</description>
     </item>
     
     <item>
@@ -67,17 +58,6 @@ Adding a few more names to it to make it a little more interesting (Luke, Han, L
       <description>I&amp;rsquo;ve been using R for about&amp;hellip;4 months now! Ironically, I have written and edited several stories about very cool things that scientists have made with R.
 My BA is in neuroscience, but I discovered I liked writing about science more than working in a lab. I lived in Washington, DC for about 7 years where I worked in health/science communication and policy.
 Currently, I&amp;rsquo;m a first year MPH student in the OHSU-PSU School of Public Health where my concentration is Health Promotion.</description>
-    </item>
-    
-    <item>
-      <title>This is a new post </title>
-      <link>/blog/how-do-i-make-a-post/</link>
-      <pubDate>Wed, 13 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/blog/how-do-i-make-a-post/</guid>
-      <description>Is this how you add in stuff?
-1 + 1## [1] 2rnorm(10) # 10 random numbers## [1] -0.4324180 0.2561106 0.0100047 0.9054032 0.0193092 -0.9927873## [7] -0.3972822 -2.6278047 -2.0962900 -1.3466407plot(dist ~ speed, cars) # a scatterplotThis is another test at how to add in stuff
-library(babynames)## Warning: package &amp;#39;babynames&amp;#39; was built under R version 3.4.4library(dplyr)## Warning: package &amp;#39;dplyr&amp;#39; was built under R version 3.</description>
     </item>
     
     <item>

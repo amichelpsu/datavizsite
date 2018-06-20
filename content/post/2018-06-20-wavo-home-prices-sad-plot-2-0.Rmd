@@ -2,7 +2,7 @@
 title: Waco Home Prices Sad Plot 2.0
 author: Alex Michel
 date: '2018-06-20'
-slug: wavo-home-prices-sad-plot-2-0
+slug: waco-home-prices-sad-plot-2-0
 categories:
   - blog
 tags:
@@ -50,3 +50,43 @@ waco_homes +
   theme_minimal() 
 
 ```
+### 2) What Type of Graph?
+
+This is a scatterplot. 
+
+
+### 3) Data Description
+
+The data for this graph was pre-included in the R package. The data includes quantitative data on real estate prices for Texas, including the city of Waco. The data has been pre-cleaned so that it is easy to work with right out of the box. The raw data includes 11 variables with 139 observations.
+
+### 4) Intended Audience
+
+This could be useful for a homebuyer or a real estate agent, someone interested in whether a particular house is priced high or low for the overall market.
+
+### 5) What Am I Trying to Show?
+
+There are two main things that I wanted to show with this graph:
+1) The general trend in Waco real estate -- which is clearly going up over time.
+2) Whether particular houses are above or below the median valuation for Waco that year (i.e., is this a good deal or not?). Obviously there's a lot of other factors to consider, but it's an interesting way to see the market differences between "low value" real estate and "high value" real estate over time.
+
+### 6) How Do I Read This?
+
+This scatterplot graph uses a cartesian coordinate system where the year is along the x-axis and the median sale prices are along the y-axis. Each dot represents the median sale price for all houses sold during one month. This graph type is helpful at showing the relationship between house pricing and time -- it's very clear that home prices (even lower valued ones) are going up over time regardless of the economic recession from 2008.
+
+### 7) Presentation Tips
+
+It's important to note that the dots in the plot are monthly medians, so if I had more time to get to play with analyzing this I would want to know whether particular months are just bad for sales (maybe including some lines grouped by month?).
+
+
+### 8) Variations and Alternatives
+
+There are so many different variations for this type of graph. One that I see a lot is the use of bubbles that are sized according to the magnitude of values such that larger bubbles represent larger values.
+
+
+### 9) How I Created It: Methods Section
+
+I initially made this graph as part of the color lab. I initially used continuous colors to help illustrate changes in price overall (higher prices were darker red, lowest prices were yellow).
+
+I started off with a simple scatterplot using median and year variables. I noticed that there were several years in the dataset that didn't have the needed values, so I filtered for years after 2004.
+
+With help from Emile, I created a new indicator variable (a logical TRUE or FALSE) using mutate to show whether the home prices in a given year were above or below a threshold of the median home price for that year. 
