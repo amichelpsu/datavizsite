@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>MoMA Style Sad Plot 2.0</title>
+      <link>/post/moma-style-sad-plot-2-0/</link>
+      <pubDate>Wed, 20 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/moma-style-sad-plot-2-0/</guid>
+      <description>1) Clean Reproducible Codelibrary(here)library(tidyverse)library(readr)library(dplyr)library(ggthemes)library(extrafont)library(stringr)library(extrafont)moma &amp;lt;- read_csv(&amp;quot;http://bit.ly/cs631-moma&amp;quot;)moma_NA &amp;lt;- moma %&amp;gt;% drop_na(artist_gender) %&amp;gt;% filter(exchange != TRUE)ggplot(moma_NA, aes(x = year_acquired, fill = gift)) +geom_bar(tat=&amp;quot;identity&amp;quot;,position =&amp;quot;identity&amp;quot;, width = 1) +labs(x = &amp;quot;Year Painting Acquired&amp;quot;, y = &amp;quot;Number of Works Acquired&amp;quot;) +ggtitle(&amp;quot;How MoMA Gets Its Art: Gifts and Purchases Over Time&amp;quot;) +scale_fill_manual(name = &amp;quot;Acquisition Type&amp;quot;,labels=c(&amp;quot;MoMA Purchased&amp;quot;, &amp;quot;Gift&amp;quot;),values=c(&amp;quot;black&amp;quot;,&amp;quot;#ff3300&amp;quot;)) +coord_cartesian(xlim = c(1928, 2018), ylim = c(0, 80)) +scale_x_continuous(breaks=seq(1930, 2015, 20)) +facet_wrap(~artist_gender) +theme_tufte() +theme(panel.</description>
+    </item>
+    
+    <item>
       <title>Waco Home Prices Sad Plot 2.0</title>
       <link>/post/waco-home-prices-sad-plot-2-0/</link>
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0000</pubDate>

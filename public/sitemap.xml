@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/post/moma-style-sad-plot-2-0/</loc>
+    <lastmod>2018-06-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/star-wars-baby-names-sad-plot-2-0/</loc>
     <lastmod>2018-06-20T00:00:00+00:00</lastmod>
   </url>
@@ -128,6 +133,12 @@
   
   <url>
     <loc>/license/</loc>
+  </url>
+  
+  <url>
+    <loc>/tags/moma/</loc>
+    <lastmod>2018-06-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>

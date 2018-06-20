@@ -1,0 +1,160 @@
+---
+title: MoMA Style Sad Plot 2.0
+author: Alex Michel
+date: '2018-06-20'
+slug: moma-style-sad-plot-2-0
+categories:
+  - blog
+tags:
+  - plot
+  - sad plot
+  - MoMA
+description: Desc
+hacker_news_id: ''
+lobsters_id: ''
+meta_img: /images/image.jpg
+---
+
+
+
+<div id="clean-reproducible-code" class="section level3">
+<h3>1) Clean Reproducible Code</h3>
+<pre class="r"><code>library(here)
+library(tidyverse)
+library(readr)
+library(dplyr)
+library(ggthemes)
+library(extrafont)
+library(stringr)
+library(extrafont)
+
+moma &lt;- read_csv(&quot;http://bit.ly/cs631-moma&quot;)
+
+moma_NA &lt;- moma %&gt;% 
+  drop_na(artist_gender) %&gt;% 
+  filter(exchange != TRUE)
+
+ggplot(moma_NA, aes(x = year_acquired, fill = gift)) +
+  geom_bar(tat=&quot;identity&quot;,position =&quot;identity&quot;, width = 1) +
+  labs(x = &quot;Year Painting Acquired&quot;, y = &quot;Number of Works Acquired&quot;) +
+  ggtitle(&quot;How MoMA Gets Its Art: Gifts and Purchases Over Time&quot;) +
+    scale_fill_manual(name = &quot;Acquisition Type&quot;,
+                        labels=c(&quot;MoMA Purchased&quot;, &quot;Gift&quot;),
+                        values=c(&quot;black&quot;,&quot;#ff3300&quot;)) +
+          coord_cartesian(xlim = c(1928, 2018), ylim = c(0, 80)) +
+          scale_x_continuous(breaks=seq(1930, 2015, 20)) +
+   facet_wrap(~artist_gender) +
+  theme_tufte() +
+  theme(panel.background = element_rect(fill = &#39;white&#39;)) +
+  theme(panel.grid.major.y = element_line(color = &quot;gray97&quot;, size = 0.01)) +
+  scale_x_continuous(breaks = round(seq(min(1930), max(2020), by = 20), 2)) +
+  theme(text=element_text(family=&quot;Franklin Gothic Medium&quot;)) +
+  theme(plot.title = element_text(size=18))</code></pre>
+<p><img src="/post/2018-06-20-moma-style-sad-plot-2-0_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+</div>
+<div id="what-type-of-graph" class="section level3">
+<h3>2) What Type of Graph?</h3>
+<p>This is a bar graph.</p>
+</div>
+<div id="data-description" class="section level3">
+<h3>3) Data Description</h3>
+<p>The data for this graph came from a publicly available repository (I think) created by MoMA. However, the data were painstakingly cleaned by Prof. Hill. The data includes a really good mix of different varieties of information including, quanitative, qualitative, strings, geographic, and counts.</p>
+</div>
+<div id="intended-audience" class="section level3">
+<h3>4) Intended Audience</h3>
+<p>The intended audience for this chart would be the general public, or more specifically people who care about representation in art.</p>
+<p>In a perfect world it would be pretty cool if say the board of directors of MoMA saw this and were like, “dang, maybe we need to change our practices when it comes to purchases to reflect greater diversity in artistic perspectives.”</p>
+</div>
+<div id="what-am-i-trying-to-show" class="section level3">
+<h3>5) What Am I Trying to Show?</h3>
+<p>Initially I was just exploring the data, but as I was playing around with faceting (this lab was the first time I’d ever heard of facets before). Artist gender was one dimension where I thought the data could show someing really concrete: Are female artists catching up in representation in the MoMA collectoin?</p>
+<p>Sadly, the answer is not really.</p>
+<p>I also wanted to look at how the museum was obtaining its collection. If they’re only getting works from male artists as gifts it doesn’t seem so bad for their to be an imbalance. But, if they’re spending bazillions of dollars only on purchases of work from male artists that is more of a problem.</p>
+</div>
+<div id="how-do-i-read-this" class="section level3">
+<h3>6) How Do I Read This?</h3>
+<p>Each bar represents a count of paintings obtained in a year. Black bars show works that MoMA purchased and red bars show works that were gifted to MoMA. The x-axis shows time so that the viewer can get a sense of how the collection’s acquisitions are influenced by time. The faceting allows the viewer to easily compare the acquisitions of works by male and female artists.</p>
+</div>
+<div id="presentation-tips" class="section level3">
+<h3>7) Presentation Tips</h3>
+<ul>
+<li>Please note that I used the official MoMA color scheme and the closest font I could get (they have their own MoMA Gothic based on Franklin Gothic).</li>
+</ul>
+</div>
+<div id="variations-and-alternatives" class="section level3">
+<h3>8) Variations and Alternatives</h3>
+<p>I tried a few different alternatives to this bar plot, but ultimately I liked the way the bars communicated The Big Picture of differences in gender representation in MoMA.</p>
+<p>An alternative I also thought about doing was doing a horizontal bar plot (swapping the axis) organized highest to lowest by acquisitions by year to show which year MoMA bought the most stuff.</p>
+</div>
+<div id="how-i-created-it-methods-section" class="section level3">
+<h3>9) How I Created It: Methods Section</h3>
+<p>Initially I thought it would be interesting to try to graph the acquisition of works by artists from Latin America, I had some challengings analyzing strings of text. Since my data analysis chops are still pretty weak, I focused on updating the appearance of the graph.</p>
+<p>Using the Light version of the Economist theme really helped make the graph looks less sad.</p>
+<div id="sad-plot-1.0" class="section level4">
+<h4>Sad Plot 1.0</h4>
+<pre class="r"><code>moma_NA &lt;- moma %&gt;% 
+  drop_na(artist_gender) %&gt;% 
+  filter(exchange != TRUE)
+
+moma_theme &lt;- ggplot(moma_NA, aes(x = year_acquired, fill = gift)) +
+  geom_bar() +
+  labs(x = &quot;Year Painting Acquired&quot;, y = &quot;Number of Works Acquired&quot;) +
+  ggtitle(&quot;How MoMA Gets Its Art, Gifts and Purchases Over Time&quot;) +
+    scale_fill_discrete(name = &quot;Acquisition Type&quot;,
+                      labels=c(&quot;MoMA Purchased&quot;, &quot;Gift&quot;)) +
+          coord_cartesian(xlim = c(1928, 2018), ylim = c(0, 85)) +
+          scale_x_continuous(breaks=seq(1930, 2015, 20)) +
+    facet_wrap(~artist_gender) +
+    theme_economist_white() 
+
+moma_theme</code></pre>
+<p><img src="/post/2018-06-20-moma-style-sad-plot-2-0_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>For this graph I mostly followed the instructions from the museum lab, but I tried out some new commands (drop_NA and !=). I filtered so that I just had works by male or female artists (there were a few with no gender which gave me a third facet) and works that were either gifts or purchases (there were a few labeled exchanges).</p>
+<p>When I was thinking about different things I could do with this data I started out by making a few tibbles to get a better sense of any patterns. As you can see, there are huge variations year by year. And HUGE differences in purchases vs. gifts. Overall, you can see that men are represented in both purchases and gifts by a really big ratio.</p>
+<pre class="r"><code>moma %&gt;% 
+  count(gift, year_acquired, sort = TRUE)</code></pre>
+<pre><code>## # A tibble: 171 x 3
+##    gift  year_acquired     n
+##    &lt;lgl&gt;         &lt;dbl&gt; &lt;int&gt;
+##  1 FALSE          1985    79
+##  2 TRUE           1991    61
+##  3 TRUE           2005    61
+##  4 FALSE          1967    58
+##  5 FALSE          1979    49
+##  6 TRUE           2008    43
+##  7 TRUE           1942    40
+##  8 FALSE          1942    31
+##  9 TRUE           1992    28
+## 10 TRUE           2016    27
+## # ... with 161 more rows</code></pre>
+<pre class="r"><code>moma %&gt;% 
+  count(artist_gender, purchase)</code></pre>
+<pre><code>## # A tibble: 5 x 3
+##   artist_gender purchase     n
+##   &lt;chr&gt;         &lt;lgl&gt;    &lt;int&gt;
+## 1 Female        FALSE      227
+## 2 Female        TRUE        25
+## 3 Male          FALSE     1818
+## 4 Male          TRUE       173
+## 5 &lt;NA&gt;          FALSE       10</code></pre>
+<p>The facet sort of changes the whole point of the graph; without the facet the question is does MoMA get more gifts than purchases? With the facet by gender the question is a little more interesting to me, has MoMA started buying more female artists more recently?</p>
+<p>I ended up not changing the vertical bars to horizontal ones because the question I wanted to focus on was on representation, rather than what year had the most acquisitions. I thought a facet with horizontal bars would focus the question much more on granular details (which year is the top and which year is the bottom) rather than a big picture (dang, they really don’t have many female artists at all in their collection and they haven’t been investing in them either).</p>
+<p>The last thing I played around with was the styling. I went to the MoMA website and tried to copy their font, color scheme, and general aesthetic. I really went back and forth on whether to go bold and use a red plot background with white and black bars, and decided that it was a little harder to read.</p>
+<pre class="r"><code>ggplot(moma_NA, aes(x = year_acquired, fill = gift)) +
+  geom_bar(width = 1) +
+  labs(x = &quot;Year Painting Acquired&quot;, y = &quot;Number of Works Acquired&quot;) +
+  ggtitle(&quot;How MoMA Gets Its Art: Gifts and Purchases Over Time&quot;) +
+    scale_fill_manual(name = &quot;Acquisition Type&quot;,
+                        labels=c(&quot;MoMA Purchased&quot;, &quot;Gift&quot;),
+                        values=c(&quot;white&quot;,&quot;black&quot;)) +
+          coord_cartesian(xlim = c(1928, 2018), ylim = c(0, 80)) +
+          scale_x_continuous(breaks=seq(1930, 2015, 20)) +
+   facet_wrap(~artist_gender) +
+  theme_tufte() +
+  theme(panel.background = element_rect(fill = &#39;#ff3300&#39;)) +
+  scale_x_continuous(breaks = round(seq(min(1930), max(2020), by = 20), 2)) +
+  theme(text=element_text(family=&quot;Franklin Gothic Demi&quot;)) +
+  theme(plot.title = element_text(size=18))</code></pre>
+<p><img src="/post/2018-06-20-moma-style-sad-plot-2-0_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+</div>
