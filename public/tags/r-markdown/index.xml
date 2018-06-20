@@ -17,9 +17,7 @@
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/star-wars-baby-names-sad-plot-2-0/</guid>
-      <description>Babynames Sad GraphThis graph was pretty much my first time graphing something in ggplot2!
-I would like to polish it up by:
-Adding a few more names to it to make it a little more interesting (Luke, Han, Lando…).I’d like to change it to a density plot (I think?) to make it a little cooler looking. Because these names are probably a fairly small proportion of the total babynames, I’d like to do something to adjst the scale so it’s easier to see.</description>
+      <description>1) Clean Reproducible Code for Sad Plot 2.0knitr::opts_chunk$set(echo = TRUE)library(babynames)library(dplyr)library(ggplot2)library(tidyverse)library(ggthemes)library(plotly)library(RColorBrewer)star_wars &amp;lt;- babynames %&amp;gt;%filter(name == &amp;quot;Leah&amp;quot; | name == &amp;quot;Leia&amp;quot; | name == &amp;quot;Padme&amp;quot;) %&amp;gt;% filter(year &amp;gt;= 1970) %&amp;gt;% filter(sex == &amp;quot;F&amp;quot;)boy_names &amp;lt;- babynames %&amp;gt;% filter(name == &amp;quot;Luke&amp;quot; | name == &amp;quot;Anakin&amp;quot; | name == &amp;quot;Han&amp;quot;) %&amp;gt;% filter(year &amp;gt;= 1970) %&amp;gt;% filter(sex == &amp;quot;M&amp;quot;)plot &amp;lt;- ggplot(star_wars, aes(x = year, y = prop, group = name, sex,color = name)) + geom_line(size = 1) +geom_line(data=boy_names, size = 1) +geom_vline(xintercept = 1977, linetype=&amp;quot;dashed&amp;quot;, color = &amp;quot;gray70&amp;quot;, size=.</description>
     </item>
     
     <item>

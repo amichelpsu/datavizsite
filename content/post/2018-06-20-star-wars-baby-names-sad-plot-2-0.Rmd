@@ -16,7 +16,9 @@ lobsters_id: ''
 meta_img: /images/image.jpg
 ---
 
-```{r setup, include=FALSE}
+### 1) Clean Reproducible Code for Sad Plot 2.0
+
+```{r setup, include=TRUE, warning=FALSE, message=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
 library(babynames)
@@ -26,16 +28,88 @@ library(tidyverse)
 library(ggthemes)
 library(plotly)
 library(RColorBrewer)
+
+star_wars <- babynames %>%
+  filter(name == "Leah" | name == "Leia" | name == "Padme") %>% 
+  filter(year >= 1970) %>% 
+  filter(sex == "F")
+
+boy_names <- babynames %>% 
+  filter(name == "Luke" | name == "Anakin" | name == "Han") %>% 
+  filter(year >= 1970) %>% 
+  filter(sex == "M")
+
+
+plot <- ggplot(star_wars, aes(x = year, 
+                           y = prop,  
+                           group = name, sex,
+                           color = name)) + 
+  geom_line(size = 1) +
+  geom_line(data=boy_names, size = 1) +
+  geom_vline(xintercept = 1977, linetype="dashed", 
+                color = "gray70", size=.8) +
+  geom_vline(xintercept = 1999, linetype="dashed", 
+                color = "gray70", size=.8) +
+  geom_vline(xintercept = 2014, linetype="dashed", 
+                color = "gray70", size=.8) +
+  annotate("text", x = 1980.5, y = 0.006, label = "Star Wars") +
+  annotate("text", x = 1993, y = 0.006, label = "Phantom Menace") +
+  annotate("text", x = 2008.5, y = 0.006, label = "Force Awakens") +
+  ggtitle("Does Star Wars Influence Baby Name Popularity?") +
+  xlab("Year") + ylab("Proportion of Baby Names") +
+  coord_cartesian(ylim = c(0, 0.006)) +
+  scale_color_discrete(name="Baby Names",
+                       breaks=c("Luke","Leah","Leia", "Anakin", "Han", "Padme")) +
+    theme_minimal()
+
+plot
+
 ```
 
-### Babynames Sad Graph
+### 2) What Type of Graph?
 
-This graph was pretty much my first time graphing something in ggplot2! 
+This is a a very simple line graph. 
 
-I would like to polish it up by:
 
-1) Adding a few more names to it to make it a little more interesting (Luke, Han, Lando...). 
-2) I'd like to change it to a density plot (I think?) to make it a little cooler looking. Because these names are probably a fairly small proportion of the total babynames, I'd like to do something to adjst the scale so it's easier to see. I'm thinking that a density plot of proportion of total Star Wars themed baby names, rather than just proportion of total American baby names, could be one way to do this.
+### 3) Data Description
+
+This graph was pretty much my first time graphing anything in ggplot2! 
+
+The data came from the babynames package and the information for which Star Wars baby names to look for came from a Huffington Post article on the relative popularity of Star Wars inspired baby names. 
+
+### 4) Intended Audience
+
+Honestly there isn't much of an intended audience for this one (me?). I think it could be most useful as an accompanying illustration for an article on the rising popularity of Star Wars baby names.
+
+### 5) What Am I Trying to Show?
+
+1) Do Star Wars inspired baby names become more popular after a new movie comes out? 
+
+2) Have Star Wars inspired baby names become "mainstream"? Do they have longterm staying power even years after a movie release?
+
+
+### 6) How Do I Read This?
+
+The main components of the graph are time and proportion of baby names. As the proportion increases the line ascends vertically. The use of time on the x-axis allows us to see whether the change in proportion is associated with particular points in time when particular Star Wars movies were released.
+
+### 7) Presentation Tips
+
+- Point out that the graph actually starts at 1970, 7 years before the first Star Wars was released. The reason for this is to give the viewer some context for the popularity of these names before the movies.
+
+- Point out that even though the name Leah sounds like Leia the spelling for Leah is pretty common. It's also interesting that Leah seems to have experienced a bit of a spike in popularity around 2008 -- not sure why.
+
+
+### 8) Variations and Alternatives
+
+An alternative to this line graph could be a bar graph -- which would make it easier to see suddent changes associated with particular years.
+
+
+### 9) How I Created It: Methods Section
+
+This was pretty much the first time I've ever used ggplot2! I started off by copying Alison's example and filtering the data for some simple name variations (Leah vs Leia) on spelling. I filtered by sex and year (only including years after Star Wars came out).
+
+
+#### Babynames Sad Graph 1.0
 
 ```{r}
 star_wars <- babynames %>%
@@ -60,4 +134,10 @@ plot <- ggplot(star_wars, aes(x = year,
 
 plot
 ```
+
+This is like, a really sad plot. But, it's like basically my very first baby step. I think it is successful at communicating the intended information, but it's really ugly. Most of my changes to this plot focused on improving the appearance.
+
+I started off version 2.0 by adding more information (more names) to help see if there was really a general trend in naming. Then, I changed the colors, the line size, arranged the annotation text to be more consistent.
+
+The main title, axis titles, and legend all needed some tweaking as well. I could have really kept playing with this (changing it to a bar plot or tweaking the theme) but I also wanted to keep it similar enough to the original sad plot that it was still comparable.
 

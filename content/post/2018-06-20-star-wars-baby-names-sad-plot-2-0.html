@@ -18,14 +18,94 @@ meta_img: /images/image.jpg
 
 
 
-<div id="babynames-sad-graph" class="section level3">
-<h3>Babynames Sad Graph</h3>
-<p>This graph was pretty much my first time graphing something in ggplot2!</p>
-<p>I would like to polish it up by:</p>
+<div id="clean-reproducible-code-for-sad-plot-2.0" class="section level3">
+<h3>1) Clean Reproducible Code for Sad Plot 2.0</h3>
+<pre class="r"><code>knitr::opts_chunk$set(echo = TRUE)
+
+library(babynames)
+library(dplyr)
+library(ggplot2)
+library(tidyverse)
+library(ggthemes)
+library(plotly)
+library(RColorBrewer)
+
+star_wars &lt;- babynames %&gt;%
+  filter(name == &quot;Leah&quot; | name == &quot;Leia&quot; | name == &quot;Padme&quot;) %&gt;% 
+  filter(year &gt;= 1970) %&gt;% 
+  filter(sex == &quot;F&quot;)
+
+boy_names &lt;- babynames %&gt;% 
+  filter(name == &quot;Luke&quot; | name == &quot;Anakin&quot; | name == &quot;Han&quot;) %&gt;% 
+  filter(year &gt;= 1970) %&gt;% 
+  filter(sex == &quot;M&quot;)
+
+
+plot &lt;- ggplot(star_wars, aes(x = year, 
+                           y = prop,  
+                           group = name, sex,
+                           color = name)) + 
+  geom_line(size = 1) +
+  geom_line(data=boy_names, size = 1) +
+  geom_vline(xintercept = 1977, linetype=&quot;dashed&quot;, 
+                color = &quot;gray70&quot;, size=.8) +
+  geom_vline(xintercept = 1999, linetype=&quot;dashed&quot;, 
+                color = &quot;gray70&quot;, size=.8) +
+  geom_vline(xintercept = 2014, linetype=&quot;dashed&quot;, 
+                color = &quot;gray70&quot;, size=.8) +
+  annotate(&quot;text&quot;, x = 1980.5, y = 0.006, label = &quot;Star Wars&quot;) +
+  annotate(&quot;text&quot;, x = 1993, y = 0.006, label = &quot;Phantom Menace&quot;) +
+  annotate(&quot;text&quot;, x = 2008.5, y = 0.006, label = &quot;Force Awakens&quot;) +
+  ggtitle(&quot;Does Star Wars Influence Baby Name Popularity?&quot;) +
+  xlab(&quot;Year&quot;) + ylab(&quot;Proportion of Baby Names&quot;) +
+  coord_cartesian(ylim = c(0, 0.006)) +
+  scale_color_discrete(name=&quot;Baby Names&quot;,
+                       breaks=c(&quot;Luke&quot;,&quot;Leah&quot;,&quot;Leia&quot;, &quot;Anakin&quot;, &quot;Han&quot;, &quot;Padme&quot;)) +
+    theme_minimal()
+
+plot</code></pre>
+<p><img src="/post/2018-06-20-star-wars-baby-names-sad-plot-2-0_files/figure-html/setup-1.png" width="672" /></p>
+</div>
+<div id="what-type-of-graph" class="section level3">
+<h3>2) What Type of Graph?</h3>
+<p>This is a a very simple line graph.</p>
+</div>
+<div id="data-description" class="section level3">
+<h3>3) Data Description</h3>
+<p>This graph was pretty much my first time graphing anything in ggplot2!</p>
+<p>The data came from the babynames package and the information for which Star Wars baby names to look for came from a Huffington Post article on the relative popularity of Star Wars inspired baby names.</p>
+</div>
+<div id="intended-audience" class="section level3">
+<h3>4) Intended Audience</h3>
+<p>Honestly there isn’t much of an intended audience for this one (me?). I think it could be most useful as an accompanying illustration for an article on the rising popularity of Star Wars baby names.</p>
+</div>
+<div id="what-am-i-trying-to-show" class="section level3">
+<h3>5) What Am I Trying to Show?</h3>
 <ol style="list-style-type: decimal">
-<li>Adding a few more names to it to make it a little more interesting (Luke, Han, Lando…).</li>
-<li>I’d like to change it to a density plot (I think?) to make it a little cooler looking. Because these names are probably a fairly small proportion of the total babynames, I’d like to do something to adjst the scale so it’s easier to see. I’m thinking that a density plot of proportion of total Star Wars themed baby names, rather than just proportion of total American baby names, could be one way to do this.</li>
+<li><p>Do Star Wars inspired baby names become more popular after a new movie comes out?</p></li>
+<li><p>Have Star Wars inspired baby names become “mainstream”? Do they have longterm staying power even years after a movie release?</p></li>
 </ol>
+</div>
+<div id="how-do-i-read-this" class="section level3">
+<h3>6) How Do I Read This?</h3>
+<p>The main components of the graph are time and proportion of baby names. As the proportion increases the line ascends vertically. The use of time on the x-axis allows us to see whether the change in proportion is associated with particular points in time when particular Star Wars movies were released.</p>
+</div>
+<div id="presentation-tips" class="section level3">
+<h3>7) Presentation Tips</h3>
+<ul>
+<li><p>Point out that the graph actually starts at 1970, 7 years before the first Star Wars was released. The reason for this is to give the viewer some context for the popularity of these names before the movies.</p></li>
+<li><p>Point out that even though the name Leah sounds like Leia the spelling for Leah is pretty common. It’s also interesting that Leah seems to have experienced a bit of a spike in popularity around 2008 – not sure why.</p></li>
+</ul>
+</div>
+<div id="variations-and-alternatives" class="section level3">
+<h3>8) Variations and Alternatives</h3>
+<p>An alternative to this line graph could be a bar graph – which would make it easier to see suddent changes associated with particular years.</p>
+</div>
+<div id="how-i-created-it-methods-section" class="section level3">
+<h3>9) How I Created It: Methods Section</h3>
+<p>This was pretty much the first time I’ve ever used ggplot2! I started off by copying Alison’s example and filtering the data for some simple name variations (Leah vs Leia) on spelling. I filtered by sex and year (only including years after Star Wars came out).</p>
+<div id="babynames-sad-graph-1.0" class="section level4">
+<h4>Babynames Sad Graph 1.0</h4>
 <pre class="r"><code>star_wars &lt;- babynames %&gt;%
   filter(name == &quot;Leah&quot; | name == &quot;Leia&quot;) %&gt;% 
   filter(sex == &quot;F&quot;) %&gt;% 
@@ -48,4 +128,8 @@ plot &lt;- ggplot(star_wars, aes(x = year,
 
 plot</code></pre>
 <p><img src="/post/2018-06-20-star-wars-baby-names-sad-plot-2-0_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>This is like, a really sad plot. But, it’s like basically my very first baby step. I think it is successful at communicating the intended information, but it’s really ugly. Most of my changes to this plot focused on improving the appearance.</p>
+<p>I started off version 2.0 by adding more information (more names) to help see if there was really a general trend in naming. Then, I changed the colors, the line size, arranged the annotation text to be more consistent.</p>
+<p>The main title, axis titles, and legend all needed some tweaking as well. I could have really kept playing with this (changing it to a bar plot or tweaking the theme) but I also wanted to keep it similar enough to the original sad plot that it was still comparable.</p>
+</div>
 </div>
