@@ -18,7 +18,7 @@ meta_img: /images/image.jpg
 
 ### 1) Clean Reproducible Code
 
-```{r}
+```{r include=TRUE, warning=FALSE, message=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
 library(dplyr)
@@ -50,6 +50,7 @@ waco_homes +
   theme_minimal() 
 
 ```
+
 ### 2) What Type of Graph?
 
 This is a scatterplot. 
@@ -66,7 +67,9 @@ This could be useful for a homebuyer or a real estate agent, someone interested 
 ### 5) What Am I Trying to Show?
 
 There are two main things that I wanted to show with this graph:
+
 1) The general trend in Waco real estate -- which is clearly going up over time.
+
 2) Whether particular houses are above or below the median valuation for Waco that year (i.e., is this a good deal or not?). Obviously there's a lot of other factors to consider, but it's an interesting way to see the market differences between "low value" real estate and "high value" real estate over time.
 
 ### 6) How Do I Read This?

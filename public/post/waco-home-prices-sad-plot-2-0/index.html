@@ -1124,38 +1124,12 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 <h3>1) Clean Reproducible Code</h3>
 <pre class="r"><code>knitr::opts_chunk$set(echo = TRUE)
 
-library(dplyr)</code></pre>
-<pre><code>## 
-## Attaching package: &#39;dplyr&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     intersect, setdiff, setequal, union</code></pre>
-<pre class="r"><code>library(ggplot2)
-library(tidyverse)</code></pre>
-<pre><code>## -- Attaching packages -------------------------------------------------- tidyverse 1.2.1 --</code></pre>
-<pre><code>## v tibble  1.4.2     v purrr   0.2.5
-## v tidyr   0.8.1     v stringr 1.3.1
-## v readr   1.1.1     v forcats 0.3.0</code></pre>
-<pre><code>## -- Conflicts ----------------------------------------------------- tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()</code></pre>
-<pre class="r"><code>library(ggthemes)
-library(plotly)</code></pre>
-<pre><code>## 
-## Attaching package: &#39;plotly&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
-## 
-##     last_plot</code></pre>
-<pre><code>## The following object is masked from &#39;package:stats&#39;:
-## 
-##     filter</code></pre>
-<pre><code>## The following object is masked from &#39;package:graphics&#39;:
-## 
-##     layout</code></pre>
-<pre class="r"><code>library(RColorBrewer)
+library(dplyr)
+library(ggplot2)
+library(tidyverse)
+library(ggthemes)
+library(plotly)
+library(RColorBrewer)
 
 waco &lt;- txhousing %&gt;% 
   filter(city == &quot;Waco&quot;, year &gt;= 2004) %&gt;% 
@@ -1177,7 +1151,10 @@ waco_homes &lt;- ggplot(waco, aes(x = year, y = median, color = gt_median)) +
 
 waco_homes +
   theme_minimal() </code></pre>
-<p><img src="/post/2018-06-20-wavo-home-prices-sad-plot-2-0_files/figure-html/unnamed-chunk-1-1.png" width="672" /> ### 2) What Type of Graph?</p>
+<p><img src="/post/2018-06-20-wavo-home-prices-sad-plot-2-0_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+</div>
+<div id="what-type-of-graph" class="section level3">
+<h3>2) What Type of Graph?</h3>
 <p>This is a scatterplot.</p>
 </div>
 <div id="data-description" class="section level3">
@@ -1190,7 +1167,11 @@ waco_homes +
 </div>
 <div id="what-am-i-trying-to-show" class="section level3">
 <h3>5) What Am I Trying to Show?</h3>
-<p>There are two main things that I wanted to show with this graph: 1) The general trend in Waco real estate – which is clearly going up over time. 2) Whether particular houses are above or below the median valuation for Waco that year (i.e., is this a good deal or not?). Obviously there’s a lot of other factors to consider, but it’s an interesting way to see the market differences between “low value” real estate and “high value” real estate over time.</p>
+<p>There are two main things that I wanted to show with this graph:</p>
+<ol style="list-style-type: decimal">
+<li><p>The general trend in Waco real estate – which is clearly going up over time.</p></li>
+<li><p>Whether particular houses are above or below the median valuation for Waco that year (i.e., is this a good deal or not?). Obviously there’s a lot of other factors to consider, but it’s an interesting way to see the market differences between “low value” real estate and “high value” real estate over time.</p></li>
+</ol>
 </div>
 <div id="how-do-i-read-this" class="section level3">
 <h3>6) How Do I Read This?</h3>
