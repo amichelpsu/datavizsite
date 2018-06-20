@@ -6,19 +6,10 @@
     <description>Recent content in R on It works</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Mon, 18 Jun 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 13 Jun 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Gapminder: Sad Plot 2.0.1</title>
-      <link>/post/gapminder-sad-plot-2-0-1/</link>
-      <pubDate>Mon, 18 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/gapminder-sad-plot-2-0-1/</guid>
-      <description></description>
-    </item>
     
     <item>
       <title>This is a new post </title>
@@ -27,7 +18,8 @@
       
       <guid>/blog/how-do-i-make-a-post/</guid>
       <description>Is this how you add in stuff?
-1 + 1## [1] 2rnorm(10) # 10 random numbers## [1] -1.5886654 1.1284864 -0.3875953 0.9609226 0.2651718 -1.1880202## [7] -2.1602092 0.1576354 0.6326995 -1.3576546plot(dist ~ speed, cars) # a scatterplot</description>
+1 + 1## [1] 2rnorm(10) # 10 random numbers## [1] -0.4324180 0.2561106 0.0100047 0.9054032 0.0193092 -0.9927873## [7] -0.3972822 -2.6278047 -2.0962900 -1.3466407plot(dist ~ speed, cars) # a scatterplotThis is another test at how to add in stuff
+library(babynames)## Warning: package &amp;#39;babynames&amp;#39; was built under R version 3.4.4library(dplyr)## Warning: package &amp;#39;dplyr&amp;#39; was built under R version 3.</description>
     </item>
     
     <item>

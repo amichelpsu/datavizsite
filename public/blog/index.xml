@@ -6,10 +6,19 @@
     <description>Recent content in Blog on It works</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Wed, 13 Jun 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 17 Jun 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Gapminder - Sad Plot 2.0.1</title>
+      <link>/blog/gapminder---sad-plot-2.0.1/</link>
+      <pubDate>Sun, 17 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/gapminder---sad-plot-2.0.1/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>This is a new post </title>
@@ -18,7 +27,8 @@
       
       <guid>/blog/how-do-i-make-a-post/</guid>
       <description>Is this how you add in stuff?
-1 + 1## [1] 2rnorm(10) # 10 random numbers## [1] -1.5886654 1.1284864 -0.3875953 0.9609226 0.2651718 -1.1880202## [7] -2.1602092 0.1576354 0.6326995 -1.3576546plot(dist ~ speed, cars) # a scatterplot</description>
+1 + 1## [1] 2rnorm(10) # 10 random numbers## [1] -0.4324180 0.2561106 0.0100047 0.9054032 0.0193092 -0.9927873## [7] -0.3972822 -2.6278047 -2.0962900 -1.3466407plot(dist ~ speed, cars) # a scatterplotThis is another test at how to add in stuff
+library(babynames)## Warning: package &amp;#39;babynames&amp;#39; was built under R version 3.4.4library(dplyr)## Warning: package &amp;#39;dplyr&amp;#39; was built under R version 3.</description>
     </item>
     
     <item>
@@ -39,16 +49,6 @@
       <description>R MarkdownThis is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
 You can embed an R code chunk like this:
 summary(cars)## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.</description>
-    </item>
-    
-    <item>
-      <title>Creating a New Theme</title>
-      <link>/blog/creating-a-new-theme/</link>
-      <pubDate>Sun, 28 Sep 2014 00:00:00 +0000</pubDate>
-      
-      <guid>/blog/creating-a-new-theme/</guid>
-      <description>Introduction This tutorial will show you how to create a simple theme in Hugo. I assume that you are familiar with HTML, the bash command line, and that you are comfortable using Markdown to format content. I&amp;rsquo;ll explain how Hugo uses templates and how you can organize your templates to create a theme. I won&amp;rsquo;t cover using CSS to style your theme.
-We&amp;rsquo;ll start with creating a new site with a very basic template.</description>
     </item>
     
     <item>

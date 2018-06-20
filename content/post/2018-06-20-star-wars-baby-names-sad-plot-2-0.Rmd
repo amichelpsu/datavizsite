@@ -1,0 +1,63 @@
+---
+title: Star Wars Baby Names Sad Plot 2.0
+author: Alex Michel
+date: '2018-06-20'
+slug: star-wars-baby-names-sad-plot-2-0
+categories:
+  - blog
+tags:
+  - baby names
+  - R Markdown
+  - sad plot
+  - Star Wars
+description: Desc
+hacker_news_id: ''
+lobsters_id: ''
+meta_img: /images/image.jpg
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(babynames)
+library(dplyr)
+library(ggplot2)
+library(tidyverse)
+library(ggthemes)
+library(plotly)
+library(RColorBrewer)
+```
+
+### Babynames Sad Graph
+
+This graph was pretty much my first time graphing something in ggplot2! 
+
+I would like to polish it up by:
+
+1) Adding a few more names to it to make it a little more interesting (Luke, Han, Lando...). 
+2) I'd like to change it to a density plot (I think?) to make it a little cooler looking. Because these names are probably a fairly small proportion of the total babynames, I'd like to do something to adjst the scale so it's easier to see. I'm thinking that a density plot of proportion of total Star Wars themed baby names, rather than just proportion of total American baby names, could be one way to do this.
+
+```{r}
+star_wars <- babynames %>%
+  filter(name == "Leah" | name == "Leia") %>% 
+  filter(sex == "F") %>% 
+  filter(year >= 1975)
+
+plot <- ggplot(star_wars, aes(x = year, 
+                           y = prop,  
+                           group = name, 
+                           color = name)) + 
+  geom_line(size = 2) +
+  geom_vline(xintercept = 1977, linetype="dashed", 
+                color = "blue", size=1) +
+  geom_vline(xintercept = 1999, linetype="dashed", 
+                color = "blue", size=1) +
+  geom_vline(xintercept = 2014, linetype="dashed", 
+                color = "blue", size=1) +
+  annotate("text", x = 1980, y = 0.01, label = "Star Wars") +
+  annotate("text", x = 2004, y = 0.008, label = "Phantom Menace") +
+  annotate("text", x = 2009.5, y = 0.005, label = "Force Awakens")
+
+plot
+```
+
