@@ -1,0 +1,146 @@
+---
+title: Gapminder Fail Sad Plot 2.0.1
+author: Alex Michel
+date: '2018-06-20'
+slug: gapminder-fail-sad-plot-2-0-1
+categories:
+  - blog
+tags:
+  - plot
+  - R Markdown
+  - sad plot
+  - gapminder
+description: Desc
+hacker_news_id: ''
+lobsters_id: ''
+meta_img: /images/image.jpg
+---
+
+### 1) Clean Reproducible Code for Sad Plot 2.0
+
+```{r setup, include=FALSE}
+
+library(gapminder)
+library(dplyr)
+library(ggplot2)
+library(tidyverse)
+library(ggthemes)
+library(plotly)
+library(RColorBrewer)
+
+task2_data <- gapminder %>% 
+  filter(year %in% c(1967, 2007)) %>% 
+  group_by(year, country) %>% 
+  arrange(country)
+
+p <- task2_data %>%
+  ggplot(aes(x = year, y = lifeExp, colour = continent, group = continent)) +
+  geom_point(alpha = .5) +
+  geom_line() +
+  labs(title = "World Life Expectancy Change 1967 - 2007",
+       subtitle = "Organized by continent",
+       caption = "Source for slope graph idea: http://asda.stat.ubc.ca/", 
+       x = "Year", y = "Average Life Expectancy in Years") +
+  scale_color_brewer(palette = "Set1") 
+
+ggplotly(p)
+
+```
+
+### 2) What Type of Graph?
+
+This is a slope graph. When I first got the initial idea to compare change over two endpoints I wasn't sure what the right type of graph was called. This is how I discovered spaghetti graphs (which came up first based on my description of a slope graph in a Google search).
+
+This graph is also a little bit different because Plottly allows you to get an annotation of specific information about each point by holding your mouse over it. Not sure if this qualifies as a specific type of graph?
+
+
+### 3) Data Description
+
+The data for this graph come from the gapminder package. The data includes a mix of catagorical and numerical information. I focused on life expectancy and time since it seemed like those types of data (both continuous I think? But when you're only using two years I guess that makes time a catagorical variable) would be well-suited to a slope graph.
+
+### 4) Intended Audience
+
+I feel like a graph like this could be interesting as an educational tool. I've seen similar plots on the OECD website. So the audience could be the general public, but particularly people involved in international development, public health, and equity.
+
+### 5) What Am I Trying to Show?
+
+1) Do all continents have the same rates of life expectancy improvement over 50 years?
+
+2) Which countries are the top/bottom (thanks Plotly!)
+
+
+### 6) How Do I Read This?
+
+The points on the left and right represent each country. The line between the points shows the change in average life expectancy over time from 1967 through 2007. The slope of the line is an important cue for the magnitude of the change. The colors are used to show which continent the various countries are grouped under.
+
+### 7) Presentation Tips
+
+- Being able to mouse over particular points is pretty cool.
+
+- Organizing this graph by contintent "hides" a lot of the interesting data. Organizing it by country also hidse a lot of data. You really have to pick which countries/areas or other things you care about because it's really hard to see it all in one chart.
+
+
+### 8) Variations and Alternatives
+
+Grouping by individual countries also "hides" the data in a giant bowl of spaghetti. Would faceting by continent improve readability? It kind of does, but I think it's actually more difficult to see the big differences in life expectancy change.
+
+#### What I thought about doing with faceting but didn't end up liking as much
+```{r}
+task2_data <- gapminder %>% 
+  filter(year %in% c(1967, 2007)) %>% 
+  group_by(year, country) %>% 
+  arrange(country) %>% 
+  ungroup()
+
+p <- task2_data %>%
+  ggplot(aes(x = year, y = lifeExp, colour = continent, group = country)) +
+  geom_point(alpha = .5) +
+  geom_line() +
+  labs(title = "World Life Expectancy Change 1967 - 2007",
+       subtitle = "Organized by continent",
+       caption = "Source for slope graph idea: http://asda.stat.ubc.ca/", 
+       x = "Year", y = "Average Life Expectancy in Years") +
+  scale_color_brewer(palette = "Set1") +
+  facet_wrap(~continent)
+
+ggplotly(p)
+```
+
+### 9) How I Created It: Methods Section
+
+So I made a really dumb error at the beginning of graphic this plot. I couldn't get some really basic filtering to work and I could not figure out why. It turned out that there just wasn't any data for the years I had initially selected. Once I switched years I was successfully able to get some data to start plotting. 
+
+For the lab day to work on our plots, Ryan gave me some help by showing me Plotly. He also explained what a slope graph was so that I could look up some examples of recipes for slope graphs.
+
+I wanted to use something like Plotly to help answer the immediate question of which country is the top and which is the bottom and perhaps lead to some interesting questions about the few countries that actually have lost life expectancy over time.
+
+I spent hours trying to figure out how to wrangle the data so that I could somehow highlight the countries that had lost life expectancy. I tried using the ggHighlight package that Alison posted last week, but I just couldn't get it to work the way I wanted it to. My intentino was to create a column with 2007 - 1967 life expectancy could be used to calculate TRUE or FALSE values that could be used for highlighting (so if the 2007 LE is less than the 1967 LE you would end up with a value less than 1).
+
+#### Broken Code That I Couldn't Wrangle Properly
+```{r}
+
+# wrangling to calculate percent change
+highlighting <- gapminder %>% 
+  select(continent, country, lifeExp, year) %>% 
+  group_by(country) %>% 
+  filter(year == min(year) | year == max(year)) %>% 
+  ungroup() %>% 
+  spread(year, lifeExp) 
+  
+colnames(highlighting) <- c("continent", "country", "1952_LE", "2007_LE") 
+
+# I know this is not Tidy but I kept getting weird errors and I wasn't sure what to do
+highlighting2 <- highlighting %>% 
+  mutate(change_LE = `2007_LE` - `1952_LE`) %>% 
+  mutate(date = seq(1866, 2007, by= 1)) %>% 
+  mutate(Life_exp = seq(1, 142, by = 1))
+
+# I tried like a million variations to figure out if I was using the wrong type of data (catagorical vs continuous) but couldn't figure it out
+
+LE_plot <- ggplot(highlighting2, aes(x=date, y=life))
+
+LE_plot + geom_line() +
+  gghighlight(max(change_LE) < 1)
+
+```
+
