@@ -1,15 +1,14 @@
 ---
-title: Gapminder Fail Sad Plot 2
+title: Getting Cozy with Plotly Gapminder Sad Plot 2.0
 author: Alex Michel
 date: '2018-06-20'
-slug: gapminder-fail-sad-plot-2
+slug: getting-cozy-with-plotly-gapminder-sad-plot-2-0
 categories:
   - blog
 tags:
   - plot
   - R Markdown
   - sad plot
-  - gapminder
 description: Desc
 hacker_news_id: ''
 lobsters_id: ''
@@ -48,6 +47,8 @@ ggplotly(p)
 
 ```
 
+
+
 ### 2) What Type of Graph?
 
 This is a slope graph. When I first got the initial idea to compare change over two endpoints I wasn't sure what the right type of graph was called. This is how I discovered spaghetti graphs (which came up first based on my description of a slope graph in a Google search).
@@ -61,7 +62,7 @@ The data for this graph come from the gapminder package. The data includes a mix
 
 ### 4) Intended Audience
 
-I feel like a graph like this could be interesting as an educational tool. I've seen similar plots on the OECD website. So the audience could be the general public, but particularly people involved in international development, public health, and equity.
+I feel like a graph like this could be interesting as an educational tool. I've seen similar plots on the OECD website. So the audience could be the general public, but particularly people involved in international development and health equity (ahem, public health folks). 
 
 ### 5) What Am I Trying to Show?
 
@@ -109,18 +110,16 @@ ggplotly(p)
 
 ### 9) How I Created It: Methods Section
 
-So I made a really dumb error at the beginning of graphic this plot. I couldn't get some really basic filtering to work and I could not figure out why. It turned out that there just wasn't any data for the years I had initially selected. Once I switched years I was successfully able to get some data to start plotting. 
-
-For the lab day to work on our plots, Ryan gave me some help by showing me Plotly. He also explained what a slope graph was so that I could look up some examples of recipes for slope graphs.
+So I made a really dumb error at the beginning of graphic this plot. I couldn't get some really basic filtering to work and I could not figure out why. It turned out that there just wasn't any data for the years I had initially selected. Once I switched years I was successfully able to get some data to start plotting. For the lab day to work on our plots, Ryan gave me some help by showing me Plotly. He also explained what a slope graph was so that I could look up some examples of recipes for slope graphs.
 
 I wanted to use something like Plotly to help answer the immediate question of which country is the top and which is the bottom and perhaps lead to some interesting questions about the few countries that actually have lost life expectancy over time.
 
-I spent hours trying to figure out how to wrangle the data so that I could somehow highlight the countries that had lost life expectancy. I tried using the ggHighlight package that Alison posted last week, but I just couldn't get it to work the way I wanted it to. My intentino was to create a column with 2007 - 1967 life expectancy could be used to calculate TRUE or FALSE values that could be used for highlighting (so if the 2007 LE is less than the 1967 LE you would end up with a value less than 1).
+I spent hours trying to figure out how to wrangle the data so that I could somehow highlight the countries that had lost life expectancy. I tried using the ggHighlight package that Alison posted last week, but I just couldn't figure out how to get it to work the way I wanted it to. My intentino was to create a column with 2007 - 1967 life expectancy could be used to calculate TRUE or FALSE values that could be used for highlighting (so if the 2007 LE is less than the 1967 LE you would end up with a value less than 1).
 
-#### Broken Code That I Couldn't Wrangle Properly
-```{r}
+### Broken Code That I Couldn't Wrangle Properly
+#### Also, the gghighlight package broke blogdown for me so this section is just text
 
-# wrangling to calculate percent change
+#### wrangling to calculate percent change
 highlighting <- gapminder %>% 
   select(continent, country, lifeExp, year) %>% 
   group_by(country) %>% 
@@ -130,18 +129,14 @@ highlighting <- gapminder %>%
   
 colnames(highlighting) <- c("continent", "country", "1952_LE", "2007_LE") 
 
-# I know this is not Tidy but I kept getting weird errors and I wasn't sure what to do
 highlighting2 <- highlighting %>% 
-  mutate(change_LE = `2007_LE` - `1952_LE`) %>% 
-  mutate(date = seq(1866, 2007, by= 1)) %>% 
-  mutate(Life_exp = seq(1, 142, by = 1))
+  mutate(change_LE = `2007_LE` - `1952_LE`) 
 
-# I tried like a million variations to figure out if I was using the wrong type of data (catagorical vs continuous) but couldn't figure it out
+#### I tried like a million variations to figure out if I was using the wrong type of data (catagorical vs continuous) but couldn't figure it out
 
 LE_plot <- ggplot(highlighting2, aes(x=date, y=life))
 
+#### I also tried playing around with the gghighlight package a lot, but just couldn't get it where I wanted it which is probably for the best since it seems to crash blogdown for me.
+
 LE_plot + geom_line() +
   gghighlight(max(change_LE) < 1)
-
-```
-

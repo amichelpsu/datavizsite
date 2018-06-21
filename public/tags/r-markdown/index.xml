@@ -12,12 +12,12 @@
     
     
     <item>
-      <title>Gapminder Fail Sad Plot 2.0.1</title>
-      <link>/post/gapminder-fail-sad-plot-2-0-1/</link>
+      <title>Getting Cozy with Plotly Gapminder Sad Plot 2.0</title>
+      <link>/post/getting-cozy-with-plotly-gapminder-sad-plot-2-0/</link>
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/gapminder-fail-sad-plot-2-0-1/</guid>
-      <description></description>
+      <guid>/post/getting-cozy-with-plotly-gapminder-sad-plot-2-0/</guid>
+      <description>1) Clean Reproducible Code for Sad Plot 2.0knitr::opts_chunk$set(echo = TRUE)library(gapminder)library(dplyr)library(ggplot2)library(tidyverse)library(ggthemes)library(plotly)library(RColorBrewer)task2_data &amp;lt;- gapminder %&amp;gt;% filter(year %in% c(1967, 2007)) %&amp;gt;% group_by(year, country) %&amp;gt;% arrange(country)p &amp;lt;- task2_data %&amp;gt;%ggplot(aes(x = year, y = lifeExp, colour = continent, group = continent)) +geom_point(alpha = .5) +geom_line() +labs(title = &amp;quot;World Life Expectancy Change 1967 - 2007&amp;quot;,subtitle = &amp;quot;Organized by continent&amp;quot;,caption = &amp;quot;Source for slope graph idea: http://asda.</description>
     </item>
     
     <item>

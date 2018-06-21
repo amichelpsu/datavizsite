@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="Example blog">
+
+
+    <meta property="twitter:site" content="@@alexandra_em">
+
+<meta property="og:site_name" content="It works" />
+<meta property="og:locale" content="nn_NO" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/getting-cozy-with-plotly-gapminder-sad-plot-2-0/" />
+<meta property="og:title" content="Getting Cozy with Plotly Gapminder Sad Plot 2.0" />
+<meta property="twitter:title" content="Getting Cozy with Plotly Gapminder Sad Plot 2.0">
+
+    <meta property="og:image" content="//images/image.jpg">
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:image" content="//images/image.jpg">
+
+<meta property="og:description" content="Desc">
+<meta property="twitter:description" content="Desc">
+
+<title>
+
+
+     It works - Getting Cozy with Plotly Gapminder Sad Plot 2.0 
+
+</title>
+<link rel="canonical" href="/post/getting-cozy-with-plotly-gapminder-sad-plot-2-0/">
+
+
+<style media="screen">
+  @font-face {
+  font-family: 'Nexa Bold';
+  src: url('/fonts/Nexa Bold.otf');
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, div.column {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+a,
+a:visited,
+a:focus,
+a:active {
+  text-decoration: none;
+}
+html {
+  height: 100%;
+  font-size: 16px;
+}
+body {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: flex-start;
+  -moz-justify-content: flex-start;
+  -ms-justify-content: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 100%;
+  font-weight: 400;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  color: #111111;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility !important;
+}
+.icon {
+  text-rendering: geometricPrecision !important;
+}
+section {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  width: 100%;
+}
+div.column {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  width: 100%;
+}
+.container {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  width: 100%;
+}
+div.header .container {
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+}
+div.header .content {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+}
+div.header .container .logo {
+  max-width: 100px;
+  margin-left: -2em;
+}
+div.header .name {
+  padding-top: 20px;
+  font-size: 28px;
+  font-family: 'Nexa Bold', 'Helvetica Neue', 'Arial', sans-serif;
+  letter-spacing: -0.005rem;
+  
+  text-transform: uppercase;
+  
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  color: #333333;
+}
+div.header nav {
+  margin-bottom: 16px;
+}
+div.header nav ul {
+  list-style: none;
+  text-align: center;
+  display: -webkit-inline-flex;
+  display: -moz-inline-flex;
+  display: -ms-inline-flexbox;
+  display: -ms-inline-flex;
+  display: inline-flex;
+}
+div.header nav ul li {
+  margin-left: 6px;
+  margin-right: 6px;
+}
+div.header nav ul li:first-child {
+  margin-left: 0;
+}
+div.header nav ul li:last-child {
+  margin-right: 0;
+}
+div.header nav ul a {
+  color: #555555;
+  font-weight: 400;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  -webkit-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -moz-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -ms-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -o-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+}
+div.header nav ul a:hover {
+  color: #111111;
+}
+div.footer .container {
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  flex-direction: column-reverse;
+  width: 100%;
+  text-align: center;
+}
+div.footer .container a {
+  font-size: 14px;
+  margin-left: 6px;
+  margin-right: 6px;
+  opacity: 0.6;
+  -webkit-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -moz-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -ms-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -o-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+}
+div.footer .container a:first-child {
+  margin-left: 0;
+}
+div.footer .container a:last-child {
+  margin-right: 0;
+}
+div.footer .container a:hover {
+  opacity: 0.8;
+}
+div.footer .container a .icon {
+  width: 16px;
+  height: 16px;
+}
+div.footer .container .copyright {
+  flex-grow: 0.5;
+  text-align: start;
+}
+div.footer .container .icons {
+  flex-grow: 0.5;
+  text-align: end;
+}
+div.main .container {
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: flex-start;
+  -moz-justify-content: flex-start;
+  -ms-justify-content: flex-start;
+  justify-content: flex-start;
+}
+div.main .content {
+  color: #111111;
+  font-size: 16px;
+}
+div.main .content .title-container {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
+  -ms-justify-content: space-between;
+  justify-content: space-between;
+}
+div.main .content .posts {
+  margin-bottom: 4em;
+}
+div.main .content .page-heading {
+  font-size: 20px;
+  font-weight: 700;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  letter-spacing: -0.005rem;
+  text-transform: uppercase;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  color: #333333;
+  margin-bottom: 16px;
+}
+div.main .content .front-matter .page-heading {
+  margin-bottom: 0;
+}
+div.main .content .front-matter .meta {
+  font-size: 14px;
+  color: #666666;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  margin-bottom: 32px;
+}
+div.main .content .front-matter .date,
+div.main .content .front-matter .author,
+div.main .content .front-matter .tags,
+div.main .content .front-matter .word-count,
+div.main .content .front-matter .middot:before {
+  display: none;
+}
+div.main .content .front-matter .middot:before {
+  font-size: 6px;
+  margin: 0 6px;
+  vertical-align: middle;
+  content: "•";
+}
+div.main .content .front-matter .tags ul {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+}
+div.main .content .front-matter .tags ul li {
+  -webkit-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -moz-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -ms-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -o-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+}
+div.main .content .front-matter .tags ul li:hover {
+  opacity: 0.7;
+}
+div.main .content .front-matter .tags ul li a {
+  color: #666666;
+}
+div.main .container.f04 {
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+}
+div.main .container.f04 .content {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+}
+div.main .container.f04 .content .num {
+  margin: 30px 0px 30px 0;
+  font-weight: 400;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 50px;
+}
+div.main .container.f04 .content .detail {
+  margin-bottom: 40px;
+}
+div.main .container .content .groupby {
+  margin-top: 1em;
+  padding-left: 0.5em;
+}
+div.main .container .content .post-item {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  display: list-item;
+  list-style: disc inside;
+}
+div.main .container .content .post-item .meta {
+  font-size: 14px;
+  color: #666666;
+  display: none;
+  min-width: 100px;
+}
+div.main .container .content .see-more {
+  font-style: italic;
+  float: right;
+  font-size: 0.9em;
+  margin-top: 2em;
+  color: #313537;
+}
+div.main .container .content .see-more:hover {
+  color: #666;
+}
+section {
+  padding: 0 16px;
+}
+div.column {
+  padding: 0 16px;
+}
+div.header {
+  padding-top: 10px;
+}
+div.header-home {
+  padding-top: 36px;
+}
+div.main {
+  padding-top: 32px;
+}
+div.main .container .content .post-item .meta {
+    display: block;
+}
+div.main .container .content .post-item {
+    display: flex;
+    list-style: none;
+}
+a {
+  color: #428bca;
+  -webkit-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -moz-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -ms-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+  -o-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+}
+a:hover {
+  color: #2a6496;
+}
+img {
+  max-width: 100%;
+}
+div.main .content {
+    width: 100%;
+}
+div.main .content .markdown {
+  font-size: 1.1em;
+  line-height: 1.75em;
+  color: #313537;
+  font-family: serif;
+  font-weight: 300;
+}
+div.main .content .markdown h1,
+div.main .content .markdown h2,
+div.main .content .markdown h3,
+div.main .content .markdown h4,
+div.main .content .markdown h5,
+div.main .content .markdown h6 {
+  font-size: 22px;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  letter-spacing: -0.005rem;
+  font-weight: 700;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  color: #333333;
+  text-transform: none;
+  margin-top: 1.75rem;
+}
+div.main .content .markdown h1 {
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
+}
+div.main .content .markdown h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+div.main .content .markdown h3 {
+  font-size: 1em;
+  margin-bottom: 1rem;
+}
+div.main .content .markdown h4,
+div.main .content .markdown h5,
+div.main .content .markdown h6 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  letter-spacing: none;
+}
+div.main .content .markdown code,
+div.main .content .markdown pre {
+  font-family: 'Menlo', monospace;
+  font-size: 0.98rem;
+  background-color: #f7f7f7;
+}
+div.main .content .markdown code {
+  /* enclosed by single backtick (`) */
+  padding: .15em .5em;
+  border-radius: 2px;
+}
+div.main .content .markdown pre {
+  /* Hugo specific: consider using the 'highlight' shortcode */
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  line-height: 1.5em;
+  white-space: pre;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+div.main .content .markdown pre code {
+  /* enclosed by 4 backticks (````) */
+  padding: 0;
+  font-size: 0.9rem;
+}
+div.main .content .markdown a code {
+  color: #428bca !important;
+}
+div.main .content .markdown a code:hover {
+  text-decoration: underline;
+}
+div.main .content .markdown p {
+  
+  text-align: justify;
+  
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+div.main .content .markdown ul,
+div.main .content .markdown ol,
+div.main .content .markdown dl {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+div.main .content .markdown dt {
+  font-weight: bold;
+}
+div.main .content .markdown dd {
+  margin-bottom: .5rem;
+}
+div.main .content .markdown ul {
+  list-style-type: disc;
+  list-style-position: outside;
+  margin-bottom: 1.25rem;
+}
+div.main .content .markdown ol {
+  list-style-type: decimal;
+  margin-bottom: 1.25rem;
+}
+div.main .content .markdown li {
+  margin-left: 2em;
+}
+div.main .content .markdown em {
+  font-style: italic;
+}
+div.main .content .markdown strong {
+  font-weight: 700;
+}
+div.main .content .markdown hr {
+  position: relative;
+  margin: 1.75rem 0;
+  border: 0;
+  border-top: 1px solid #808080;
+  border-top: 1px solid #999999;
+}
+div.main .content .markdown abbr {
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #666666;
+  text-transform: uppercase;
+}
+div.main .content .markdown abbr[title] {
+  cursor: help;
+  border-bottom: 1px dotted #808080;
+}
+div.main .content .markdown blockquote {
+  padding: .5rem 1rem;
+  margin: .8rem 0;
+  color: #7a7a7a;
+  border-left: .25rem solid #e5e5e5;
+}
+div.main .content .markdown blockquote p:last-child {
+  margin-bottom: 0;
+}
+div.main .content .markdown figure {
+  width: 100%;
+  background: #fff;
+  margin-bottom: 1em;
+}
+div.main .content .markdown figure img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  display: block;
+  position: static;
+  margin: auto;
+}
+div.main .content .markdown table {
+  margin-bottom: 1rem;
+  width: 100%;
+  border: 1px solid #e5e5e5;
+  border-collapse: collapse;
+}
+div.main .content .markdown td,
+div.main .content .markdown th {
+  padding: .25rem .5rem;
+  border: 1px solid #e5e5e5;
+}
+div.main .content .markdown tbody tr:nth-child(odd) td,
+div.main .content .markdown tbody tr:nth-child(odd) th {
+  background-color: #f7f7f7;
+}
+div.main .content .markdown .footnotes ol {
+  list-style-type: decimal;
+  margin-left: 16px;
+}
+div.main .content .markdown .footnotes li {
+  list-style-type: unset;
+}
+div.main .content .markdown .footnote-ref {
+  font-size: 0.7em;
+}
+div.main .content .navigation {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  padding: 2em;
+}
+div.main .content .navigation div {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  margin-top: 1em;
+}
+div.main .content .navigation .icon {
+  width: 16px;
+  height: 16px;
+}
+div.main .content .navigation a {
+  width: 250px;
+  margin: 0 1em;
+  text-align: center;
+  font-style: italic;
+  color: #313537;
+}
+div.main .content .share, div.main .content .share div {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  justify-content: center;
+}
+div.main .content .share {
+  background-color: rgba(152, 152, 152, 0.07);
+  padding: 1em 0;
+}
+div.main .content .share a {
+  margin: 0 6px;
+}
+kbd {
+  padding: 0.1em 0.6em;
+  border: 1px solid #ccc;
+  font-size: 11px;
+  font-family: Arial,Helvetica,sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+  -moz-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+  -webkit-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+  box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 0 0.1em;
+  text-shadow: 0 1px 0 #fff;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+/* Fonts */
+
+
+.wf-raleway-n4-active body, 
+.wf-raleway-n4-active div.header nav ul a,
+.wf-raleway-n7-active div.main .content .page-heading,
+.wf-raleway-n2-active div.main .container.f04 .content .num,
+.wf-raleway-n7-active div.main .content .markdown h1,
+.wf-raleway-n7-active div.main .content .markdown h2,
+.wf-raleway-n7-active div.main .content .markdown h3,
+.wf-raleway-n7-active div.main .content .markdown h4,
+.wf-raleway-n7-active div.main .content .markdown h5,
+.wf-raleway-n7-active div.main .content .markdown h6 {
+      font-family: 'Raleway';
+}
+
+.wf-merriweather-n3-active div.main .content .markdown {
+      font-family: 'Merriweather';
+}
+
+.wf-ubuntu-mono-n4-active div.main .content .markdown code,
+.wf-ubuntu-mono-n4-active div.main .content .markdown pre {
+      font-family: 'Ubuntu Mono';
+}
+
+
+</style>
+<style media="(min-width: 600px)">
+  body {
+-webkit-justify-content: center;
+-moz-justify-content: center;
+-ms-justify-content: center;
+justify-content: center;
+}
+.non-narrow.zero-top-spacing {
+padding-top: 0 !important;
+}
+section {
+padding: 0 16px;
+margin-left: 100px;
+margin-right: 100px;
+max-width: 750px;
+}
+div.column {
+padding: 0 16px;
+max-width: 750px;
+}
+div.header {
+background-color: transparent;
+}
+div.header .container {
+-webkit-justify-content: flex-start;
+-moz-justify-content: flex-start;
+-ms-justify-content: flex-start;
+justify-content: flex-start;
+}
+div.header .container .logo {
+margin: 0;
+}
+div.header-home .container .logo {
+max-width: 180px;
+margin-left: 20px;
+}
+div.header-home .name-home {
+padding-top: 30px;
+font-size: 40px;
+}
+div.header-home nav ul a {
+font-size: 18px;
+}
+div.header .content {
+-webkit-align-items: flex-start;
+-moz-align-items: flex-start;
+-ms-align-items: flex-start;
+align-items: flex-start;
+}
+div.header .name {
+color: #333333;
+}
+div.header nav {
+font-size: 14px;
+margin-bottom: 0;
+}
+div.header nav ul {
+text-align: left;
+}
+div.header nav ul a {
+color: #666666;
+}
+div.header nav ul a:hover {
+color: #333333;
+}
+div.footer {
+background-color: transparent;
+}
+div.footer .container {
+flex-direction: row;
+}
+div.footer .container a {
+margin-left: 3px;
+margin-right: 3px;
+color: #666666;
+}
+div.footer .container a:hover {
+color: #333333;
+}
+div.footer .container a .icon {
+font-size: 18px;
+}
+div.footer .container a .icon.larger {
+font-size: 20px;
+}
+div.main .content .front-matter .date,
+div.main .content .front-matter .author,
+div.main .content .front-matter .tags,
+div.main .content .front-matter .word-count,
+div.main .content .front-matter .middot:before {
+display: initial;
+}
+div.main .container.f04 {
+-webkit-justify-content: flex-start;
+-moz-justify-content: flex-start;
+-ms-justify-content: flex-start;
+justify-content: flex-start;
+}
+div.main .container.f04 .content {
+-webkit-align-items: flex-start;
+-moz-align-items: flex-start;
+-ms-align-items: flex-start;
+align-items: flex-start;
+}
+div.main .container.f04 .content .num {
+margin: 0 0 10px 0;
+font-size: 32px;
+}
+div.main .container.f04 .content .detail {
+margin-bottom: 30px;
+}
+.container {
+padding: 0 30px;
+}
+div.header {
+padding-top: 60px;
+padding-bottom: 60px;
+}
+div.footer {
+padding-top: 30px;
+padding-bottom: 60px;
+}
+div.main {
+padding-top: 0;
+}
+div.main .container .content .post-item {
+display: flex;
+list-style: none;
+padding-left: 1.5em;
+}
+div.main .container .content .post-item .meta {
+display: block;
+}
+div.main.post {
+padding-top: 60px;
+padding-bottom: 60px;
+}
+div.main .content .markdown blockquote {
+padding-right: 5rem;
+padding-left: 1.25rem;
+}
+div.main .content .navigation {
+-webkit-flex-direction: row;
+-moz-flex-direction: row;
+-ms-flex-direction: row;
+flex-direction: row;
+}
+div.main .content .navigation div {
+margin-top: 0em;
+}
+
+</style>
+<style media="(min-width: 769px)">
+  div.main .content .markdown figure {
+width: 110%;
+margin-left: -4%;
+}
+div.main .content .markdown img {
+max-width: 110%;
+width: 110%;
+margin-left: -4%;
+}
+div.main .content .markdown pre {
+width: 110%;
+margin-left: -4%;
+}
+
+</style>
+
+<noscript>
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,600,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Merriweather:300,300i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700" rel="stylesheet">
+</noscript>
+
+
+  <style type="text/css" media="screen">
+    .hljs{display:block;background:white;padding:0.5em;color:#333333;overflow-x:auto}.hljs-comment,.hljs-meta{color:#969896}.hljs-string,.hljs-variable,.hljs-template-variable,.hljs-strong,.hljs-emphasis,.hljs-quote{color:#df5000}.hljs-keyword,.hljs-selector-tag,.hljs-type{color:#a71d5d}.hljs-literal,.hljs-symbol,.hljs-bullet,.hljs-attribute{color:#0086b3}.hljs-section,.hljs-name{color:#63a35c}.hljs-tag{color:#333333}.hljs-title,.hljs-attr,.hljs-selector-id,.hljs-selector-class,.hljs-selector-attr,.hljs-selector-pseudo{color:#795da3}.hljs-addition{color:#55a532;background-color:#eaffea}.hljs-deletion{color:#bd2c00;background-color:#ffecec}.hljs-link{text-decoration:underline}
+  </style>
+
+
+
+  <style type="text/css" media="screen">
+    .progressive{overflow:hidden;position:relative;background:#efefef}.progressive__img{width:100%;height:100%;position:absolute;-webkit-transform:translateZ(0);transform:translateZ(0)}.progressive--not-loaded{filter:blur(30px);-webkit-filter:blur(30px)}.progressive--is-loaded{filter:blur(20px);-webkit-filter:blur(20px);-webkit-animation:sharpen .5s both;animation:sharpen .5s both}@-webkit-keyframes sharpen{from{filter:blur(20px);-webkit-filter:blur(20px)}to{filter:blur(0);-webkit-filter:blur(0)}}@keyframes sharpen{from{filter:blur(20px);-webkit-filter:blur(20px)}to{filter:blur(0);-webkit-filter:blur(0)}}
+  </style>
+
+
+
+  <style type="text/css" media="screen">
+    /*!
+ * Social Share Kit v1.0.7 (http://socialsharekit.com)
+ * Copyright 2015 Social Share Kit / Kaspars Sprogis.
+ * Licensed under Creative Commons Attribution-NonCommercial 3.0 license:
+ * https://github.com/darklow/social-share-kit/blob/master/LICENSE
+ * ---
+ */@font-face{font-family:'social-share-kit';src:url('/fonts/social-share-kit.eot');src:url('/fonts/social-share-kit.eot?#iefix') format('embedded-opentype'),url('/fonts/social-share-kit.woff') format('woff'),url('/fonts/social-share-kit.ttf') format('truetype'),url('/fonts/social-share-kit.svg#social-share-kit') format('svg');font-weight:normal;font-style:normal}.ssk:before{display:inline-block;font-family:"social-share-kit" !important;font-style:normal !important;font-weight:normal !important;font-variant:normal !important;text-transform:none !important;speak:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.ssk-facebook:before{content:"a";text-indent:4px;margin-right:-4px}.ssk-twitter:before{content:"b"}.ssk-google-plus:before{content:"v"}.ssk-google-plus-old:before{content:"c"}.ssk-email:before{content:"d";top:-1px;position:relative}.ssk-pinterest:before{content:"e"}.ssk-tumblr:before{content:"f"}.ssk-linkedin:before{content:"g"}.ssk-github:before{content:"h"}.ssk-vk:before{content:"i"}.ssk-instagram:before{content:"j"}.ssk-amazon:before{content:"k"}.ssk-skype:before{content:"s"}.ssk-youtube:before{content:"x"}.ssk-vimeo:before{content:"u"}.ssk-ebay:before{content:"p"}.ssk-apple:before{content:"l"}.ssk-behance:before{content:"q"}.ssk-dribble:before{content:"n"}.ssk-android:before{content:"o"}.ssk-whatsapp:before{content:"m"}.ssk-reddit:before{content:"r"}.ssk-reddit2:before{content:"t"}.ssk-link:before{content:"w"}.ssk{background-color:#757575;color:white;display:inline-block;font-size:22px;line-height:1px;margin-right:2px;margin-bottom:2px;padding:7px;text-align:center;text-decoration:none;transition:background-color .1s;-webkit-transition:background-color .1s;-moz-transition:background-color .1s;-ms-transition:background-color .1s;-o-transition:background-color .1s}.ssk:before,.ssk .glyphicon,.ssk .fa{position:relative;font-size:22px;top:0;vertical-align:middle}.ssk.ssk-xs,.ssk-xs>.ssk{padding:4px}.ssk.ssk-xs:before,.ssk-xs>.ssk:before,.ssk.ssk-xs .glyphicon,.ssk-xs>.ssk .glyphicon,.ssk.ssk-xs .fa,.ssk-xs>.ssk .fa{font-size:15px}.ssk.ssk-sm,.ssk-sm>.ssk{padding:5px}.ssk.ssk-sm:before,.ssk-sm>.ssk:before,.ssk.ssk-sm .glyphicon,.ssk-sm>.ssk .glyphicon,.ssk.ssk-sm .fa,.ssk-sm>.ssk .fa{font-size:20px}.ssk.ssk-lg,.ssk-lg>.ssk{padding:9px}.ssk.ssk-lg:before,.ssk-lg>.ssk:before,.ssk.ssk-lg .glyphicon,.ssk-lg>.ssk .glyphicon,.ssk.ssk-lg .fa,.ssk-lg>.ssk .fa{font-size:28px}.ssk:last-child{margin-right:0}.ssk:hover{background-color:#424242}.ssk:hover,.ssk:focus{color:#fff;text-decoration:none}.ssk.ssk-round,.ssk-round .ssk{border-radius:50%}.ssk.ssk-round:before,.ssk-round .ssk:before{text-indent:0;margin-right:0}.ssk.ssk-rounded,.ssk-rounded .ssk{border-radius:15%}.ssk.ssk-icon{color:#757575;padding:2px;font-size:24px}.ssk.ssk-icon,.ssk.ssk-icon:hover{background-color:transparent}.ssk.ssk-icon:hover{color:#424242}.ssk.ssk-icon.ssk-xs,.ssk-xs>.ssk.ssk-icon{font-size:16px}.ssk.ssk-icon.ssk-sm,.ssk-sm>.ssk.ssk-icon{font-size:20px}.ssk.ssk-icon.ssk-lg,.ssk-lg>.ssk.ssk-icon{font-size:28px}.ssk.ssk-text{overflow:hidden;font-size:17px;line-height:normal;padding-right:10px}.ssk.ssk-text:before,.ssk.ssk-text .glyphicon,.ssk.ssk-text .fa{margin:-7px 10px -7px -7px;padding:7px;background-color:rgba(0,0,0,0.15);vertical-align:bottom;text-indent:0}.ssk-block .ssk.ssk-text{display:block;margin-right:0;text-align:left}.ssk.ssk-text.ssk-xs,.ssk-xs>.ssk.ssk-text{font-size:12px;padding-right:6px}.ssk.ssk-text.ssk-xs:before,.ssk-xs>.ssk.ssk-text:before,.ssk.ssk-text.ssk-xs .glyphicon,.ssk-xs>.ssk.ssk-text .glyphicon,.ssk.ssk-text.ssk-xs .fa,.ssk-xs>.ssk.ssk-text .fa{margin:-4px 6px -4px -4px;padding:4px}.ssk.ssk-text.ssk-sm,.ssk-sm>.ssk.ssk-text{font-size:16px;padding-right:7px}.ssk.ssk-text.ssk-sm:before,.ssk-sm>.ssk.ssk-text:before,.ssk.ssk-text.ssk-sm .glyphicon,.ssk-sm>.ssk.ssk-text .glyphicon,.ssk.ssk-text.ssk-sm .fa,.ssk-sm>.ssk.ssk-text .fa{margin:-5px 7px -5px -5px;padding:5px}.ssk.ssk-text.ssk-lg,.ssk-lg>.ssk.ssk-text{font-size:22px;padding-right:13px}.ssk.ssk-text.ssk-lg:before,.ssk-lg>.ssk.ssk-text:before,.ssk.ssk-text.ssk-lg .glyphicon,.ssk-lg>.ssk.ssk-text .glyphicon,.ssk.ssk-text.ssk-lg .fa,.ssk-lg>.ssk.ssk-text .fa{margin:-9px 13px -9px -9px;padding:9px}.ssk-group,.ssk-sticky{font-size:0}.ssk-sticky{top:0;position:fixed;z-index:2000}.ssk-sticky .ssk{transition:padding .1s ease-out;-webkit-transition:padding .1s ease-out;-moz-transition:padding .1s ease-out;-ms-transition:padding .1s ease-out;-o-transition:padding .1s ease-out;margin:0}@media (min-width:768px){.ssk-sticky.ssk-left .ssk,.ssk-sticky.ssk-right .ssk{display:block;clear:both}.ssk-sticky.ssk-left.ssk-center,.ssk-sticky.ssk-right.ssk-center{top:50%;transform:translateY(-50%);-webkit-transform:translateY(-50%);-moz-transform:translateY(-50%);-ms-transform:translateY(-50%);-o-transform:translateY(-50%)}.ssk-sticky.ssk-left{left:0}.ssk-sticky.ssk-left .ssk{float:left}.ssk-sticky.ssk-left .ssk:hover{padding-left:15px}.ssk-sticky.ssk-right{right:0}.ssk-sticky.ssk-right .ssk{float:right}.ssk-sticky.ssk-right .ssk:hover{padding-right:15px}}.ssk-sticky.ssk-bottom{font-size:0;top:auto;bottom:0}.ssk-sticky.ssk-bottom.ssk-center{left:50%;right:auto;transform:translateX(-50%);-webkit-transform:translateX(-50%);-moz-transform:translateX(-50%);-ms-transform:translateX(-50%);-o-transform:translateX(-50%)}.ssk-sticky.ssk-bottom .ssk{vertical-align:bottom}.ssk-sticky.ssk-bottom .ssk:hover{padding-bottom:15px}.ssk-sticky.ssk-round.ssk-xs .ssk:hover{padding:8px}.ssk-sticky.ssk-round.ssk-sm .ssk:hover{padding:9px}.ssk-sticky.ssk-round .ssk:hover{padding:11px}.ssk-sticky.ssk-round.ssk-lg .ssk:hover{padding:13px}@media (max-width:767px){.ssk-sticky{left:0;right:0;bottom:0;top:auto;width:100%;display:flex !important;flex-direction:row;flex-wrap:nowrap}.ssk-sticky.ssk-sticky-hide-xs{display:none !important}.ssk-sticky .ssk{flex:1;width:auto}.ssk-sticky .ssk .ssk-num{display:none}}.ssk-count{padding-top:20px}.ssk-count .ssk{position:relative}.ssk-count .ssk-num{border-radius:4px;color:#8f8f8f;background-color:rgba(50,50,50,0.03);display:block;font-size:12px;left:0;line-height:20px;position:absolute;right:0;text-align:center;top:-20px}@media (min-width:768px){.ssk-count.ssk-sticky{padding-top:0}.ssk-count.ssk-sticky.ssk-left .ssk-num,.ssk-count.ssk-sticky.ssk-right .ssk-num{top:20%;background-color:transparent}.ssk-count.ssk-sticky.ssk-left .ssk-num{left:100%;margin-left:5px}.ssk-count.ssk-sticky.ssk-right .ssk-num{right:115%;margin-left:-100%;text-align:right}}.ssk-facebook{background-color:#3B5998}.ssk-grayscale>.ssk-facebook{background-color:#757575}.ssk-facebook:hover{background-color:#2d4373}.ssk-facebook:hover{background-color:#2d4373}.ssk-grayscale>.ssk-facebook:hover{background-color:#3B5998}.ssk-facebook.ssk-icon{color:#3B5998}.ssk-facebook.ssk-icon:hover{color:#2d4373}.ssk-facebook.ssk-icon:before{text-indent:0;margin-right:0}.ssk-twitter{background-color:#1DA1F2}.ssk-grayscale>.ssk-twitter{background-color:#757575}.ssk-twitter:hover{background-color:#0c85d0}.ssk-twitter:hover{background-color:#0c85d0}.ssk-grayscale>.ssk-twitter:hover{background-color:#1DA1F2}.ssk-twitter.ssk-icon{color:#1DA1F2}.ssk-twitter.ssk-icon:hover{color:#0c85d0}.ssk-google-plus{background-color:#EA4335}.ssk-grayscale>.ssk-google-plus{background-color:#757575}.ssk-google-plus:hover{background-color:#d62516}.ssk-google-plus:hover{background-color:#d62516}.ssk-grayscale>.ssk-google-plus:hover{background-color:#EA4335}.ssk-google-plus.ssk-icon{color:#EA4335}.ssk-google-plus.ssk-icon:hover{color:#d62516}.ssk-pinterest{background-color:#BD081C}.ssk-grayscale>.ssk-pinterest{background-color:#757575}.ssk-pinterest:hover{background-color:#8c0615}.ssk-pinterest:hover{background-color:#8c0615}.ssk-grayscale>.ssk-pinterest:hover{background-color:#BD081C}.ssk-pinterest.ssk-icon{color:#BD081C}.ssk-pinterest.ssk-icon:hover{color:#8c0615}.ssk-tumblr{background-color:#395773}.ssk-grayscale>.ssk-tumblr{background-color:#757575}.ssk-tumblr:hover{background-color:#283d51}.ssk-tumblr:hover{background-color:#283d51}.ssk-grayscale>.ssk-tumblr:hover{background-color:#395773}.ssk-tumblr.ssk-icon{color:#395773}.ssk-tumblr.ssk-icon:hover{color:#283d51}.ssk-email{background-color:#757575}.ssk-grayscale>.ssk-email{background-color:#757575}.ssk-email:hover{background-color:#5b5b5b}.ssk-email:hover{background-color:#5b5b5b}.ssk-grayscale>.ssk-email:hover{background-color:#757575}.ssk-grayscale>.ssk-email:hover{background-color:#5b5b5b}.ssk-email.ssk-icon{color:#757575}.ssk-email.ssk-icon:hover{color:#5b5b5b}.ssk-vk{background-color:#54769a}.ssk-grayscale>.ssk-vk{background-color:#757575}.ssk-vk:hover{background-color:#425d79}.ssk-vk:hover{background-color:#425d79}.ssk-grayscale>.ssk-vk:hover{background-color:#54769a}.ssk-vk.ssk-icon{color:#54769a}.ssk-vk.ssk-icon:hover{color:#425d79}.ssk-linkedin{background-color:#1c87bd}.ssk-grayscale>.ssk-linkedin{background-color:#757575}.ssk-linkedin:hover{background-color:#156791}.ssk-linkedin:hover{background-color:#156791}.ssk-grayscale>.ssk-linkedin:hover{background-color:#1c87bd}.ssk-linkedin.ssk-icon{color:#1c87bd}.ssk-linkedin.ssk-icon:hover{color:#156791}.ssk-whatsapp{background-color:#34AF23}.ssk-grayscale>.ssk-whatsapp{background-color:#757575}.ssk-whatsapp:hover{background-color:#27851a}.ssk-whatsapp:hover{background-color:#27851a}.ssk-grayscale>.ssk-whatsapp:hover{background-color:#34AF23}.ssk-whatsapp.ssk-icon{color:#34AF23}.ssk-whatsapp.ssk-icon:hover{color:#27851a}.ssk-reddit{background-color:#5f99cf}.ssk-grayscale>.ssk-reddit{background-color:#757575}.ssk-reddit:hover{background-color:#3a80c1}.ssk-reddit:hover{background-color:#3a80c1}.ssk-grayscale>.ssk-reddit:hover{background-color:#5f99cf}.ssk-reddit.ssk-icon{color:#5f99cf}.ssk-reddit.ssk-icon:hover{color:#3a80c1}.ssk-reddit2{background-color:#5f99cf}.ssk-grayscale>.ssk-reddit2{background-color:#757575}.ssk-reddit2:hover{background-color:#3a80c1}.ssk-reddit2:hover{background-color:#3a80c1}.ssk-grayscale>.ssk-reddit2:hover{background-color:#5f99cf}.ssk-reddit2.ssk-icon{color:#5f99cf}.ssk-reddit2.ssk-icon:hover{color:#3a80c1}.ssk-turquoise{background-color:#1abc9c}.ssk-turquoise:hover{background-color:#148f77}.ssk-emerald{background-color:#2ecc71}.ssk-emerald:hover{background-color:#25a25a}.ssk-peter-river{background-color:#3498db}.ssk-peter-river:hover{background-color:#217dbb}.ssk-belize-hole{background-color:#2980b9}.ssk-belize-hole:hover{background-color:#20638f}.ssk-amethyst{background-color:#9b59b6}.ssk-amethyst:hover{background-color:#804399}.ssk-wisteria{background-color:#8e44ad}.ssk-wisteria:hover{background-color:#703688}.ssk-wet-asphalt{background-color:#34495e}.ssk-wet-asphalt:hover{background-color:#222f3d}.ssk-midnight-blue{background-color:#2c3e50}.ssk-midnight-blue:hover{background-color:#1a242f}.ssk-green-sea{background-color:#16a085}.ssk-green-sea:hover{background-color:#107360}.ssk-nephritis{background-color:#27ae60}.ssk-nephritis:hover{background-color:#1e8449}.ssk-sunflower{background-color:#f1c40f}.ssk-sunflower:hover{background-color:#c29d0b}.ssk-orange{background-color:#f39c12}.ssk-orange:hover{background-color:#c87f0a}.ssk-carrot{background-color:#e67e22}.ssk-carrot:hover{background-color:#bf6516}.ssk-pumpkin{background-color:#d35400}.ssk-pumpkin:hover{background-color:#a04000}.ssk-alizarin{background-color:#e74c3c}.ssk-alizarin:hover{background-color:#d62c1a}.ssk-pomegranate{background-color:#c0392b}.ssk-pomegranate:hover{background-color:#962d22}.ssk-clouds{background-color:#cfd9db}.ssk-clouds:hover{background-color:#b1c2c6}.ssk-concrete{background-color:#95a5a6}.ssk-concrete:hover{background-color:#798d8f}.ssk-silver{background-color:#bdc3c7}.ssk-silver:hover{background-color:#a1aab0}.ssk-asbestos{background-color:#7f8c8d}.ssk-asbestos:hover{background-color:#667273}.ssk-dark-gray{background-color:#555}.ssk-dark-gray:hover{background-color:#3b3b3b}.ssk-black{background-color:#333}.ssk-black:hover{background-color:#1a1a1a}
+  </style>
+
+
+
+  <style type="text/css" media="screen">
+    a {
+    color: #527fc1f;
+}
+
+a:hover {
+    color: #1a3152;
+}
+
+div.main .content .markdown, div.header .name, div.header nav ul a:hover {
+    color: #181d2a;
+}
+
+div.header nav ul a {
+    color: #6a7a8b;
+}
+
+div.main .content .markdown code {
+    background-color: #f9f9f9;
+    color: #527fc1f;
+}
+
+div.main .content .markdown pre, div.main .content .markdown pre code {
+    background-color: #282a36;
+    color: #87a5d2;
+}
+
+.hljs, .hljs-subst, .hljs-variable {
+    color: #87a5d2;
+}
+
+.hljs-type {
+    color: #97d28b;
+}
+
+.hljs-quote {
+    color: #ffcb8d;
+}
+
+.hljs-string, .hljs-number, .hljs-selector-id, .hljs-selector-class, .hljs-template-tag, .hljs-deletion {
+    color: #96c2d7;
+}
+
+.hljs-comment {
+    color: #6a7a8b;
+}
+
+.hljs-regexp, .hljs-symbol, .hljs-template-variable {
+    color: #ffcb8d;
+}
+
+.hljs-keyword, .hljs-attribute, .hljs-meta-keyword, .hljs-doctag, .hljs-name {
+    color: #97d28b;
+}
+
+.hljs-link, .hljs-selector-attr, .hljs-selector-pseudo, .hljs-title, .hljs-section {
+    color: #ff8e91;
+}
+
+.hljs-built_in, .hljs-bullet, .hljs-code, .hljs-addition {
+    color: #97d28b;
+}
+
+.ssk {
+    background-color: #6a7a8b;
+}
+
+  </style>
+
+
+
+
+
+<link rel="shortcut icon"
+
+    href="/img/logo.png"
+
+>
+
+
+
+
+</head>
+
+
+<body>
+
+
+<div class="header column">
+
+    <div class="container">
+        
+        <a href="/"><img class="logo" src="/img/SnootBoop.jpg" alt="logo"></a>
+        
+        <div class="content">
+            <a href="/"><div class="name"><h1>It works</h1></div></a>
+            <nav>
+                <ul>
+                    
+                        <li><a href="/blog/">Blog</a></li>
+                    
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                            <li><a href="/post">post</a></li>
+                            
+                        
+                    
+                        
+                            
+                            <li><a href="/projects">projects</a></li>
+                            
+                        
+                    
+                    
+                        
+                            <li><a href="/about/">Alex&#39;s Bio</a></li>
+                        
+                    
+                        
+                    
+                        
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<div class="main column">
+    <div class="container">
+        <div class="content">
+            <div class="page-heading">
+
+    Getting Cozy with Plotly Gapminder Sad Plot 2.0
+
+</div>
+
+            <div class="markdown">
+                
+    
+    <script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="/rmarkdown-libs/plotly-binding/plotly.js"></script>
+<script src="/rmarkdown-libs/typedarray/typedarray.min.js"></script>
+<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
+<link href="/rmarkdown-libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/crosstalk/js/crosstalk.min.js"></script>
+<link href="/rmarkdown-libs/plotly-htmlwidgets-css/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/plotly-main/plotly-latest.min.js"></script>
+
+
+<div id="clean-reproducible-code-for-sad-plot-2.0" class="section level3">
+<h3>1) Clean Reproducible Code for Sad Plot 2.0</h3>
+<pre class="r"><code>knitr::opts_chunk$set(echo = TRUE)
+
+library(gapminder)
+library(dplyr)
+library(ggplot2)
+library(tidyverse)
+library(ggthemes)
+library(plotly)
+library(RColorBrewer)
+
+task2_data &lt;- gapminder %&gt;% 
+  filter(year %in% c(1967, 2007)) %&gt;% 
+  group_by(year, country) %&gt;% 
+  arrange(country)
+
+p &lt;- task2_data %&gt;%
+  ggplot(aes(x = year, y = lifeExp, colour = continent, group = continent)) +
+  geom_point(alpha = .5) +
+  geom_line() +
+  labs(title = &quot;World Life Expectancy Change 1967 - 2007&quot;,
+       subtitle = &quot;Organized by continent&quot;,
+       caption = &quot;Source for slope graph idea: http://asda.stat.ubc.ca/&quot;, 
+       x = &quot;Year&quot;, y = &quot;Average Life Expectancy in Years&quot;) +
+  scale_color_brewer(palette = &quot;Set1&quot;) 
+
+ggplotly(p)</code></pre>
+<div id="htmlwidget-1" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"data":[{"x":[1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007],"y":[51.407,72.301,35.985,42.731,44.885,56.728,53.298,50.728,40.697,52.295,43.548,49.58,44.799,50.43,41.478,44.741,43.601,50.651,46.472,65.152,44.056,46.462,52.04,55.322,47.35,48.328,42.074,54.791,49.293,71.338,38.987,51.579,42.189,58.04,42.115,52.947,44.598,56.735,35.857,59.448,48.072,60.022,37.197,56.007,35.492,46.388,50.654,54.11,48.492,42.592,41.536,45.678,50.227,73.952,42.881,59.443,39.487,48.303,38.487,54.467,46.289,64.164,61.557,72.801,50.335,71.164,38.113,42.082,51.159,52.906,40.118,56.867,41.04,46.859,60.542,76.442,44.1,46.242,54.425,65.528,43.563,63.062,34.113,42.568,38.977,48.159,51.927,49.339,42.858,58.556,46.633,39.613,45.757,52.517,46.769,58.42,52.053,73.923,48.051,51.542,47.768,42.384,53.995,43.487],"text":["year: 1967<br />lifeExp: 51.40700<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 72.30100<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 35.98500<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 42.73100<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 44.88500<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 56.72800<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 53.29800<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 50.72800<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 40.69700<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 52.29500<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 43.54800<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 49.58000<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 44.79900<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 50.43000<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 41.47800<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 44.74100<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 43.60100<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 50.65100<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 46.47200<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 65.15200<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 44.05600<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 46.46200<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 52.04000<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 55.32200<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 47.35000<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 48.32800<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 42.07400<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 54.79100<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 49.29300<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 71.33800<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 38.98700<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 51.57900<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 42.18900<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 58.04000<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 42.11500<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 52.94700<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 44.59800<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 56.73500<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 35.85700<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 59.44800<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 48.07200<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 60.02200<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 37.19700<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 56.00700<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 35.49200<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 46.38800<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 50.65400<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 54.11000<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 48.49200<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 42.59200<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 41.53600<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 45.67800<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 50.22700<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 73.95200<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 42.88100<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 59.44300<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 39.48700<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 48.30300<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 38.48700<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 54.46700<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 46.28900<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 64.16400<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 61.55700<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 72.80100<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 50.33500<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 71.16400<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 38.11300<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 42.08200<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 51.15900<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 52.90600<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 40.11800<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 56.86700<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 41.04000<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 46.85900<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 60.54200<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 76.44200<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 44.10000<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 46.24200<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 54.42500<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 65.52800<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 43.56300<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 63.06200<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 34.11300<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 42.56800<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 38.97700<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 48.15900<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 51.92700<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 49.33900<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 42.85800<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 58.55600<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 46.63300<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 39.61300<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 45.75700<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 52.51700<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 46.76900<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 58.42000<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 52.05300<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 73.92300<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 48.05100<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 51.54200<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 47.76800<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 42.38400<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 53.99500<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 43.48700<br />continent: Africa<br />continent: Africa"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(228,26,28,1)","opacity":0.5,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(228,26,28,1)"}},"hoveron":"points","name":"Africa","legendgroup":"Africa","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007],"y":[65.634,75.32,45.032,65.554,57.632,72.39,72.13,80.653,60.523,78.553,59.963,72.889,65.424,78.782,68.29,78.273,56.751,72.235,56.678,74.994,55.855,71.878,50.016,70.259,46.243,60.916,50.924,70.198,67.51,72.567,60.11,76.195,51.884,72.899,64.071,75.537,64.951,71.752,51.445,71.421,71.1,78.746,65.4,69.819,70.76,78.242,68.468,76.384,63.479,73.747],"text":["year: 1967<br />lifeExp: 65.63400<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 75.32000<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 45.03200<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 65.55400<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 57.63200<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 72.39000<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 72.13000<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 80.65300<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 60.52300<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 78.55300<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 59.96300<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 72.88900<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 65.42400<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 78.78200<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 68.29000<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 78.27300<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 56.75100<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 72.23500<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 56.67800<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 74.99400<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 55.85500<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 71.87800<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 50.01600<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 70.25900<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 46.24300<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 60.91600<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 50.92400<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 70.19800<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 67.51000<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 72.56700<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 60.11000<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 76.19500<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 51.88400<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 72.89900<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 64.07100<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 75.53700<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 64.95100<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 71.75200<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 51.44500<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 71.42100<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 71.10000<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 78.74600<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 65.40000<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 69.81900<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 70.76000<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 78.24200<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 68.46800<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 76.38400<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 63.47900<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 73.74700<br />continent: Americas<br />continent: Americas"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(55,126,184,1)","opacity":0.5,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(55,126,184,1)"}},"hoveron":"points","name":"Americas","legendgroup":"Americas","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007],"y":[34.02,43.828,59.923,75.635,43.453,64.062,45.415,59.723,58.38112,72.961,70,82.208,47.193,64.698,45.964,70.65,52.469,70.964,54.459,59.545,70.75,80.745,71.43,82.603,51.629,72.535,59.942,67.297,57.716,78.623,64.624,77.588,63.87,71.993,59.371,74.241,51.253,66.803,49.379,62.069,41.472,63.785,46.988,75.64,49.8,65.483,56.393,71.688,49.901,72.777,67.946,79.972,64.266,72.396,53.655,74.143,67.5,78.4,58.285,70.616,47.838,74.249,51.631,73.422,36.984,62.698],"text":["year: 1967<br />lifeExp: 34.02000<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 43.82800<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 59.92300<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 75.63500<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 43.45300<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 64.06200<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 45.41500<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 59.72300<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 58.38112<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 72.96100<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 70.00000<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 82.20800<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 47.19300<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 64.69800<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 45.96400<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 70.65000<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 52.46900<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 70.96400<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 54.45900<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 59.54500<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 70.75000<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 80.74500<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 71.43000<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 82.60300<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 51.62900<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 72.53500<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 59.94200<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 67.29700<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 57.71600<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 78.62300<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 64.62400<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 77.58800<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 63.87000<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 71.99300<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 59.37100<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 74.24100<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 51.25300<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 66.80300<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 49.37900<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 62.06900<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 41.47200<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 63.78500<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 46.98800<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 75.64000<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 49.80000<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 65.48300<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 56.39300<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 71.68800<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 49.90100<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 72.77700<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 67.94600<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 79.97200<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 64.26600<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 72.39600<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 53.65500<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 74.14300<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 67.50000<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 78.40000<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 58.28500<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 70.61600<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 47.83800<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 74.24900<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 51.63100<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 73.42200<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 36.98400<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 62.69800<br />continent: Asia<br />continent: Asia"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(77,175,74,1)","opacity":0.5,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(77,175,74,1)"}},"hoveron":"points","name":"Asia","legendgroup":"Asia","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007],"y":[66.22,76.423,70.14,79.829,70.94,79.441,64.79,74.852,70.42,73.005,68.5,75.748,70.38,76.486,72.96,78.332,69.83,79.313,71.55,80.657,70.8,79.406,71,79.483,69.5,73.338,73.73,81.757,71.08,78.885,71.06,80.546,67.178,74.543,73.82,79.762,74.08,80.196,69.61,75.563,66.6,78.098,66.8,72.476,66.914,74.002,70.98,74.663,69.18,77.926,71.44,80.941,74.16,80.884,72.77,81.701,54.336,71.777,71.36,79.425],"text":["year: 1967<br />lifeExp: 66.22000<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 76.42300<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 70.14000<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 79.82900<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 70.94000<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 79.44100<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 64.79000<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 74.85200<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 70.42000<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 73.00500<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 68.50000<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 75.74800<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 70.38000<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 76.48600<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 72.96000<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 78.33200<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 69.83000<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 79.31300<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 71.55000<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 80.65700<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 70.80000<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 79.40600<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 71.00000<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 79.48300<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 69.50000<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 73.33800<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 73.73000<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 81.75700<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 71.08000<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 78.88500<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 71.06000<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 80.54600<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 67.17800<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 74.54300<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 73.82000<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 79.76200<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 74.08000<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 80.19600<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 69.61000<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 75.56300<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 66.60000<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 78.09800<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 66.80000<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 72.47600<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 66.91400<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 74.00200<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 70.98000<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 74.66300<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 69.18000<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 77.92600<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 71.44000<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 80.94100<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 74.16000<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 80.88400<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 72.77000<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 81.70100<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 54.33600<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 71.77700<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 71.36000<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 79.42500<br />continent: Europe<br />continent: Europe"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(152,78,163,1)","opacity":0.5,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(152,78,163,1)"}},"hoveron":"points","name":"Europe","legendgroup":"Europe","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1967,2007,1967,2007],"y":[71.1,81.235,71.52,80.204],"text":["year: 1967<br />lifeExp: 71.10000<br />continent: Oceania<br />continent: Oceania","year: 2007<br />lifeExp: 81.23500<br />continent: Oceania<br />continent: Oceania","year: 1967<br />lifeExp: 71.52000<br />continent: Oceania<br />continent: Oceania","year: 2007<br />lifeExp: 80.20400<br />continent: Oceania<br />continent: Oceania"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(255,127,0,1)","opacity":0.5,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(255,127,0,1)"}},"hoveron":"points","name":"Oceania","legendgroup":"Oceania","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007],"y":[51.407,35.985,44.885,53.298,40.697,43.548,44.799,41.478,43.601,46.472,44.056,52.04,47.35,42.074,49.293,38.987,42.189,42.115,44.598,35.857,48.072,37.197,35.492,50.654,48.492,41.536,50.227,42.881,39.487,38.487,46.289,61.557,50.335,38.113,51.159,40.118,41.04,60.542,44.1,54.425,43.563,34.113,38.977,51.927,42.858,46.633,45.757,46.769,52.053,48.051,47.768,53.995,72.301,42.731,56.728,50.728,52.295,49.58,50.43,44.741,50.651,65.152,46.462,55.322,48.328,54.791,71.338,51.579,58.04,52.947,56.735,59.448,60.022,56.007,46.388,54.11,42.592,45.678,73.952,59.443,48.303,54.467,64.164,72.801,71.164,42.082,52.906,56.867,46.859,76.442,46.242,65.528,63.062,42.568,48.159,49.339,58.556,39.613,52.517,58.42,73.923,51.542,42.384,43.487],"text":["year: 1967<br />lifeExp: 51.40700<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 35.98500<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 44.88500<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 53.29800<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 40.69700<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 43.54800<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 44.79900<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 41.47800<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 43.60100<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 46.47200<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 44.05600<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 52.04000<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 47.35000<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 42.07400<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 49.29300<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 38.98700<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 42.18900<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 42.11500<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 44.59800<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 35.85700<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 48.07200<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 37.19700<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 35.49200<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 50.65400<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 48.49200<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 41.53600<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 50.22700<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 42.88100<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 39.48700<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 38.48700<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 46.28900<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 61.55700<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 50.33500<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 38.11300<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 51.15900<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 40.11800<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 41.04000<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 60.54200<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 44.10000<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 54.42500<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 43.56300<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 34.11300<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 38.97700<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 51.92700<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 42.85800<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 46.63300<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 45.75700<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 46.76900<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 52.05300<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 48.05100<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 47.76800<br />continent: Africa<br />continent: Africa","year: 1967<br />lifeExp: 53.99500<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 72.30100<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 42.73100<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 56.72800<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 50.72800<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 52.29500<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 49.58000<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 50.43000<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 44.74100<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 50.65100<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 65.15200<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 46.46200<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 55.32200<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 48.32800<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 54.79100<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 71.33800<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 51.57900<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 58.04000<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 52.94700<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 56.73500<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 59.44800<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 60.02200<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 56.00700<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 46.38800<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 54.11000<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 42.59200<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 45.67800<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 73.95200<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 59.44300<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 48.30300<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 54.46700<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 64.16400<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 72.80100<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 71.16400<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 42.08200<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 52.90600<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 56.86700<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 46.85900<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 76.44200<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 46.24200<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 65.52800<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 63.06200<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 42.56800<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 48.15900<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 49.33900<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 58.55600<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 39.61300<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 52.51700<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 58.42000<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 73.92300<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 51.54200<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 42.38400<br />continent: Africa<br />continent: Africa","year: 2007<br />lifeExp: 43.48700<br />continent: Africa<br />continent: Africa"],"type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(228,26,28,1)","dash":"solid"},"hoveron":"points","name":"Africa","legendgroup":"Africa","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007],"y":[65.634,45.032,57.632,72.13,60.523,59.963,65.424,68.29,56.751,56.678,55.855,50.016,46.243,50.924,67.51,60.11,51.884,64.071,64.951,51.445,71.1,65.4,70.76,68.468,63.479,75.32,65.554,72.39,80.653,78.553,72.889,78.782,78.273,72.235,74.994,71.878,70.259,60.916,70.198,72.567,76.195,72.899,75.537,71.752,71.421,78.746,69.819,78.242,76.384,73.747],"text":["year: 1967<br />lifeExp: 65.63400<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 45.03200<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 57.63200<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 72.13000<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 60.52300<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 59.96300<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 65.42400<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 68.29000<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 56.75100<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 56.67800<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 55.85500<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 50.01600<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 46.24300<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 50.92400<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 67.51000<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 60.11000<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 51.88400<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 64.07100<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 64.95100<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 51.44500<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 71.10000<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 65.40000<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 70.76000<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 68.46800<br />continent: Americas<br />continent: Americas","year: 1967<br />lifeExp: 63.47900<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 75.32000<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 65.55400<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 72.39000<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 80.65300<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 78.55300<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 72.88900<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 78.78200<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 78.27300<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 72.23500<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 74.99400<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 71.87800<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 70.25900<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 60.91600<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 70.19800<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 72.56700<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 76.19500<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 72.89900<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 75.53700<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 71.75200<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 71.42100<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 78.74600<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 69.81900<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 78.24200<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 76.38400<br />continent: Americas<br />continent: Americas","year: 2007<br />lifeExp: 73.74700<br />continent: Americas<br />continent: Americas"],"type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(55,126,184,1)","dash":"solid"},"hoveron":"points","name":"Americas","legendgroup":"Americas","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007],"y":[34.02,59.923,43.453,45.415,58.38112,70,47.193,45.964,52.469,54.459,70.75,71.43,51.629,59.942,57.716,64.624,63.87,59.371,51.253,49.379,41.472,46.988,49.8,56.393,49.901,67.946,64.266,53.655,67.5,58.285,47.838,51.631,36.984,43.828,75.635,64.062,59.723,72.961,82.208,64.698,70.65,70.964,59.545,80.745,82.603,72.535,67.297,78.623,77.588,71.993,74.241,66.803,62.069,63.785,75.64,65.483,71.688,72.777,79.972,72.396,74.143,78.4,70.616,74.249,73.422,62.698],"text":["year: 1967<br />lifeExp: 34.02000<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 59.92300<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 43.45300<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 45.41500<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 58.38112<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 70.00000<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 47.19300<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 45.96400<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 52.46900<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 54.45900<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 70.75000<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 71.43000<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 51.62900<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 59.94200<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 57.71600<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 64.62400<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 63.87000<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 59.37100<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 51.25300<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 49.37900<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 41.47200<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 46.98800<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 49.80000<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 56.39300<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 49.90100<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 67.94600<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 64.26600<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 53.65500<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 67.50000<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 58.28500<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 47.83800<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 51.63100<br />continent: Asia<br />continent: Asia","year: 1967<br />lifeExp: 36.98400<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 43.82800<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 75.63500<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 64.06200<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 59.72300<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 72.96100<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 82.20800<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 64.69800<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 70.65000<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 70.96400<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 59.54500<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 80.74500<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 82.60300<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 72.53500<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 67.29700<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 78.62300<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 77.58800<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 71.99300<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 74.24100<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 66.80300<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 62.06900<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 63.78500<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 75.64000<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 65.48300<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 71.68800<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 72.77700<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 79.97200<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 72.39600<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 74.14300<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 78.40000<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 70.61600<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 74.24900<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 73.42200<br />continent: Asia<br />continent: Asia","year: 2007<br />lifeExp: 62.69800<br />continent: Asia<br />continent: Asia"],"type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(77,175,74,1)","dash":"solid"},"hoveron":"points","name":"Asia","legendgroup":"Asia","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,1967,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007,2007],"y":[66.22,70.14,70.94,64.79,70.42,68.5,70.38,72.96,69.83,71.55,70.8,71,69.5,73.73,71.08,71.06,67.178,73.82,74.08,69.61,66.6,66.8,66.914,70.98,69.18,71.44,74.16,72.77,54.336,71.36,76.423,79.829,79.441,74.852,73.005,75.748,76.486,78.332,79.313,80.657,79.406,79.483,73.338,81.757,78.885,80.546,74.543,79.762,80.196,75.563,78.098,72.476,74.002,74.663,77.926,80.941,80.884,81.701,71.777,79.425],"text":["year: 1967<br />lifeExp: 66.22000<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 70.14000<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 70.94000<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 64.79000<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 70.42000<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 68.50000<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 70.38000<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 72.96000<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 69.83000<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 71.55000<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 70.80000<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 71.00000<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 69.50000<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 73.73000<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 71.08000<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 71.06000<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 67.17800<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 73.82000<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 74.08000<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 69.61000<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 66.60000<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 66.80000<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 66.91400<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 70.98000<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 69.18000<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 71.44000<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 74.16000<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 72.77000<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 54.33600<br />continent: Europe<br />continent: Europe","year: 1967<br />lifeExp: 71.36000<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 76.42300<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 79.82900<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 79.44100<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 74.85200<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 73.00500<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 75.74800<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 76.48600<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 78.33200<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 79.31300<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 80.65700<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 79.40600<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 79.48300<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 73.33800<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 81.75700<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 78.88500<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 80.54600<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 74.54300<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 79.76200<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 80.19600<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 75.56300<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 78.09800<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 72.47600<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 74.00200<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 74.66300<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 77.92600<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 80.94100<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 80.88400<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 81.70100<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 71.77700<br />continent: Europe<br />continent: Europe","year: 2007<br />lifeExp: 79.42500<br />continent: Europe<br />continent: Europe"],"type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(152,78,163,1)","dash":"solid"},"hoveron":"points","name":"Europe","legendgroup":"Europe","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1967,1967,2007,2007],"y":[71.1,71.52,81.235,80.204],"text":["year: 1967<br />lifeExp: 71.10000<br />continent: Oceania<br />continent: Oceania","year: 1967<br />lifeExp: 71.52000<br />continent: Oceania<br />continent: Oceania","year: 2007<br />lifeExp: 81.23500<br />continent: Oceania<br />continent: Oceania","year: 2007<br />lifeExp: 80.20400<br />continent: Oceania<br />continent: Oceania"],"type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(255,127,0,1)","dash":"solid"},"hoveron":"points","name":"Oceania","legendgroup":"Oceania","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.7625570776256,"r":7.30593607305936,"b":40.1826484018265,"l":37.2602739726027},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":"World Life Expectancy Change 1967 - 2007","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":17.5342465753425},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[1965,2009],"tickmode":"array","ticktext":["1970","1980","1990","2000"],"tickvals":[1970,1980,1990,2000],"categoryorder":"array","categoryarray":["1970","1980","1990","2000"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":"Year","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[31.59085,85.03215],"tickmode":"array","ticktext":["40","50","60","70","80"],"tickvals":[40,50,60,70,80],"categoryorder":"array","categoryarray":["40","50","60","70","80"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":"Average Life Expectancy in Years","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"y":0.96751968503937},"annotations":[{"text":"continent","x":1.02,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"left","yanchor":"bottom","legendTitle":true}],"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":[{"name":"Collaborate","icon":{"width":1000,"ascent":500,"descent":-50,"path":"M487 375c7-10 9-23 5-36l-79-259c-3-12-11-23-22-31-11-8-22-12-35-12l-263 0c-15 0-29 5-43 15-13 10-23 23-28 37-5 13-5 25-1 37 0 0 0 3 1 7 1 5 1 8 1 11 0 2 0 4-1 6 0 3-1 5-1 6 1 2 2 4 3 6 1 2 2 4 4 6 2 3 4 5 5 7 5 7 9 16 13 26 4 10 7 19 9 26 0 2 0 5 0 9-1 4-1 6 0 8 0 2 2 5 4 8 3 3 5 5 5 7 4 6 8 15 12 26 4 11 7 19 7 26 1 1 0 4 0 9-1 4-1 7 0 8 1 2 3 5 6 8 4 4 6 6 6 7 4 5 8 13 13 24 4 11 7 20 7 28 1 1 0 4 0 7-1 3-1 6-1 7 0 2 1 4 3 6 1 1 3 4 5 6 2 3 3 5 5 6 1 2 3 5 4 9 2 3 3 7 5 10 1 3 2 6 4 10 2 4 4 7 6 9 2 3 4 5 7 7 3 2 7 3 11 3 3 0 8 0 13-1l0-1c7 2 12 2 14 2l218 0c14 0 25-5 32-16 8-10 10-23 6-37l-79-259c-7-22-13-37-20-43-7-7-19-10-37-10l-248 0c-5 0-9-2-11-5-2-3-2-7 0-12 4-13 18-20 41-20l264 0c5 0 10 2 16 5 5 3 8 6 10 11l85 282c2 5 2 10 2 17 7-3 13-7 17-13z m-304 0c-1-3-1-5 0-7 1-1 3-2 6-2l174 0c2 0 4 1 7 2 2 2 4 4 5 7l6 18c0 3 0 5-1 7-1 1-3 2-6 2l-173 0c-3 0-5-1-8-2-2-2-4-4-4-7z m-24-73c-1-3-1-5 0-7 2-2 3-2 6-2l174 0c2 0 5 0 7 2 3 2 4 4 5 7l6 18c1 2 0 5-1 6-1 2-3 3-5 3l-174 0c-3 0-5-1-7-3-3-1-4-4-5-6z"},"click":"function(gd) { \n        // is this being viewed in RStudio?\n        if (location.search == '?viewer_pane=1') {\n          alert('To learn about plotly for collaboration, visit:\\n https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html');\n        } else {\n          window.open('https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html', '_blank');\n        }\n      }"}],"cloud":false},"source":"A","attrs":{"fe8dba210b":{"x":{},"y":{},"colour":{},"type":"scatter"},"fe81a97337":{"x":{},"y":{},"colour":{}}},"cur_data":"fe8dba210b","visdat":{"fe8dba210b":["function (y) ","x"],"fe81a97337":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"base_url":"https://plot.ly"},"evals":["config.modeBarButtonsToAdd.0.click"],"jsHooks":[]}</script>
+</div>
+<div id="what-type-of-graph" class="section level3">
+<h3>2) What Type of Graph?</h3>
+<p>This is a slope graph. When I first got the initial idea to compare change over two endpoints I wasn’t sure what the right type of graph was called. This is how I discovered spaghetti graphs (which came up first based on my description of a slope graph in a Google search).</p>
+<p>This graph is also a little bit different because Plottly allows you to get an annotation of specific information about each point by holding your mouse over it. Not sure if this qualifies as a specific type of graph?</p>
+</div>
+<div id="data-description" class="section level3">
+<h3>3) Data Description</h3>
+<p>The data for this graph come from the gapminder package. The data includes a mix of catagorical and numerical information. I focused on life expectancy and time since it seemed like those types of data (both continuous I think? But when you’re only using two years I guess that makes time a catagorical variable) would be well-suited to a slope graph.</p>
+</div>
+<div id="intended-audience" class="section level3">
+<h3>4) Intended Audience</h3>
+<p>I feel like a graph like this could be interesting as an educational tool. I’ve seen similar plots on the OECD website. So the audience could be the general public, but particularly people involved in international development and health equity (ahem, public health folks).</p>
+</div>
+<div id="what-am-i-trying-to-show" class="section level3">
+<h3>5) What Am I Trying to Show?</h3>
+<ol style="list-style-type: decimal">
+<li><p>Do all continents have the same rates of life expectancy improvement over 50 years?</p></li>
+<li><p>Which countries are the top/bottom (thanks Plotly!)</p></li>
+</ol>
+</div>
+<div id="how-do-i-read-this" class="section level3">
+<h3>6) How Do I Read This?</h3>
+<p>The points on the left and right represent each country. The line between the points shows the change in average life expectancy over time from 1967 through 2007. The slope of the line is an important cue for the magnitude of the change. The colors are used to show which continent the various countries are grouped under.</p>
+</div>
+<div id="presentation-tips" class="section level3">
+<h3>7) Presentation Tips</h3>
+<ul>
+<li><p>Being able to mouse over particular points is pretty cool.</p></li>
+<li><p>Organizing this graph by contintent “hides” a lot of the interesting data. Organizing it by country also hidse a lot of data. You really have to pick which countries/areas or other things you care about because it’s really hard to see it all in one chart.</p></li>
+</ul>
+</div>
+<div id="variations-and-alternatives" class="section level3">
+<h3>8) Variations and Alternatives</h3>
+<p>Grouping by individual countries also “hides” the data in a giant bowl of spaghetti. Would faceting by continent improve readability? It kind of does, but I think it’s actually more difficult to see the big differences in life expectancy change.</p>
+<div id="what-i-thought-about-doing-with-faceting-but-didnt-end-up-liking-as-much" class="section level4">
+<h4>What I thought about doing with faceting but didn’t end up liking as much</h4>
+<pre class="r"><code>task2_data &lt;- gapminder %&gt;% 
+  filter(year %in% c(1967, 2007)) %&gt;% 
+  group_by(year, country) %&gt;% 
+  arrange(country) %&gt;% 
+  ungroup()
+
+p &lt;- task2_data %&gt;%
+  ggplot(aes(x = year, y = lifeExp, colour = continent, group = country)) +
+  geom_point(alpha = .5) +
+  geom_line() +
+  labs(title = &quot;World Life Expectancy Change 1967 - 2007&quot;,
+       subtitle = &quot;Organized by continent&quot;,
+       caption = &quot;Source for slope graph idea: http://asda.stat.ubc.ca/&quot;, 
+       x = &quot;Year&quot;, y = &quot;Average Life Expectancy in Years&quot;) +
+  scale_color_brewer(palette = &quot;Set1&quot;) +
+  facet_wrap(~continent)
+
+ggplotly(p)</code></pre>
+<div id="htmlwidget-2" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"data":[{"x":[1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007],"y":[51.407,72.301,35.985,42.731,44.885,56.728,53.298,50.728,40.697,52.295,43.548,49.58,44.799,50.43,41.478,44.741,43.601,50.651,46.472,65.152,44.056,46.462,52.04,55.322,47.35,48.328,42.074,54.791,49.293,71.338,38.987,51.579,42.189,58.04,42.115,52.947,44.598,56.735,35.857,59.448,48.072,60.022,37.197,56.007,35.492,46.388,50.654,54.11,48.492,42.592,41.536,45.678,50.227,73.952,42.881,59.443,39.487,48.303,38.487,54.467,46.289,64.164,61.557,72.801,50.335,71.164,38.113,42.082,51.159,52.906,40.118,56.867,41.04,46.859,60.542,76.442,44.1,46.242,54.425,65.528,43.563,63.062,34.113,42.568,38.977,48.159,51.927,49.339,42.858,58.556,46.633,39.613,45.757,52.517,46.769,58.42,52.053,73.923,48.051,51.542,47.768,42.384,53.995,43.487],"text":["year: 1967<br />lifeExp: 51.40700<br />continent: Africa<br />country: Algeria","year: 2007<br />lifeExp: 72.30100<br />continent: Africa<br />country: Algeria","year: 1967<br />lifeExp: 35.98500<br />continent: Africa<br />country: Angola","year: 2007<br />lifeExp: 42.73100<br />continent: Africa<br />country: Angola","year: 1967<br />lifeExp: 44.88500<br />continent: Africa<br />country: Benin","year: 2007<br />lifeExp: 56.72800<br />continent: Africa<br />country: Benin","year: 1967<br />lifeExp: 53.29800<br />continent: Africa<br />country: Botswana","year: 2007<br />lifeExp: 50.72800<br />continent: Africa<br />country: Botswana","year: 1967<br />lifeExp: 40.69700<br />continent: Africa<br />country: Burkina Faso","year: 2007<br />lifeExp: 52.29500<br />continent: Africa<br />country: Burkina Faso","year: 1967<br />lifeExp: 43.54800<br />continent: Africa<br />country: Burundi","year: 2007<br />lifeExp: 49.58000<br />continent: Africa<br />country: Burundi","year: 1967<br />lifeExp: 44.79900<br />continent: Africa<br />country: Cameroon","year: 2007<br />lifeExp: 50.43000<br />continent: Africa<br />country: Cameroon","year: 1967<br />lifeExp: 41.47800<br />continent: Africa<br />country: Central African Republic","year: 2007<br />lifeExp: 44.74100<br />continent: Africa<br />country: Central African Republic","year: 1967<br />lifeExp: 43.60100<br />continent: Africa<br />country: Chad","year: 2007<br />lifeExp: 50.65100<br />continent: Africa<br />country: Chad","year: 1967<br />lifeExp: 46.47200<br />continent: Africa<br />country: Comoros","year: 2007<br />lifeExp: 65.15200<br />continent: Africa<br />country: Comoros","year: 1967<br />lifeExp: 44.05600<br />continent: Africa<br />country: Congo, Dem. Rep.","year: 2007<br />lifeExp: 46.46200<br />continent: Africa<br />country: Congo, Dem. Rep.","year: 1967<br />lifeExp: 52.04000<br />continent: Africa<br />country: Congo, Rep.","year: 2007<br />lifeExp: 55.32200<br />continent: Africa<br />country: Congo, Rep.","year: 1967<br />lifeExp: 47.35000<br />continent: Africa<br />country: Cote d'Ivoire","year: 2007<br />lifeExp: 48.32800<br />continent: Africa<br />country: Cote d'Ivoire","year: 1967<br />lifeExp: 42.07400<br />continent: Africa<br />country: Djibouti","year: 2007<br />lifeExp: 54.79100<br />continent: Africa<br />country: Djibouti","year: 1967<br />lifeExp: 49.29300<br />continent: Africa<br />country: Egypt","year: 2007<br />lifeExp: 71.33800<br />continent: Africa<br />country: Egypt","year: 1967<br />lifeExp: 38.98700<br />continent: Africa<br />country: Equatorial Guinea","year: 2007<br />lifeExp: 51.57900<br />continent: Africa<br />country: Equatorial Guinea","year: 1967<br />lifeExp: 42.18900<br />continent: Africa<br />country: Eritrea","year: 2007<br />lifeExp: 58.04000<br />continent: Africa<br />country: Eritrea","year: 1967<br />lifeExp: 42.11500<br />continent: Africa<br />country: Ethiopia","year: 2007<br />lifeExp: 52.94700<br />continent: Africa<br />country: Ethiopia","year: 1967<br />lifeExp: 44.59800<br />continent: Africa<br />country: Gabon","year: 2007<br />lifeExp: 56.73500<br />continent: Africa<br />country: Gabon","year: 1967<br />lifeExp: 35.85700<br />continent: Africa<br />country: Gambia","year: 2007<br />lifeExp: 59.44800<br />continent: Africa<br />country: Gambia","year: 1967<br />lifeExp: 48.07200<br />continent: Africa<br />country: Ghana","year: 2007<br />lifeExp: 60.02200<br />continent: Africa<br />country: Ghana","year: 1967<br />lifeExp: 37.19700<br />continent: Africa<br />country: Guinea","year: 2007<br />lifeExp: 56.00700<br />continent: Africa<br />country: Guinea","year: 1967<br />lifeExp: 35.49200<br />continent: Africa<br />country: Guinea-Bissau","year: 2007<br />lifeExp: 46.38800<br />continent: Africa<br />country: Guinea-Bissau","year: 1967<br />lifeExp: 50.65400<br />continent: Africa<br />country: Kenya","year: 2007<br />lifeExp: 54.11000<br />continent: Africa<br />country: Kenya","year: 1967<br />lifeExp: 48.49200<br />continent: Africa<br />country: Lesotho","year: 2007<br />lifeExp: 42.59200<br />continent: Africa<br />country: Lesotho","year: 1967<br />lifeExp: 41.53600<br />continent: Africa<br />country: Liberia","year: 2007<br />lifeExp: 45.67800<br />continent: Africa<br />country: Liberia","year: 1967<br />lifeExp: 50.22700<br />continent: Africa<br />country: Libya","year: 2007<br />lifeExp: 73.95200<br />continent: Africa<br />country: Libya","year: 1967<br />lifeExp: 42.88100<br />continent: Africa<br />country: Madagascar","year: 2007<br />lifeExp: 59.44300<br />continent: Africa<br />country: Madagascar","year: 1967<br />lifeExp: 39.48700<br />continent: Africa<br />country: Malawi","year: 2007<br />lifeExp: 48.30300<br />continent: Africa<br />country: Malawi","year: 1967<br />lifeExp: 38.48700<br />continent: Africa<br />country: Mali","year: 2007<br />lifeExp: 54.46700<br />continent: Africa<br />country: Mali","year: 1967<br />lifeExp: 46.28900<br />continent: Africa<br />country: Mauritania","year: 2007<br />lifeExp: 64.16400<br />continent: Africa<br />country: Mauritania","year: 1967<br />lifeExp: 61.55700<br />continent: Africa<br />country: Mauritius","year: 2007<br />lifeExp: 72.80100<br />continent: Africa<br />country: Mauritius","year: 1967<br />lifeExp: 50.33500<br />continent: Africa<br />country: Morocco","year: 2007<br />lifeExp: 71.16400<br />continent: Africa<br />country: Morocco","year: 1967<br />lifeExp: 38.11300<br />continent: Africa<br />country: Mozambique","year: 2007<br />lifeExp: 42.08200<br />continent: Africa<br />country: Mozambique","year: 1967<br />lifeExp: 51.15900<br />continent: Africa<br />country: Namibia","year: 2007<br />lifeExp: 52.90600<br />continent: Africa<br />country: Namibia","year: 1967<br />lifeExp: 40.11800<br />continent: Africa<br />country: Niger","year: 2007<br />lifeExp: 56.86700<br />continent: Africa<br />country: Niger","year: 1967<br />lifeExp: 41.04000<br />continent: Africa<br />country: Nigeria","year: 2007<br />lifeExp: 46.85900<br />continent: Africa<br />country: Nigeria","year: 1967<br />lifeExp: 60.54200<br />continent: Africa<br />country: Reunion","year: 2007<br />lifeExp: 76.44200<br />continent: Africa<br />country: Reunion","year: 1967<br />lifeExp: 44.10000<br />continent: Africa<br />country: Rwanda","year: 2007<br />lifeExp: 46.24200<br />continent: Africa<br />country: Rwanda","year: 1967<br />lifeExp: 54.42500<br />continent: Africa<br />country: Sao Tome and Principe","year: 2007<br />lifeExp: 65.52800<br />continent: Africa<br />country: Sao Tome and Principe","year: 1967<br />lifeExp: 43.56300<br />continent: Africa<br />country: Senegal","year: 2007<br />lifeExp: 63.06200<br />continent: Africa<br />country: Senegal","year: 1967<br />lifeExp: 34.11300<br />continent: Africa<br />country: Sierra Leone","year: 2007<br />lifeExp: 42.56800<br />continent: Africa<br />country: Sierra Leone","year: 1967<br />lifeExp: 38.97700<br />continent: Africa<br />country: Somalia","year: 2007<br />lifeExp: 48.15900<br />continent: Africa<br />country: Somalia","year: 1967<br />lifeExp: 51.92700<br />continent: Africa<br />country: South Africa","year: 2007<br />lifeExp: 49.33900<br />continent: Africa<br />country: South Africa","year: 1967<br />lifeExp: 42.85800<br />continent: Africa<br />country: Sudan","year: 2007<br />lifeExp: 58.55600<br />continent: Africa<br />country: Sudan","year: 1967<br />lifeExp: 46.63300<br />continent: Africa<br />country: Swaziland","year: 2007<br />lifeExp: 39.61300<br />continent: Africa<br />country: Swaziland","year: 1967<br />lifeExp: 45.75700<br />continent: Africa<br />country: Tanzania","year: 2007<br />lifeExp: 52.51700<br />continent: Africa<br />country: Tanzania","year: 1967<br />lifeExp: 46.76900<br />continent: Africa<br />country: Togo","year: 2007<br />lifeExp: 58.42000<br />continent: Africa<br />country: Togo","year: 1967<br />lifeExp: 52.05300<br />continent: Africa<br />country: Tunisia","year: 2007<br />lifeExp: 73.92300<br />continent: Africa<br />country: Tunisia","year: 1967<br />lifeExp: 48.05100<br />continent: Africa<br />country: Uganda","year: 2007<br />lifeExp: 51.54200<br />continent: Africa<br />country: Uganda","year: 1967<br />lifeExp: 47.76800<br />continent: Africa<br />country: Zambia","year: 2007<br />lifeExp: 42.38400<br />continent: Africa<br />country: Zambia","year: 1967<br />lifeExp: 53.99500<br />continent: Africa<br />country: Zimbabwe","year: 2007<br />lifeExp: 43.48700<br />continent: Africa<br />country: Zimbabwe"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(228,26,28,1)","opacity":0.5,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(228,26,28,1)"}},"hoveron":"points","name":"Africa","legendgroup":"Africa","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007],"y":[65.634,75.32,45.032,65.554,57.632,72.39,72.13,80.653,60.523,78.553,59.963,72.889,65.424,78.782,68.29,78.273,56.751,72.235,56.678,74.994,55.855,71.878,50.016,70.259,46.243,60.916,50.924,70.198,67.51,72.567,60.11,76.195,51.884,72.899,64.071,75.537,64.951,71.752,51.445,71.421,71.1,78.746,65.4,69.819,70.76,78.242,68.468,76.384,63.479,73.747],"text":["year: 1967<br />lifeExp: 65.63400<br />continent: Americas<br />country: Argentina","year: 2007<br />lifeExp: 75.32000<br />continent: Americas<br />country: Argentina","year: 1967<br />lifeExp: 45.03200<br />continent: Americas<br />country: Bolivia","year: 2007<br />lifeExp: 65.55400<br />continent: Americas<br />country: Bolivia","year: 1967<br />lifeExp: 57.63200<br />continent: Americas<br />country: Brazil","year: 2007<br />lifeExp: 72.39000<br />continent: Americas<br />country: Brazil","year: 1967<br />lifeExp: 72.13000<br />continent: Americas<br />country: Canada","year: 2007<br />lifeExp: 80.65300<br />continent: Americas<br />country: Canada","year: 1967<br />lifeExp: 60.52300<br />continent: Americas<br />country: Chile","year: 2007<br />lifeExp: 78.55300<br />continent: Americas<br />country: Chile","year: 1967<br />lifeExp: 59.96300<br />continent: Americas<br />country: Colombia","year: 2007<br />lifeExp: 72.88900<br />continent: Americas<br />country: Colombia","year: 1967<br />lifeExp: 65.42400<br />continent: Americas<br />country: Costa Rica","year: 2007<br />lifeExp: 78.78200<br />continent: Americas<br />country: Costa Rica","year: 1967<br />lifeExp: 68.29000<br />continent: Americas<br />country: Cuba","year: 2007<br />lifeExp: 78.27300<br />continent: Americas<br />country: Cuba","year: 1967<br />lifeExp: 56.75100<br />continent: Americas<br />country: Dominican Republic","year: 2007<br />lifeExp: 72.23500<br />continent: Americas<br />country: Dominican Republic","year: 1967<br />lifeExp: 56.67800<br />continent: Americas<br />country: Ecuador","year: 2007<br />lifeExp: 74.99400<br />continent: Americas<br />country: Ecuador","year: 1967<br />lifeExp: 55.85500<br />continent: Americas<br />country: El Salvador","year: 2007<br />lifeExp: 71.87800<br />continent: Americas<br />country: El Salvador","year: 1967<br />lifeExp: 50.01600<br />continent: Americas<br />country: Guatemala","year: 2007<br />lifeExp: 70.25900<br />continent: Americas<br />country: Guatemala","year: 1967<br />lifeExp: 46.24300<br />continent: Americas<br />country: Haiti","year: 2007<br />lifeExp: 60.91600<br />continent: Americas<br />country: Haiti","year: 1967<br />lifeExp: 50.92400<br />continent: Americas<br />country: Honduras","year: 2007<br />lifeExp: 70.19800<br />continent: Americas<br />country: Honduras","year: 1967<br />lifeExp: 67.51000<br />continent: Americas<br />country: Jamaica","year: 2007<br />lifeExp: 72.56700<br />continent: Americas<br />country: Jamaica","year: 1967<br />lifeExp: 60.11000<br />continent: Americas<br />country: Mexico","year: 2007<br />lifeExp: 76.19500<br />continent: Americas<br />country: Mexico","year: 1967<br />lifeExp: 51.88400<br />continent: Americas<br />country: Nicaragua","year: 2007<br />lifeExp: 72.89900<br />continent: Americas<br />country: Nicaragua","year: 1967<br />lifeExp: 64.07100<br />continent: Americas<br />country: Panama","year: 2007<br />lifeExp: 75.53700<br />continent: Americas<br />country: Panama","year: 1967<br />lifeExp: 64.95100<br />continent: Americas<br />country: Paraguay","year: 2007<br />lifeExp: 71.75200<br />continent: Americas<br />country: Paraguay","year: 1967<br />lifeExp: 51.44500<br />continent: Americas<br />country: Peru","year: 2007<br />lifeExp: 71.42100<br />continent: Americas<br />country: Peru","year: 1967<br />lifeExp: 71.10000<br />continent: Americas<br />country: Puerto Rico","year: 2007<br />lifeExp: 78.74600<br />continent: Americas<br />country: Puerto Rico","year: 1967<br />lifeExp: 65.40000<br />continent: Americas<br />country: Trinidad and Tobago","year: 2007<br />lifeExp: 69.81900<br />continent: Americas<br />country: Trinidad and Tobago","year: 1967<br />lifeExp: 70.76000<br />continent: Americas<br />country: United States","year: 2007<br />lifeExp: 78.24200<br />continent: Americas<br />country: United States","year: 1967<br />lifeExp: 68.46800<br />continent: Americas<br />country: Uruguay","year: 2007<br />lifeExp: 76.38400<br />continent: Americas<br />country: Uruguay","year: 1967<br />lifeExp: 63.47900<br />continent: Americas<br />country: Venezuela","year: 2007<br />lifeExp: 73.74700<br />continent: Americas<br />country: Venezuela"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(55,126,184,1)","opacity":0.5,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(55,126,184,1)"}},"hoveron":"points","name":"Americas","legendgroup":"Americas","showlegend":true,"xaxis":"x2","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007],"y":[34.02,43.828,59.923,75.635,43.453,64.062,45.415,59.723,58.38112,72.961,70,82.208,47.193,64.698,45.964,70.65,52.469,70.964,54.459,59.545,70.75,80.745,71.43,82.603,51.629,72.535,59.942,67.297,57.716,78.623,64.624,77.588,63.87,71.993,59.371,74.241,51.253,66.803,49.379,62.069,41.472,63.785,46.988,75.64,49.8,65.483,56.393,71.688,49.901,72.777,67.946,79.972,64.266,72.396,53.655,74.143,67.5,78.4,58.285,70.616,47.838,74.249,51.631,73.422,36.984,62.698],"text":["year: 1967<br />lifeExp: 34.02000<br />continent: Asia<br />country: Afghanistan","year: 2007<br />lifeExp: 43.82800<br />continent: Asia<br />country: Afghanistan","year: 1967<br />lifeExp: 59.92300<br />continent: Asia<br />country: Bahrain","year: 2007<br />lifeExp: 75.63500<br />continent: Asia<br />country: Bahrain","year: 1967<br />lifeExp: 43.45300<br />continent: Asia<br />country: Bangladesh","year: 2007<br />lifeExp: 64.06200<br />continent: Asia<br />country: Bangladesh","year: 1967<br />lifeExp: 45.41500<br />continent: Asia<br />country: Cambodia","year: 2007<br />lifeExp: 59.72300<br />continent: Asia<br />country: Cambodia","year: 1967<br />lifeExp: 58.38112<br />continent: Asia<br />country: China","year: 2007<br />lifeExp: 72.96100<br />continent: Asia<br />country: China","year: 1967<br />lifeExp: 70.00000<br />continent: Asia<br />country: Hong Kong, China","year: 2007<br />lifeExp: 82.20800<br />continent: Asia<br />country: Hong Kong, China","year: 1967<br />lifeExp: 47.19300<br />continent: Asia<br />country: India","year: 2007<br />lifeExp: 64.69800<br />continent: Asia<br />country: India","year: 1967<br />lifeExp: 45.96400<br />continent: Asia<br />country: Indonesia","year: 2007<br />lifeExp: 70.65000<br />continent: Asia<br />country: Indonesia","year: 1967<br />lifeExp: 52.46900<br />continent: Asia<br />country: Iran","year: 2007<br />lifeExp: 70.96400<br />continent: Asia<br />country: Iran","year: 1967<br />lifeExp: 54.45900<br />continent: Asia<br />country: Iraq","year: 2007<br />lifeExp: 59.54500<br />continent: Asia<br />country: Iraq","year: 1967<br />lifeExp: 70.75000<br />continent: Asia<br />country: Israel","year: 2007<br />lifeExp: 80.74500<br />continent: Asia<br />country: Israel","year: 1967<br />lifeExp: 71.43000<br />continent: Asia<br />country: Japan","year: 2007<br />lifeExp: 82.60300<br />continent: Asia<br />country: Japan","year: 1967<br />lifeExp: 51.62900<br />continent: Asia<br />country: Jordan","year: 2007<br />lifeExp: 72.53500<br />continent: Asia<br />country: Jordan","year: 1967<br />lifeExp: 59.94200<br />continent: Asia<br />country: Korea, Dem. Rep.","year: 2007<br />lifeExp: 67.29700<br />continent: Asia<br />country: Korea, Dem. Rep.","year: 1967<br />lifeExp: 57.71600<br />continent: Asia<br />country: Korea, Rep.","year: 2007<br />lifeExp: 78.62300<br />continent: Asia<br />country: Korea, Rep.","year: 1967<br />lifeExp: 64.62400<br />continent: Asia<br />country: Kuwait","year: 2007<br />lifeExp: 77.58800<br />continent: Asia<br />country: Kuwait","year: 1967<br />lifeExp: 63.87000<br />continent: Asia<br />country: Lebanon","year: 2007<br />lifeExp: 71.99300<br />continent: Asia<br />country: Lebanon","year: 1967<br />lifeExp: 59.37100<br />continent: Asia<br />country: Malaysia","year: 2007<br />lifeExp: 74.24100<br />continent: Asia<br />country: Malaysia","year: 1967<br />lifeExp: 51.25300<br />continent: Asia<br />country: Mongolia","year: 2007<br />lifeExp: 66.80300<br />continent: Asia<br />country: Mongolia","year: 1967<br />lifeExp: 49.37900<br />continent: Asia<br />country: Myanmar","year: 2007<br />lifeExp: 62.06900<br />continent: Asia<br />country: Myanmar","year: 1967<br />lifeExp: 41.47200<br />continent: Asia<br />country: Nepal","year: 2007<br />lifeExp: 63.78500<br />continent: Asia<br />country: Nepal","year: 1967<br />lifeExp: 46.98800<br />continent: Asia<br />country: Oman","year: 2007<br />lifeExp: 75.64000<br />continent: Asia<br />country: Oman","year: 1967<br />lifeExp: 49.80000<br />continent: Asia<br />country: Pakistan","year: 2007<br />lifeExp: 65.48300<br />continent: Asia<br />country: Pakistan","year: 1967<br />lifeExp: 56.39300<br />continent: Asia<br />country: Philippines","year: 2007<br />lifeExp: 71.68800<br />continent: Asia<br />country: Philippines","year: 1967<br />lifeExp: 49.90100<br />continent: Asia<br />country: Saudi Arabia","year: 2007<br />lifeExp: 72.77700<br />continent: Asia<br />country: Saudi Arabia","year: 1967<br />lifeExp: 67.94600<br />continent: Asia<br />country: Singapore","year: 2007<br />lifeExp: 79.97200<br />continent: Asia<br />country: Singapore","year: 1967<br />lifeExp: 64.26600<br />continent: Asia<br />country: Sri Lanka","year: 2007<br />lifeExp: 72.39600<br />continent: Asia<br />country: Sri Lanka","year: 1967<br />lifeExp: 53.65500<br />continent: Asia<br />country: Syria","year: 2007<br />lifeExp: 74.14300<br />continent: Asia<br />country: Syria","year: 1967<br />lifeExp: 67.50000<br />continent: Asia<br />country: Taiwan","year: 2007<br />lifeExp: 78.40000<br />continent: Asia<br />country: Taiwan","year: 1967<br />lifeExp: 58.28500<br />continent: Asia<br />country: Thailand","year: 2007<br />lifeExp: 70.61600<br />continent: Asia<br />country: Thailand","year: 1967<br />lifeExp: 47.83800<br />continent: Asia<br />country: Vietnam","year: 2007<br />lifeExp: 74.24900<br />continent: Asia<br />country: Vietnam","year: 1967<br />lifeExp: 51.63100<br />continent: Asia<br />country: West Bank and Gaza","year: 2007<br />lifeExp: 73.42200<br />continent: Asia<br />country: West Bank and Gaza","year: 1967<br />lifeExp: 36.98400<br />continent: Asia<br />country: Yemen, Rep.","year: 2007<br />lifeExp: 62.69800<br />continent: Asia<br />country: Yemen, Rep."],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(77,175,74,1)","opacity":0.5,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(77,175,74,1)"}},"hoveron":"points","name":"Asia","legendgroup":"Asia","showlegend":true,"xaxis":"x3","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007,1967,2007],"y":[66.22,76.423,70.14,79.829,70.94,79.441,64.79,74.852,70.42,73.005,68.5,75.748,70.38,76.486,72.96,78.332,69.83,79.313,71.55,80.657,70.8,79.406,71,79.483,69.5,73.338,73.73,81.757,71.08,78.885,71.06,80.546,67.178,74.543,73.82,79.762,74.08,80.196,69.61,75.563,66.6,78.098,66.8,72.476,66.914,74.002,70.98,74.663,69.18,77.926,71.44,80.941,74.16,80.884,72.77,81.701,54.336,71.777,71.36,79.425],"text":["year: 1967<br />lifeExp: 66.22000<br />continent: Europe<br />country: Albania","year: 2007<br />lifeExp: 76.42300<br />continent: Europe<br />country: Albania","year: 1967<br />lifeExp: 70.14000<br />continent: Europe<br />country: Austria","year: 2007<br />lifeExp: 79.82900<br />continent: Europe<br />country: Austria","year: 1967<br />lifeExp: 70.94000<br />continent: Europe<br />country: Belgium","year: 2007<br />lifeExp: 79.44100<br />continent: Europe<br />country: Belgium","year: 1967<br />lifeExp: 64.79000<br />continent: Europe<br />country: Bosnia and Herzegovina","year: 2007<br />lifeExp: 74.85200<br />continent: Europe<br />country: Bosnia and Herzegovina","year: 1967<br />lifeExp: 70.42000<br />continent: Europe<br />country: Bulgaria","year: 2007<br />lifeExp: 73.00500<br />continent: Europe<br />country: Bulgaria","year: 1967<br />lifeExp: 68.50000<br />continent: Europe<br />country: Croatia","year: 2007<br />lifeExp: 75.74800<br />continent: Europe<br />country: Croatia","year: 1967<br />lifeExp: 70.38000<br />continent: Europe<br />country: Czech Republic","year: 2007<br />lifeExp: 76.48600<br />continent: Europe<br />country: Czech Republic","year: 1967<br />lifeExp: 72.96000<br />continent: Europe<br />country: Denmark","year: 2007<br />lifeExp: 78.33200<br />continent: Europe<br />country: Denmark","year: 1967<br />lifeExp: 69.83000<br />continent: Europe<br />country: Finland","year: 2007<br />lifeExp: 79.31300<br />continent: Europe<br />country: Finland","year: 1967<br />lifeExp: 71.55000<br />continent: Europe<br />country: France","year: 2007<br />lifeExp: 80.65700<br />continent: Europe<br />country: France","year: 1967<br />lifeExp: 70.80000<br />continent: Europe<br />country: Germany","year: 2007<br />lifeExp: 79.40600<br />continent: Europe<br />country: Germany","year: 1967<br />lifeExp: 71.00000<br />continent: Europe<br />country: Greece","year: 2007<br />lifeExp: 79.48300<br />continent: Europe<br />country: Greece","year: 1967<br />lifeExp: 69.50000<br />continent: Europe<br />country: Hungary","year: 2007<br />lifeExp: 73.33800<br />continent: Europe<br />country: Hungary","year: 1967<br />lifeExp: 73.73000<br />continent: Europe<br />country: Iceland","year: 2007<br />lifeExp: 81.75700<br />continent: Europe<br />country: Iceland","year: 1967<br />lifeExp: 71.08000<br />continent: Europe<br />country: Ireland","year: 2007<br />lifeExp: 78.88500<br />continent: Europe<br />country: Ireland","year: 1967<br />lifeExp: 71.06000<br />continent: Europe<br />country: Italy","year: 2007<br />lifeExp: 80.54600<br />continent: Europe<br />country: Italy","year: 1967<br />lifeExp: 67.17800<br />continent: Europe<br />country: Montenegro","year: 2007<br />lifeExp: 74.54300<br />continent: Europe<br />country: Montenegro","year: 1967<br />lifeExp: 73.82000<br />continent: Europe<br />country: Netherlands","year: 2007<br />lifeExp: 79.76200<br />continent: Europe<br />country: Netherlands","year: 1967<br />lifeExp: 74.08000<br />continent: Europe<br />country: Norway","year: 2007<br />lifeExp: 80.19600<br />continent: Europe<br />country: Norway","year: 1967<br />lifeExp: 69.61000<br />continent: Europe<br />country: Poland","year: 2007<br />lifeExp: 75.56300<br />continent: Europe<br />country: Poland","year: 1967<br />lifeExp: 66.60000<br />continent: Europe<br />country: Portugal","year: 2007<br />lifeExp: 78.09800<br />continent: Europe<br />country: Portugal","year: 1967<br />lifeExp: 66.80000<br />continent: Europe<br />country: Romania","year: 2007<br />lifeExp: 72.47600<br />continent: Europe<br />country: Romania","year: 1967<br />lifeExp: 66.91400<br />continent: Europe<br />country: Serbia","year: 2007<br />lifeExp: 74.00200<br />continent: Europe<br />country: Serbia","year: 1967<br />lifeExp: 70.98000<br />continent: Europe<br />country: Slovak Republic","year: 2007<br />lifeExp: 74.66300<br />continent: Europe<br />country: Slovak Republic","year: 1967<br />lifeExp: 69.18000<br />continent: Europe<br />country: Slovenia","year: 2007<br />lifeExp: 77.92600<br />continent: Europe<br />country: Slovenia","year: 1967<br />lifeExp: 71.44000<br />continent: Europe<br />country: Spain","year: 2007<br />lifeExp: 80.94100<br />continent: Europe<br />country: Spain","year: 1967<br />lifeExp: 74.16000<br />continent: Europe<br />country: Sweden","year: 2007<br />lifeExp: 80.88400<br />continent: Europe<br />country: Sweden","year: 1967<br />lifeExp: 72.77000<br />continent: Europe<br />country: Switzerland","year: 2007<br />lifeExp: 81.70100<br />continent: Europe<br />country: Switzerland","year: 1967<br />lifeExp: 54.33600<br />continent: Europe<br />country: Turkey","year: 2007<br />lifeExp: 71.77700<br />continent: Europe<br />country: Turkey","year: 1967<br />lifeExp: 71.36000<br />continent: Europe<br />country: United Kingdom","year: 2007<br />lifeExp: 79.42500<br />continent: Europe<br />country: United Kingdom"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(152,78,163,1)","opacity":0.5,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(152,78,163,1)"}},"hoveron":"points","name":"Europe","legendgroup":"Europe","showlegend":true,"xaxis":"x","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[1967,2007,1967,2007],"y":[71.1,81.235,71.52,80.204],"text":["year: 1967<br />lifeExp: 71.10000<br />continent: Oceania<br />country: Australia","year: 2007<br />lifeExp: 81.23500<br />continent: Oceania<br />country: Australia","year: 1967<br />lifeExp: 71.52000<br />continent: Oceania<br />country: New Zealand","year: 2007<br />lifeExp: 80.20400<br />continent: Oceania<br />country: New Zealand"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(255,127,0,1)","opacity":0.5,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(255,127,0,1)"}},"hoveron":"points","name":"Oceania","legendgroup":"Oceania","showlegend":true,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007],"y":[51.407,72.301,null,35.985,42.731,null,44.885,56.728,null,53.298,50.728,null,40.697,52.295,null,43.548,49.58,null,44.799,50.43,null,41.478,44.741,null,43.601,50.651,null,46.472,65.152,null,44.056,46.462,null,52.04,55.322,null,47.35,48.328,null,42.074,54.791,null,49.293,71.338,null,38.987,51.579,null,42.189,58.04,null,42.115,52.947,null,44.598,56.735,null,35.857,59.448,null,48.072,60.022,null,37.197,56.007,null,35.492,46.388,null,50.654,54.11,null,48.492,42.592,null,41.536,45.678,null,50.227,73.952,null,42.881,59.443,null,39.487,48.303,null,38.487,54.467,null,46.289,64.164,null,61.557,72.801,null,50.335,71.164,null,38.113,42.082,null,51.159,52.906,null,40.118,56.867,null,41.04,46.859,null,60.542,76.442,null,44.1,46.242,null,54.425,65.528,null,43.563,63.062,null,34.113,42.568,null,38.977,48.159,null,51.927,49.339,null,42.858,58.556,null,46.633,39.613,null,45.757,52.517,null,46.769,58.42,null,52.053,73.923,null,48.051,51.542,null,47.768,42.384,null,53.995,43.487],"text":["year: 1967<br />lifeExp: 51.40700<br />continent: Africa<br />country: Algeria","year: 2007<br />lifeExp: 72.30100<br />continent: Africa<br />country: Algeria",null,"year: 1967<br />lifeExp: 35.98500<br />continent: Africa<br />country: Angola","year: 2007<br />lifeExp: 42.73100<br />continent: Africa<br />country: Angola",null,"year: 1967<br />lifeExp: 44.88500<br />continent: Africa<br />country: Benin","year: 2007<br />lifeExp: 56.72800<br />continent: Africa<br />country: Benin",null,"year: 1967<br />lifeExp: 53.29800<br />continent: Africa<br />country: Botswana","year: 2007<br />lifeExp: 50.72800<br />continent: Africa<br />country: Botswana",null,"year: 1967<br />lifeExp: 40.69700<br />continent: Africa<br />country: Burkina Faso","year: 2007<br />lifeExp: 52.29500<br />continent: Africa<br />country: Burkina Faso",null,"year: 1967<br />lifeExp: 43.54800<br />continent: Africa<br />country: Burundi","year: 2007<br />lifeExp: 49.58000<br />continent: Africa<br />country: Burundi",null,"year: 1967<br />lifeExp: 44.79900<br />continent: Africa<br />country: Cameroon","year: 2007<br />lifeExp: 50.43000<br />continent: Africa<br />country: Cameroon",null,"year: 1967<br />lifeExp: 41.47800<br />continent: Africa<br />country: Central African Republic","year: 2007<br />lifeExp: 44.74100<br />continent: Africa<br />country: Central African Republic",null,"year: 1967<br />lifeExp: 43.60100<br />continent: Africa<br />country: Chad","year: 2007<br />lifeExp: 50.65100<br />continent: Africa<br />country: Chad",null,"year: 1967<br />lifeExp: 46.47200<br />continent: Africa<br />country: Comoros","year: 2007<br />lifeExp: 65.15200<br />continent: Africa<br />country: Comoros",null,"year: 1967<br />lifeExp: 44.05600<br />continent: Africa<br />country: Congo, Dem. Rep.","year: 2007<br />lifeExp: 46.46200<br />continent: Africa<br />country: Congo, Dem. Rep.",null,"year: 1967<br />lifeExp: 52.04000<br />continent: Africa<br />country: Congo, Rep.","year: 2007<br />lifeExp: 55.32200<br />continent: Africa<br />country: Congo, Rep.",null,"year: 1967<br />lifeExp: 47.35000<br />continent: Africa<br />country: Cote d'Ivoire","year: 2007<br />lifeExp: 48.32800<br />continent: Africa<br />country: Cote d'Ivoire",null,"year: 1967<br />lifeExp: 42.07400<br />continent: Africa<br />country: Djibouti","year: 2007<br />lifeExp: 54.79100<br />continent: Africa<br />country: Djibouti",null,"year: 1967<br />lifeExp: 49.29300<br />continent: Africa<br />country: Egypt","year: 2007<br />lifeExp: 71.33800<br />continent: Africa<br />country: Egypt",null,"year: 1967<br />lifeExp: 38.98700<br />continent: Africa<br />country: Equatorial Guinea","year: 2007<br />lifeExp: 51.57900<br />continent: Africa<br />country: Equatorial Guinea",null,"year: 1967<br />lifeExp: 42.18900<br />continent: Africa<br />country: Eritrea","year: 2007<br />lifeExp: 58.04000<br />continent: Africa<br />country: Eritrea",null,"year: 1967<br />lifeExp: 42.11500<br />continent: Africa<br />country: Ethiopia","year: 2007<br />lifeExp: 52.94700<br />continent: Africa<br />country: Ethiopia",null,"year: 1967<br />lifeExp: 44.59800<br />continent: Africa<br />country: Gabon","year: 2007<br />lifeExp: 56.73500<br />continent: Africa<br />country: Gabon",null,"year: 1967<br />lifeExp: 35.85700<br />continent: Africa<br />country: Gambia","year: 2007<br />lifeExp: 59.44800<br />continent: Africa<br />country: Gambia",null,"year: 1967<br />lifeExp: 48.07200<br />continent: Africa<br />country: Ghana","year: 2007<br />lifeExp: 60.02200<br />continent: Africa<br />country: Ghana",null,"year: 1967<br />lifeExp: 37.19700<br />continent: Africa<br />country: Guinea","year: 2007<br />lifeExp: 56.00700<br />continent: Africa<br />country: Guinea",null,"year: 1967<br />lifeExp: 35.49200<br />continent: Africa<br />country: Guinea-Bissau","year: 2007<br />lifeExp: 46.38800<br />continent: Africa<br />country: Guinea-Bissau",null,"year: 1967<br />lifeExp: 50.65400<br />continent: Africa<br />country: Kenya","year: 2007<br />lifeExp: 54.11000<br />continent: Africa<br />country: Kenya",null,"year: 1967<br />lifeExp: 48.49200<br />continent: Africa<br />country: Lesotho","year: 2007<br />lifeExp: 42.59200<br />continent: Africa<br />country: Lesotho",null,"year: 1967<br />lifeExp: 41.53600<br />continent: Africa<br />country: Liberia","year: 2007<br />lifeExp: 45.67800<br />continent: Africa<br />country: Liberia",null,"year: 1967<br />lifeExp: 50.22700<br />continent: Africa<br />country: Libya","year: 2007<br />lifeExp: 73.95200<br />continent: Africa<br />country: Libya",null,"year: 1967<br />lifeExp: 42.88100<br />continent: Africa<br />country: Madagascar","year: 2007<br />lifeExp: 59.44300<br />continent: Africa<br />country: Madagascar",null,"year: 1967<br />lifeExp: 39.48700<br />continent: Africa<br />country: Malawi","year: 2007<br />lifeExp: 48.30300<br />continent: Africa<br />country: Malawi",null,"year: 1967<br />lifeExp: 38.48700<br />continent: Africa<br />country: Mali","year: 2007<br />lifeExp: 54.46700<br />continent: Africa<br />country: Mali",null,"year: 1967<br />lifeExp: 46.28900<br />continent: Africa<br />country: Mauritania","year: 2007<br />lifeExp: 64.16400<br />continent: Africa<br />country: Mauritania",null,"year: 1967<br />lifeExp: 61.55700<br />continent: Africa<br />country: Mauritius","year: 2007<br />lifeExp: 72.80100<br />continent: Africa<br />country: Mauritius",null,"year: 1967<br />lifeExp: 50.33500<br />continent: Africa<br />country: Morocco","year: 2007<br />lifeExp: 71.16400<br />continent: Africa<br />country: Morocco",null,"year: 1967<br />lifeExp: 38.11300<br />continent: Africa<br />country: Mozambique","year: 2007<br />lifeExp: 42.08200<br />continent: Africa<br />country: Mozambique",null,"year: 1967<br />lifeExp: 51.15900<br />continent: Africa<br />country: Namibia","year: 2007<br />lifeExp: 52.90600<br />continent: Africa<br />country: Namibia",null,"year: 1967<br />lifeExp: 40.11800<br />continent: Africa<br />country: Niger","year: 2007<br />lifeExp: 56.86700<br />continent: Africa<br />country: Niger",null,"year: 1967<br />lifeExp: 41.04000<br />continent: Africa<br />country: Nigeria","year: 2007<br />lifeExp: 46.85900<br />continent: Africa<br />country: Nigeria",null,"year: 1967<br />lifeExp: 60.54200<br />continent: Africa<br />country: Reunion","year: 2007<br />lifeExp: 76.44200<br />continent: Africa<br />country: Reunion",null,"year: 1967<br />lifeExp: 44.10000<br />continent: Africa<br />country: Rwanda","year: 2007<br />lifeExp: 46.24200<br />continent: Africa<br />country: Rwanda",null,"year: 1967<br />lifeExp: 54.42500<br />continent: Africa<br />country: Sao Tome and Principe","year: 2007<br />lifeExp: 65.52800<br />continent: Africa<br />country: Sao Tome and Principe",null,"year: 1967<br />lifeExp: 43.56300<br />continent: Africa<br />country: Senegal","year: 2007<br />lifeExp: 63.06200<br />continent: Africa<br />country: Senegal",null,"year: 1967<br />lifeExp: 34.11300<br />continent: Africa<br />country: Sierra Leone","year: 2007<br />lifeExp: 42.56800<br />continent: Africa<br />country: Sierra Leone",null,"year: 1967<br />lifeExp: 38.97700<br />continent: Africa<br />country: Somalia","year: 2007<br />lifeExp: 48.15900<br />continent: Africa<br />country: Somalia",null,"year: 1967<br />lifeExp: 51.92700<br />continent: Africa<br />country: South Africa","year: 2007<br />lifeExp: 49.33900<br />continent: Africa<br />country: South Africa",null,"year: 1967<br />lifeExp: 42.85800<br />continent: Africa<br />country: Sudan","year: 2007<br />lifeExp: 58.55600<br />continent: Africa<br />country: Sudan",null,"year: 1967<br />lifeExp: 46.63300<br />continent: Africa<br />country: Swaziland","year: 2007<br />lifeExp: 39.61300<br />continent: Africa<br />country: Swaziland",null,"year: 1967<br />lifeExp: 45.75700<br />continent: Africa<br />country: Tanzania","year: 2007<br />lifeExp: 52.51700<br />continent: Africa<br />country: Tanzania",null,"year: 1967<br />lifeExp: 46.76900<br />continent: Africa<br />country: Togo","year: 2007<br />lifeExp: 58.42000<br />continent: Africa<br />country: Togo",null,"year: 1967<br />lifeExp: 52.05300<br />continent: Africa<br />country: Tunisia","year: 2007<br />lifeExp: 73.92300<br />continent: Africa<br />country: Tunisia",null,"year: 1967<br />lifeExp: 48.05100<br />continent: Africa<br />country: Uganda","year: 2007<br />lifeExp: 51.54200<br />continent: Africa<br />country: Uganda",null,"year: 1967<br />lifeExp: 47.76800<br />continent: Africa<br />country: Zambia","year: 2007<br />lifeExp: 42.38400<br />continent: Africa<br />country: Zambia",null,"year: 1967<br />lifeExp: 53.99500<br />continent: Africa<br />country: Zimbabwe","year: 2007<br />lifeExp: 43.48700<br />continent: Africa<br />country: Zimbabwe"],"type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(228,26,28,1)","dash":"solid"},"hoveron":"points","name":"Africa","legendgroup":"Africa","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007],"y":[65.634,75.32,null,45.032,65.554,null,57.632,72.39,null,72.13,80.653,null,60.523,78.553,null,59.963,72.889,null,65.424,78.782,null,68.29,78.273,null,56.751,72.235,null,56.678,74.994,null,55.855,71.878,null,50.016,70.259,null,46.243,60.916,null,50.924,70.198,null,67.51,72.567,null,60.11,76.195,null,51.884,72.899,null,64.071,75.537,null,64.951,71.752,null,51.445,71.421,null,71.1,78.746,null,65.4,69.819,null,70.76,78.242,null,68.468,76.384,null,63.479,73.747],"text":["year: 1967<br />lifeExp: 65.63400<br />continent: Americas<br />country: Argentina","year: 2007<br />lifeExp: 75.32000<br />continent: Americas<br />country: Argentina",null,"year: 1967<br />lifeExp: 45.03200<br />continent: Americas<br />country: Bolivia","year: 2007<br />lifeExp: 65.55400<br />continent: Americas<br />country: Bolivia",null,"year: 1967<br />lifeExp: 57.63200<br />continent: Americas<br />country: Brazil","year: 2007<br />lifeExp: 72.39000<br />continent: Americas<br />country: Brazil",null,"year: 1967<br />lifeExp: 72.13000<br />continent: Americas<br />country: Canada","year: 2007<br />lifeExp: 80.65300<br />continent: Americas<br />country: Canada",null,"year: 1967<br />lifeExp: 60.52300<br />continent: Americas<br />country: Chile","year: 2007<br />lifeExp: 78.55300<br />continent: Americas<br />country: Chile",null,"year: 1967<br />lifeExp: 59.96300<br />continent: Americas<br />country: Colombia","year: 2007<br />lifeExp: 72.88900<br />continent: Americas<br />country: Colombia",null,"year: 1967<br />lifeExp: 65.42400<br />continent: Americas<br />country: Costa Rica","year: 2007<br />lifeExp: 78.78200<br />continent: Americas<br />country: Costa Rica",null,"year: 1967<br />lifeExp: 68.29000<br />continent: Americas<br />country: Cuba","year: 2007<br />lifeExp: 78.27300<br />continent: Americas<br />country: Cuba",null,"year: 1967<br />lifeExp: 56.75100<br />continent: Americas<br />country: Dominican Republic","year: 2007<br />lifeExp: 72.23500<br />continent: Americas<br />country: Dominican Republic",null,"year: 1967<br />lifeExp: 56.67800<br />continent: Americas<br />country: Ecuador","year: 2007<br />lifeExp: 74.99400<br />continent: Americas<br />country: Ecuador",null,"year: 1967<br />lifeExp: 55.85500<br />continent: Americas<br />country: El Salvador","year: 2007<br />lifeExp: 71.87800<br />continent: Americas<br />country: El Salvador",null,"year: 1967<br />lifeExp: 50.01600<br />continent: Americas<br />country: Guatemala","year: 2007<br />lifeExp: 70.25900<br />continent: Americas<br />country: Guatemala",null,"year: 1967<br />lifeExp: 46.24300<br />continent: Americas<br />country: Haiti","year: 2007<br />lifeExp: 60.91600<br />continent: Americas<br />country: Haiti",null,"year: 1967<br />lifeExp: 50.92400<br />continent: Americas<br />country: Honduras","year: 2007<br />lifeExp: 70.19800<br />continent: Americas<br />country: Honduras",null,"year: 1967<br />lifeExp: 67.51000<br />continent: Americas<br />country: Jamaica","year: 2007<br />lifeExp: 72.56700<br />continent: Americas<br />country: Jamaica",null,"year: 1967<br />lifeExp: 60.11000<br />continent: Americas<br />country: Mexico","year: 2007<br />lifeExp: 76.19500<br />continent: Americas<br />country: Mexico",null,"year: 1967<br />lifeExp: 51.88400<br />continent: Americas<br />country: Nicaragua","year: 2007<br />lifeExp: 72.89900<br />continent: Americas<br />country: Nicaragua",null,"year: 1967<br />lifeExp: 64.07100<br />continent: Americas<br />country: Panama","year: 2007<br />lifeExp: 75.53700<br />continent: Americas<br />country: Panama",null,"year: 1967<br />lifeExp: 64.95100<br />continent: Americas<br />country: Paraguay","year: 2007<br />lifeExp: 71.75200<br />continent: Americas<br />country: Paraguay",null,"year: 1967<br />lifeExp: 51.44500<br />continent: Americas<br />country: Peru","year: 2007<br />lifeExp: 71.42100<br />continent: Americas<br />country: Peru",null,"year: 1967<br />lifeExp: 71.10000<br />continent: Americas<br />country: Puerto Rico","year: 2007<br />lifeExp: 78.74600<br />continent: Americas<br />country: Puerto Rico",null,"year: 1967<br />lifeExp: 65.40000<br />continent: Americas<br />country: Trinidad and Tobago","year: 2007<br />lifeExp: 69.81900<br />continent: Americas<br />country: Trinidad and Tobago",null,"year: 1967<br />lifeExp: 70.76000<br />continent: Americas<br />country: United States","year: 2007<br />lifeExp: 78.24200<br />continent: Americas<br />country: United States",null,"year: 1967<br />lifeExp: 68.46800<br />continent: Americas<br />country: Uruguay","year: 2007<br />lifeExp: 76.38400<br />continent: Americas<br />country: Uruguay",null,"year: 1967<br />lifeExp: 63.47900<br />continent: Americas<br />country: Venezuela","year: 2007<br />lifeExp: 73.74700<br />continent: Americas<br />country: Venezuela"],"type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(55,126,184,1)","dash":"solid"},"hoveron":"points","name":"Americas","legendgroup":"Americas","showlegend":false,"xaxis":"x2","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007],"y":[34.02,43.828,null,59.923,75.635,null,43.453,64.062,null,45.415,59.723,null,58.38112,72.961,null,70,82.208,null,47.193,64.698,null,45.964,70.65,null,52.469,70.964,null,54.459,59.545,null,70.75,80.745,null,71.43,82.603,null,51.629,72.535,null,59.942,67.297,null,57.716,78.623,null,64.624,77.588,null,63.87,71.993,null,59.371,74.241,null,51.253,66.803,null,49.379,62.069,null,41.472,63.785,null,46.988,75.64,null,49.8,65.483,null,56.393,71.688,null,49.901,72.777,null,67.946,79.972,null,64.266,72.396,null,53.655,74.143,null,67.5,78.4,null,58.285,70.616,null,47.838,74.249,null,51.631,73.422,null,36.984,62.698],"text":["year: 1967<br />lifeExp: 34.02000<br />continent: Asia<br />country: Afghanistan","year: 2007<br />lifeExp: 43.82800<br />continent: Asia<br />country: Afghanistan",null,"year: 1967<br />lifeExp: 59.92300<br />continent: Asia<br />country: Bahrain","year: 2007<br />lifeExp: 75.63500<br />continent: Asia<br />country: Bahrain",null,"year: 1967<br />lifeExp: 43.45300<br />continent: Asia<br />country: Bangladesh","year: 2007<br />lifeExp: 64.06200<br />continent: Asia<br />country: Bangladesh",null,"year: 1967<br />lifeExp: 45.41500<br />continent: Asia<br />country: Cambodia","year: 2007<br />lifeExp: 59.72300<br />continent: Asia<br />country: Cambodia",null,"year: 1967<br />lifeExp: 58.38112<br />continent: Asia<br />country: China","year: 2007<br />lifeExp: 72.96100<br />continent: Asia<br />country: China",null,"year: 1967<br />lifeExp: 70.00000<br />continent: Asia<br />country: Hong Kong, China","year: 2007<br />lifeExp: 82.20800<br />continent: Asia<br />country: Hong Kong, China",null,"year: 1967<br />lifeExp: 47.19300<br />continent: Asia<br />country: India","year: 2007<br />lifeExp: 64.69800<br />continent: Asia<br />country: India",null,"year: 1967<br />lifeExp: 45.96400<br />continent: Asia<br />country: Indonesia","year: 2007<br />lifeExp: 70.65000<br />continent: Asia<br />country: Indonesia",null,"year: 1967<br />lifeExp: 52.46900<br />continent: Asia<br />country: Iran","year: 2007<br />lifeExp: 70.96400<br />continent: Asia<br />country: Iran",null,"year: 1967<br />lifeExp: 54.45900<br />continent: Asia<br />country: Iraq","year: 2007<br />lifeExp: 59.54500<br />continent: Asia<br />country: Iraq",null,"year: 1967<br />lifeExp: 70.75000<br />continent: Asia<br />country: Israel","year: 2007<br />lifeExp: 80.74500<br />continent: Asia<br />country: Israel",null,"year: 1967<br />lifeExp: 71.43000<br />continent: Asia<br />country: Japan","year: 2007<br />lifeExp: 82.60300<br />continent: Asia<br />country: Japan",null,"year: 1967<br />lifeExp: 51.62900<br />continent: Asia<br />country: Jordan","year: 2007<br />lifeExp: 72.53500<br />continent: Asia<br />country: Jordan",null,"year: 1967<br />lifeExp: 59.94200<br />continent: Asia<br />country: Korea, Dem. Rep.","year: 2007<br />lifeExp: 67.29700<br />continent: Asia<br />country: Korea, Dem. Rep.",null,"year: 1967<br />lifeExp: 57.71600<br />continent: Asia<br />country: Korea, Rep.","year: 2007<br />lifeExp: 78.62300<br />continent: Asia<br />country: Korea, Rep.",null,"year: 1967<br />lifeExp: 64.62400<br />continent: Asia<br />country: Kuwait","year: 2007<br />lifeExp: 77.58800<br />continent: Asia<br />country: Kuwait",null,"year: 1967<br />lifeExp: 63.87000<br />continent: Asia<br />country: Lebanon","year: 2007<br />lifeExp: 71.99300<br />continent: Asia<br />country: Lebanon",null,"year: 1967<br />lifeExp: 59.37100<br />continent: Asia<br />country: Malaysia","year: 2007<br />lifeExp: 74.24100<br />continent: Asia<br />country: Malaysia",null,"year: 1967<br />lifeExp: 51.25300<br />continent: Asia<br />country: Mongolia","year: 2007<br />lifeExp: 66.80300<br />continent: Asia<br />country: Mongolia",null,"year: 1967<br />lifeExp: 49.37900<br />continent: Asia<br />country: Myanmar","year: 2007<br />lifeExp: 62.06900<br />continent: Asia<br />country: Myanmar",null,"year: 1967<br />lifeExp: 41.47200<br />continent: Asia<br />country: Nepal","year: 2007<br />lifeExp: 63.78500<br />continent: Asia<br />country: Nepal",null,"year: 1967<br />lifeExp: 46.98800<br />continent: Asia<br />country: Oman","year: 2007<br />lifeExp: 75.64000<br />continent: Asia<br />country: Oman",null,"year: 1967<br />lifeExp: 49.80000<br />continent: Asia<br />country: Pakistan","year: 2007<br />lifeExp: 65.48300<br />continent: Asia<br />country: Pakistan",null,"year: 1967<br />lifeExp: 56.39300<br />continent: Asia<br />country: Philippines","year: 2007<br />lifeExp: 71.68800<br />continent: Asia<br />country: Philippines",null,"year: 1967<br />lifeExp: 49.90100<br />continent: Asia<br />country: Saudi Arabia","year: 2007<br />lifeExp: 72.77700<br />continent: Asia<br />country: Saudi Arabia",null,"year: 1967<br />lifeExp: 67.94600<br />continent: Asia<br />country: Singapore","year: 2007<br />lifeExp: 79.97200<br />continent: Asia<br />country: Singapore",null,"year: 1967<br />lifeExp: 64.26600<br />continent: Asia<br />country: Sri Lanka","year: 2007<br />lifeExp: 72.39600<br />continent: Asia<br />country: Sri Lanka",null,"year: 1967<br />lifeExp: 53.65500<br />continent: Asia<br />country: Syria","year: 2007<br />lifeExp: 74.14300<br />continent: Asia<br />country: Syria",null,"year: 1967<br />lifeExp: 67.50000<br />continent: Asia<br />country: Taiwan","year: 2007<br />lifeExp: 78.40000<br />continent: Asia<br />country: Taiwan",null,"year: 1967<br />lifeExp: 58.28500<br />continent: Asia<br />country: Thailand","year: 2007<br />lifeExp: 70.61600<br />continent: Asia<br />country: Thailand",null,"year: 1967<br />lifeExp: 47.83800<br />continent: Asia<br />country: Vietnam","year: 2007<br />lifeExp: 74.24900<br />continent: Asia<br />country: Vietnam",null,"year: 1967<br />lifeExp: 51.63100<br />continent: Asia<br />country: West Bank and Gaza","year: 2007<br />lifeExp: 73.42200<br />continent: Asia<br />country: West Bank and Gaza",null,"year: 1967<br />lifeExp: 36.98400<br />continent: Asia<br />country: Yemen, Rep.","year: 2007<br />lifeExp: 62.69800<br />continent: Asia<br />country: Yemen, Rep."],"type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(77,175,74,1)","dash":"solid"},"hoveron":"points","name":"Asia","legendgroup":"Asia","showlegend":false,"xaxis":"x3","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007,null,1967,2007],"y":[66.22,76.423,null,70.14,79.829,null,70.94,79.441,null,64.79,74.852,null,70.42,73.005,null,68.5,75.748,null,70.38,76.486,null,72.96,78.332,null,69.83,79.313,null,71.55,80.657,null,70.8,79.406,null,71,79.483,null,69.5,73.338,null,73.73,81.757,null,71.08,78.885,null,71.06,80.546,null,67.178,74.543,null,73.82,79.762,null,74.08,80.196,null,69.61,75.563,null,66.6,78.098,null,66.8,72.476,null,66.914,74.002,null,70.98,74.663,null,69.18,77.926,null,71.44,80.941,null,74.16,80.884,null,72.77,81.701,null,54.336,71.777,null,71.36,79.425],"text":["year: 1967<br />lifeExp: 66.22000<br />continent: Europe<br />country: Albania","year: 2007<br />lifeExp: 76.42300<br />continent: Europe<br />country: Albania",null,"year: 1967<br />lifeExp: 70.14000<br />continent: Europe<br />country: Austria","year: 2007<br />lifeExp: 79.82900<br />continent: Europe<br />country: Austria",null,"year: 1967<br />lifeExp: 70.94000<br />continent: Europe<br />country: Belgium","year: 2007<br />lifeExp: 79.44100<br />continent: Europe<br />country: Belgium",null,"year: 1967<br />lifeExp: 64.79000<br />continent: Europe<br />country: Bosnia and Herzegovina","year: 2007<br />lifeExp: 74.85200<br />continent: Europe<br />country: Bosnia and Herzegovina",null,"year: 1967<br />lifeExp: 70.42000<br />continent: Europe<br />country: Bulgaria","year: 2007<br />lifeExp: 73.00500<br />continent: Europe<br />country: Bulgaria",null,"year: 1967<br />lifeExp: 68.50000<br />continent: Europe<br />country: Croatia","year: 2007<br />lifeExp: 75.74800<br />continent: Europe<br />country: Croatia",null,"year: 1967<br />lifeExp: 70.38000<br />continent: Europe<br />country: Czech Republic","year: 2007<br />lifeExp: 76.48600<br />continent: Europe<br />country: Czech Republic",null,"year: 1967<br />lifeExp: 72.96000<br />continent: Europe<br />country: Denmark","year: 2007<br />lifeExp: 78.33200<br />continent: Europe<br />country: Denmark",null,"year: 1967<br />lifeExp: 69.83000<br />continent: Europe<br />country: Finland","year: 2007<br />lifeExp: 79.31300<br />continent: Europe<br />country: Finland",null,"year: 1967<br />lifeExp: 71.55000<br />continent: Europe<br />country: France","year: 2007<br />lifeExp: 80.65700<br />continent: Europe<br />country: France",null,"year: 1967<br />lifeExp: 70.80000<br />continent: Europe<br />country: Germany","year: 2007<br />lifeExp: 79.40600<br />continent: Europe<br />country: Germany",null,"year: 1967<br />lifeExp: 71.00000<br />continent: Europe<br />country: Greece","year: 2007<br />lifeExp: 79.48300<br />continent: Europe<br />country: Greece",null,"year: 1967<br />lifeExp: 69.50000<br />continent: Europe<br />country: Hungary","year: 2007<br />lifeExp: 73.33800<br />continent: Europe<br />country: Hungary",null,"year: 1967<br />lifeExp: 73.73000<br />continent: Europe<br />country: Iceland","year: 2007<br />lifeExp: 81.75700<br />continent: Europe<br />country: Iceland",null,"year: 1967<br />lifeExp: 71.08000<br />continent: Europe<br />country: Ireland","year: 2007<br />lifeExp: 78.88500<br />continent: Europe<br />country: Ireland",null,"year: 1967<br />lifeExp: 71.06000<br />continent: Europe<br />country: Italy","year: 2007<br />lifeExp: 80.54600<br />continent: Europe<br />country: Italy",null,"year: 1967<br />lifeExp: 67.17800<br />continent: Europe<br />country: Montenegro","year: 2007<br />lifeExp: 74.54300<br />continent: Europe<br />country: Montenegro",null,"year: 1967<br />lifeExp: 73.82000<br />continent: Europe<br />country: Netherlands","year: 2007<br />lifeExp: 79.76200<br />continent: Europe<br />country: Netherlands",null,"year: 1967<br />lifeExp: 74.08000<br />continent: Europe<br />country: Norway","year: 2007<br />lifeExp: 80.19600<br />continent: Europe<br />country: Norway",null,"year: 1967<br />lifeExp: 69.61000<br />continent: Europe<br />country: Poland","year: 2007<br />lifeExp: 75.56300<br />continent: Europe<br />country: Poland",null,"year: 1967<br />lifeExp: 66.60000<br />continent: Europe<br />country: Portugal","year: 2007<br />lifeExp: 78.09800<br />continent: Europe<br />country: Portugal",null,"year: 1967<br />lifeExp: 66.80000<br />continent: Europe<br />country: Romania","year: 2007<br />lifeExp: 72.47600<br />continent: Europe<br />country: Romania",null,"year: 1967<br />lifeExp: 66.91400<br />continent: Europe<br />country: Serbia","year: 2007<br />lifeExp: 74.00200<br />continent: Europe<br />country: Serbia",null,"year: 1967<br />lifeExp: 70.98000<br />continent: Europe<br />country: Slovak Republic","year: 2007<br />lifeExp: 74.66300<br />continent: Europe<br />country: Slovak Republic",null,"year: 1967<br />lifeExp: 69.18000<br />continent: Europe<br />country: Slovenia","year: 2007<br />lifeExp: 77.92600<br />continent: Europe<br />country: Slovenia",null,"year: 1967<br />lifeExp: 71.44000<br />continent: Europe<br />country: Spain","year: 2007<br />lifeExp: 80.94100<br />continent: Europe<br />country: Spain",null,"year: 1967<br />lifeExp: 74.16000<br />continent: Europe<br />country: Sweden","year: 2007<br />lifeExp: 80.88400<br />continent: Europe<br />country: Sweden",null,"year: 1967<br />lifeExp: 72.77000<br />continent: Europe<br />country: Switzerland","year: 2007<br />lifeExp: 81.70100<br />continent: Europe<br />country: Switzerland",null,"year: 1967<br />lifeExp: 54.33600<br />continent: Europe<br />country: Turkey","year: 2007<br />lifeExp: 71.77700<br />continent: Europe<br />country: Turkey",null,"year: 1967<br />lifeExp: 71.36000<br />continent: Europe<br />country: United Kingdom","year: 2007<br />lifeExp: 79.42500<br />continent: Europe<br />country: United Kingdom"],"type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(152,78,163,1)","dash":"solid"},"hoveron":"points","name":"Europe","legendgroup":"Europe","showlegend":false,"xaxis":"x","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[1967,2007,null,1967,2007],"y":[71.1,81.235,null,71.52,80.204],"text":["year: 1967<br />lifeExp: 71.10000<br />continent: Oceania<br />country: Australia","year: 2007<br />lifeExp: 81.23500<br />continent: Oceania<br />country: Australia",null,"year: 1967<br />lifeExp: 71.52000<br />continent: Oceania<br />country: New Zealand","year: 2007<br />lifeExp: 80.20400<br />continent: Oceania<br />country: New Zealand"],"type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(255,127,0,1)","dash":"solid"},"hoveron":"points","name":"Oceania","legendgroup":"Oceania","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":55.4520547945205,"r":7.30593607305936,"b":40.1826484018265,"l":37.2602739726027},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":"World Life Expectancy Change 1967 - 2007","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":17.5342465753425},"xaxis":{"domain":[0,0.329256360078278],"automargin":true,"type":"linear","autorange":false,"range":[1965,2009],"tickmode":"array","ticktext":["1970","1980","1990","2000"],"tickvals":[1970,1980,1990,2000],"categoryorder":"array","categoryarray":["1970","1980","1990","2000"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y2","title":"","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"hoverformat":".2f"},"annotations":[{"text":"Year","x":0.5,"y":-0.0176940639269406,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"top","annotationType":"axis"},{"text":"Average Life Expectancy in Years","x":-0.0126386170906719,"y":0.5,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xref":"paper","yref":"paper","textangle":-90,"xanchor":"right","yanchor":"center","annotationType":"axis"},{"text":"Africa","x":0.164628180039139,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(26,26,26,1)","family":"","size":11.689497716895},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"Americas","x":0.5,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(26,26,26,1)","family":"","size":11.689497716895},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"Asia","x":0.835371819960861,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(26,26,26,1)","family":"","size":11.689497716895},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"Europe","x":0.164628180039139,"y":0.485159817351598,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(26,26,26,1)","family":"","size":11.689497716895},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"Oceania","x":0.5,"y":0.485159817351598,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(26,26,26,1)","family":"","size":11.689497716895},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"continent","x":1.02,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"left","yanchor":"bottom","legendTitle":true}],"yaxis":{"domain":[0.514840182648402,1],"automargin":true,"type":"linear","autorange":false,"range":[31.59085,85.03215],"tickmode":"array","ticktext":["40","50","60","70","80"],"tickvals":[40,50,60,70,80],"categoryorder":"array","categoryarray":["40","50","60","70","80"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":"","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":0.329256360078278,"y0":0.514840182648402,"y1":1},{"type":"rect","fillcolor":"rgba(217,217,217,1)","line":{"color":"transparent","width":0.66417600664176,"linetype":"solid"},"yref":"paper","xref":"paper","x0":0,"x1":0.329256360078278,"y0":0,"y1":23.37899543379,"yanchor":1,"ysizemode":"pixel"},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.337410306588389,"x1":0.662589693411611,"y0":0.514840182648402,"y1":1},{"type":"rect","fillcolor":"rgba(217,217,217,1)","line":{"color":"transparent","width":0.66417600664176,"linetype":"solid"},"yref":"paper","xref":"paper","x0":0.337410306588389,"x1":0.662589693411611,"y0":0,"y1":23.37899543379,"yanchor":1,"ysizemode":"pixel"},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.670743639921722,"x1":1,"y0":0.514840182648402,"y1":1},{"type":"rect","fillcolor":"rgba(217,217,217,1)","line":{"color":"transparent","width":0.66417600664176,"linetype":"solid"},"yref":"paper","xref":"paper","x0":0.670743639921722,"x1":1,"y0":0,"y1":23.37899543379,"yanchor":1,"ysizemode":"pixel"},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":0.329256360078278,"y0":0,"y1":0.485159817351598},{"type":"rect","fillcolor":"rgba(217,217,217,1)","line":{"color":"transparent","width":0.66417600664176,"linetype":"solid"},"yref":"paper","xref":"paper","x0":0,"x1":0.329256360078278,"y0":0,"y1":23.37899543379,"yanchor":0.485159817351598,"ysizemode":"pixel"},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.337410306588389,"x1":0.662589693411611,"y0":0,"y1":0.485159817351598},{"type":"rect","fillcolor":"rgba(217,217,217,1)","line":{"color":"transparent","width":0.66417600664176,"linetype":"solid"},"yref":"paper","xref":"paper","x0":0.337410306588389,"x1":0.662589693411611,"y0":0,"y1":23.37899543379,"yanchor":0.485159817351598,"ysizemode":"pixel"}],"xaxis2":{"type":"linear","autorange":false,"range":[1965,2009],"tickmode":"array","ticktext":["1970","1980","1990","2000"],"tickvals":[1970,1980,1990,2000],"categoryorder":"array","categoryarray":["1970","1980","1990","2000"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"domain":[0.337410306588389,0.662589693411611],"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y2","title":"","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"hoverformat":".2f"},"xaxis3":{"type":"linear","autorange":false,"range":[1965,2009],"tickmode":"array","ticktext":["1970","1980","1990","2000"],"tickvals":[1970,1980,1990,2000],"categoryorder":"array","categoryarray":["1970","1980","1990","2000"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"domain":[0.670743639921722,1],"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y2","title":"","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"hoverformat":".2f"},"yaxis2":{"type":"linear","autorange":false,"range":[31.59085,85.03215],"tickmode":"array","ticktext":["40","50","60","70","80"],"tickvals":[40,50,60,70,80],"categoryorder":"array","categoryarray":["40","50","60","70","80"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"domain":[0,0.485159817351598],"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":"","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"hoverformat":".2f"},"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"y":0.96751968503937},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":[{"name":"Collaborate","icon":{"width":1000,"ascent":500,"descent":-50,"path":"M487 375c7-10 9-23 5-36l-79-259c-3-12-11-23-22-31-11-8-22-12-35-12l-263 0c-15 0-29 5-43 15-13 10-23 23-28 37-5 13-5 25-1 37 0 0 0 3 1 7 1 5 1 8 1 11 0 2 0 4-1 6 0 3-1 5-1 6 1 2 2 4 3 6 1 2 2 4 4 6 2 3 4 5 5 7 5 7 9 16 13 26 4 10 7 19 9 26 0 2 0 5 0 9-1 4-1 6 0 8 0 2 2 5 4 8 3 3 5 5 5 7 4 6 8 15 12 26 4 11 7 19 7 26 1 1 0 4 0 9-1 4-1 7 0 8 1 2 3 5 6 8 4 4 6 6 6 7 4 5 8 13 13 24 4 11 7 20 7 28 1 1 0 4 0 7-1 3-1 6-1 7 0 2 1 4 3 6 1 1 3 4 5 6 2 3 3 5 5 6 1 2 3 5 4 9 2 3 3 7 5 10 1 3 2 6 4 10 2 4 4 7 6 9 2 3 4 5 7 7 3 2 7 3 11 3 3 0 8 0 13-1l0-1c7 2 12 2 14 2l218 0c14 0 25-5 32-16 8-10 10-23 6-37l-79-259c-7-22-13-37-20-43-7-7-19-10-37-10l-248 0c-5 0-9-2-11-5-2-3-2-7 0-12 4-13 18-20 41-20l264 0c5 0 10 2 16 5 5 3 8 6 10 11l85 282c2 5 2 10 2 17 7-3 13-7 17-13z m-304 0c-1-3-1-5 0-7 1-1 3-2 6-2l174 0c2 0 4 1 7 2 2 2 4 4 5 7l6 18c0 3 0 5-1 7-1 1-3 2-6 2l-173 0c-3 0-5-1-8-2-2-2-4-4-4-7z m-24-73c-1-3-1-5 0-7 2-2 3-2 6-2l174 0c2 0 5 0 7 2 3 2 4 4 5 7l6 18c1 2 0 5-1 6-1 2-3 3-5 3l-174 0c-3 0-5-1-7-3-3-1-4-4-5-6z"},"click":"function(gd) { \n        // is this being viewed in RStudio?\n        if (location.search == '?viewer_pane=1') {\n          alert('To learn about plotly for collaboration, visit:\\n https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html');\n        } else {\n          window.open('https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html', '_blank');\n        }\n      }"}],"cloud":false},"source":"A","attrs":{"fe85d1a3a6a":{"x":{},"y":{},"colour":{},"type":"scatter"},"fe82a8b2ac3":{"x":{},"y":{},"colour":{}}},"cur_data":"fe85d1a3a6a","visdat":{"fe85d1a3a6a":["function (y) ","x"],"fe82a8b2ac3":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"base_url":"https://plot.ly"},"evals":["config.modeBarButtonsToAdd.0.click"],"jsHooks":[]}</script>
+</div>
+</div>
+<div id="how-i-created-it-methods-section" class="section level3">
+<h3>9) How I Created It: Methods Section</h3>
+<p>So I made a really dumb error at the beginning of graphic this plot. I couldn’t get some really basic filtering to work and I could not figure out why. It turned out that there just wasn’t any data for the years I had initially selected. Once I switched years I was successfully able to get some data to start plotting. For the lab day to work on our plots, Ryan gave me some help by showing me Plotly. He also explained what a slope graph was so that I could look up some examples of recipes for slope graphs.</p>
+<p>I wanted to use something like Plotly to help answer the immediate question of which country is the top and which is the bottom and perhaps lead to some interesting questions about the few countries that actually have lost life expectancy over time.</p>
+<p>I spent hours trying to figure out how to wrangle the data so that I could somehow highlight the countries that had lost life expectancy. I tried using the ggHighlight package that Alison posted last week, but I just couldn’t figure out how to get it to work the way I wanted it to. My intentino was to create a column with 2007 - 1967 life expectancy could be used to calculate TRUE or FALSE values that could be used for highlighting (so if the 2007 LE is less than the 1967 LE you would end up with a value less than 1).</p>
+</div>
+<div id="broken-code-that-i-couldnt-wrangle-properly" class="section level3">
+<h3>Broken Code That I Couldn’t Wrangle Properly</h3>
+<div id="also-the-gghighlight-package-broke-blogdown-for-me-so-this-section-is-just-text" class="section level4">
+<h4>Also, the gghighlight package broke blogdown for me so this section is just text</h4>
+</div>
+<div id="wrangling-to-calculate-percent-change" class="section level4">
+<h4>wrangling to calculate percent change</h4>
+<p>highlighting &lt;- gapminder %&gt;% select(continent, country, lifeExp, year) %&gt;% group_by(country) %&gt;% filter(year == min(year) | year == max(year)) %&gt;% ungroup() %&gt;% spread(year, lifeExp)</p>
+<p>colnames(highlighting) &lt;- c(“continent”, “country”, “1952_LE”, “2007_LE”)</p>
+<p>highlighting2 &lt;- highlighting %&gt;% mutate(change_LE = <code>2007_LE</code> - <code>1952_LE</code>)</p>
+</div>
+<div id="i-tried-like-a-million-variations-to-figure-out-if-i-was-using-the-wrong-type-of-data-catagorical-vs-continuous-but-couldnt-figure-it-out" class="section level4">
+<h4>I tried like a million variations to figure out if I was using the wrong type of data (catagorical vs continuous) but couldn’t figure it out</h4>
+<p>LE_plot &lt;- ggplot(highlighting2, aes(x=date, y=life))</p>
+</div>
+<div id="i-also-tried-playing-around-with-the-gghighlight-package-a-lot-but-just-couldnt-get-it-where-i-wanted-it-which-is-probably-for-the-best-since-it-seems-to-crash-blogdown-for-me." class="section level4">
+<h4>I also tried playing around with the gghighlight package a lot, but just couldn’t get it where I wanted it which is probably for the best since it seems to crash blogdown for me.</h4>
+<p>LE_plot + geom_line() + gghighlight(max(change_LE) &lt; 1)</p>
+</div>
+</div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer column">
+    <div class="container">
+
+        
+
+        <div class="copyright">
+
+        
+            
+                <a href="/license">Copyright © 2015 Nishanth Shanmugham</a>
+            
+        
+
+        </div>
+        <div class="icons">
+
+        
+
+        
+
+        
+
+        
+            <a href="https://github.com/example" target="_blank">
+                <img class="icon" src="/img/github.svg" alt="github" />
+            </a>
+        
+
+        
+            <a href="https://twitter.com/@alexandra_em" target="_blank">
+                <img class="icon" src="/img/twitter.svg" alt="twitter" />
+            </a>
+        
+
+        
+
+        
+            <a href="mailto:michelal@pdx.edu">
+                <img class="icon" src="/img/email.svg" alt="email" />
+            </a>
+        
+
+        
+            <a href="/index.xml">
+                <img class="icon" src="/img/rss.svg" alt="rss" />
+            </a>
+        
+
+        </div>
+    </div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Raleway:400,600,700', 'Merriweather:300,300i,700,700i', 'Ubuntu+Mono:400,700']
+    }
+  });
+</script>
+
+
+
+  <script src="/js/highlight.min.js" defer></script>
+  
+
+
+
+  <script src="/js/progressively.min.js" defer></script>
+
+
+
+  <script src="/js/social-share-kit.min.js" defer></script>
+
+
+
+
+<script>
+  window.onload = function() {
+    
+      hljs.initHighlighting();
+    
+    
+      progressively.init({delay: 30, throttle: 50});
+    
+    
+      SocialShareKit.init({
+        twitter: {
+            text: '',
+            via: '@alexandra_em'
+        }
+      });
+    
+  };
+</script>
+
+
+
+
+</body>
+</html>
+
