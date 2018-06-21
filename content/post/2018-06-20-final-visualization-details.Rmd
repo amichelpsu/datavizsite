@@ -56,7 +56,7 @@ vegas_bars <- p + geom_bar(stat = "identity", aes(fill = Type), position = "dodg
 
 vegas_bars +
   geom_vline(xintercept = 2002, linetype="dashed", color = "snow4", size=0.8) +
-  annotate('text', x=2000, y=1650000, label="Peak Water Use", color="#2277A0", family="Lato", hjust=0.5, size = 3)
+  annotate('text', x=1999, y=1650000, label="Peak Water Use", color="#2277A0", family="Lato", hjust=0.5, size = 3)
 
 ```
 
@@ -193,7 +193,7 @@ vegas_bars <- p + geom_bar(stat = "identity", aes(fill = Type), position = "dodg
 
 vegas_bars +
   geom_vline(xintercept = 2002, linetype="dashed", color = "snow4", size=0.8) +
-  annotate('text', x=2000, y=1650000, label="Peak Water Use", color="#2277A0", family="Lato", hjust=0.5, size = 3) 
+  annotate('text', x=1998, y=1650000, label="Peak Water Use", color="#2277A0", family="Lato", hjust=0.5, size = 3) 
 ```
 
 I still wasn't entirely sure about this since I felt like the different units of measure on the same axis was wonky so I also made a ratio graph. Ultimately I think this graph is more accurate, but I also think it requires more expertise and is less comprehensible.
