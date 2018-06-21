@@ -116,29 +116,3 @@ I wanted to use something like Plotly to help answer the immediate question of w
 
 I spent hours trying to figure out how to wrangle the data so that I could somehow highlight the countries that had lost life expectancy. I tried using the ggHighlight package that Alison posted last week, but I just couldn't get it to work the way I wanted it to. My intentino was to create a column with 2007 - 1967 life expectancy could be used to calculate TRUE or FALSE values that could be used for highlighting (so if the 2007 LE is less than the 1967 LE you would end up with a value less than 1).
 
-#### Broken Code That I Couldn't Wrangle Properly
-```{r}
-
-# wrangling to calculate percent change
-highlighting <- gapminder %>% 
-  select(continent, country, lifeExp, year) %>% 
-  group_by(country) %>% 
-  filter(year == min(year) | year == max(year)) %>% 
-  ungroup() %>% 
-  spread(year, lifeExp) 
-  
-colnames(highlighting) <- c("continent", "country", "1952_LE", "2007_LE") 
-
-# I know this is not Tidy but I kept getting weird errors and I wasn't sure what to do
-highlighting2 <- highlighting %>% 
-  mutate(change_LE = `2007_LE` - `1952_LE`) %>% 
-  mutate(date = seq(1866, 2007, by= 1)) %>% 
-  mutate(Life_exp = seq(1, 142, by = 1))
-
-# I tried like a million variations to figure out if I was using the wrong type of data (catagorical vs continuous) but couldn't figure it out
-
-LE_plot <- ggplot(highlighting2, aes(x=date, y=life))
-
-
-```
-
