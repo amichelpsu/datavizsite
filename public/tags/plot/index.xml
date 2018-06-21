@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>Final Visualization Details </title>
+      <link>/post/final-visualization-details/</link>
+      <pubDate>Wed, 20 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/final-visualization-details/</guid>
+      <description>1) Relevant Reproducible Code for Final Visualization(s)knitr::opts_chunk$set(echo = TRUE)extrafont::loadfonts(device=&amp;quot;win&amp;quot;)library(ggplot2)library(dplyr)library(tidyverse)library(scales)library(ggthemes)library(viridis)Water &amp;lt;- read_csv(&amp;quot;WaterData.csv&amp;quot;)VegasWater &amp;lt;- read_csv(&amp;quot;LasVegasWater2.csv&amp;quot;)Water Use As a Bar Graph (Raw Water Use and Total Population)# I know this is untidy but I wasn&amp;#39;t sure how else to format it (Lab 11 and the Great British Tidying was super helpful though!)p &amp;lt;-ggplot(VegasWater, aes(Year, Measure))vegas_bars &amp;lt;- p + geom_bar(stat = &amp;quot;identity&amp;quot;, aes(fill = Type), position = &amp;quot;dodge&amp;quot;, width = 0.</description>
+    </item>
+    
+    <item>
       <title>Getting Cozy with Plotly Gapminder Sad Plot 2.0</title>
       <link>/post/getting-cozy-with-plotly-gapminder-sad-plot-2-0/</link>
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0000</pubDate>

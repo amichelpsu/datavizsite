@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Water on It works</title>
+    <link>/tags/water/</link>
+    <description>Recent content in Water on It works</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Wed, 20 Jun 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/water/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Final Visualization Details </title>
+      <link>/post/final-visualization-details/</link>
+      <pubDate>Wed, 20 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/final-visualization-details/</guid>
+      <description>1) Relevant Reproducible Code for Final Visualization(s)knitr::opts_chunk$set(echo = TRUE)extrafont::loadfonts(device=&amp;quot;win&amp;quot;)library(ggplot2)library(dplyr)library(tidyverse)library(scales)library(ggthemes)library(viridis)Water &amp;lt;- read_csv(&amp;quot;WaterData.csv&amp;quot;)VegasWater &amp;lt;- read_csv(&amp;quot;LasVegasWater2.csv&amp;quot;)Water Use As a Bar Graph (Raw Water Use and Total Population)# I know this is untidy but I wasn&amp;#39;t sure how else to format it (Lab 11 and the Great British Tidying was super helpful though!)p &amp;lt;-ggplot(VegasWater, aes(Year, Measure))vegas_bars &amp;lt;- p + geom_bar(stat = &amp;quot;identity&amp;quot;, aes(fill = Type), position = &amp;quot;dodge&amp;quot;, width = 0.</description>
+    </item>
+    
+  </channel>
+</rss>

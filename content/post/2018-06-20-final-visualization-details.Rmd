@@ -1,0 +1,221 @@
+---
+title: 'Final Visualization Details '
+author: Alex Michel
+date: '2018-06-20'
+slug: final-visualization-details
+categories:
+  - blog
+tags:
+  - plot
+  - R Markdown
+  - Water
+description: Desc
+hacker_news_id: ''
+lobsters_id: ''
+meta_img: /images/image.jpg
+---
+
+
+### 1) Relevant Reproducible Code for Final Visualization(s)
+
+```{r setup, include=TRUE, warning=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+extrafont::loadfonts(device="win")
+
+library(ggplot2)
+library(dplyr)
+library(tidyverse)
+library(scales)
+library(ggthemes)
+library(viridis)
+
+Water <- read_csv("WaterData.csv")
+
+VegasWater <- read_csv("LasVegasWater2.csv")
+
+```
+
+
+#### Water Use As a Bar Graph (Raw Water Use and Total Population)
+
+```{r}
+# I know this is untidy but I wasn't sure how else to format it (Lab 11 and the Great British Tidying was super helpful though!)
+
+p <-ggplot(VegasWater, aes(Year, Measure))
+
+vegas_bars <- p + geom_bar(stat = "identity", aes(fill = Type), position = "dodge", width = 0.65) +
+  labs(x = "Year", y = "Measure") +
+  ggtitle("Water Usage Trends, Las Vegas") +
+  scale_fill_manual(values = c('#1231B2','#73a089'),
+                    name = "",
+                      labels=c("Water Use in Acre Feet", "Population of Las Vegas")) + scale_color_hue(l = 75, c = 50) +
+  scale_y_continuous(labels = comma) +
+  theme(panel.grid.major = element_blank()) +
+    theme_economist_white()
+
+vegas_bars +
+  geom_vline(xintercept = 2002, linetype="dashed", color = "snow4", size=0.8) +
+  annotate('text', x=2000, y=1650000, label="Peak Water Use", color="#2277A0", family="Lato", hjust=0.5, size = 3)
+
+```
+
+
+#### Water Use As a Ratio (Raw Water Use Per Year/Total Population)
+
+```{r}
+Water_Measure <- Water %>% 
+  mutate(Acre_Pop = Acre_Feet/Population)
+
+glimpse(Water_Measure)
+
+facet_locations <- ggplot(Water_Measure, aes(Year, Acre_Pop, color = Acre_Pop)) +
+  geom_line() +
+  geom_point(size = 2) + 
+  labs(x = "Year", 
+       y = "Proportion of Acre Feet of Water to Pop.") +
+  ylim(0, 0.3)
+  
+  facet_locations +
+  scale_color_viridis(trans = "reverse") +
+  facet_wrap(~Location) +
+    ggtitle("Water Usage Trends, Las Vegas and Southern CA") +
+        theme_fivethirtyeight() +
+    theme(axis.title = element_text(), axis.title.x = element_blank()) + ylab('Water Acre Feet Use per Total Population')
+  
+```
+
+
+### 2) Description of the Data you used (either given to you or where you found it, what unique characteristics of the data, what quantitative and qualitative information is in the data set, etc.) 
+
+The data originally came from standard reports from the US Geological Survey (USGS) sources. However, I obtained the data as a series of three spreadsheets compiled by my friend John Fleck. John has been working on his own project compiling the data to be pertinent to the Colorado River Basin specifically. This data is part of a bigger project he's working on.
+
+The data is very clean and pretty minimal. This is what I was hoping for because I'm still working on basic data wrangling skills. The first spreadsheet (WaterData) includes information for both Las Vegas and Southern California. 
+
+The second spreadsheet is one that I made so that I could untidy the original Las Vegas data :( sorry about that. 
+
+Both spreadsheets include the same basic information: Year, Water Use in Acre Feet, Location, and Total Population. We have continuous, numeric, and catagorical to play with.
+
+
+### 3) Description of the Audience
+
+The audience for this is the general public on Twitter. I think that the audience varies a bit depending exactly on which graph tough; I think the bar graph is much easier to comprehend quickly compared to the ratio graph. I also think that the information being conveyed is probnably particularly interesting climate scientists, water policy wonks, and reporters from Slate.com who are looking for a good "This Thing Isn't What You Think" story.
+
+
+### 4) Description of the TYPE of graph 
+
+I started with a regular old side-by-side bar graph because it's very familiar to lay audiences and very easy to interpret quickly. I also liked this format because it really clearly shows the scale of population increase over time.
+
+I also went with a dot-and-line graph because it's another format that most people are familiar with and it communicated the story very clearly.
+
+
+### 5) What are you trying to show? 
+
+I was trying to show that even though populations in Las Vegas and Southern California have been increasing dramatically, water use has basically stayed the same and even started to decrease.
+
+This in turn shows that water management policies may be having a much bigger impact on water use than people realize. 
+
+
+### 6) How to read it & what to look for
+
+So the bar graph is really easy to interpret; the green bars get bigger as population grows over time and the blue bars initially get a little bigger and then start getting a little smaller over time. The major highlight of this graph type is that it's very intuitive for people to read taller bars as bigger magnitude.
+
+The dot and line graph is a little harder to read for laypeople. We think about literacy when writing (except for journal articles of course) and general advice for writing for the general public is something around a 3rd to 5th grade reading level. I guess I wanted to be careful to do the same thing for this graph. I think ratios and fractions are like 6th grade math, so this graph might require a little more numeracy than I would ideally want for something intended to be read easily by the general public. 
+
+To read this graph the viewer should note that the y axis is a ratio of water used each year divided by that year's total population. Over time the x axis shows that this proportion is getting smaller which means that the numerator (water use in acre feet) is getting smaller as the denominator (population) is growing larger.
+
+### 7) Presentation: address how you are using annotation, color, and general composition (e.g. how are things arranged, scale, etc.) 
+
+I definitely wanted to use blue as a color signifying water. In the ratio plot I used the viridis package to show a continuous change in the ratio that is also color blind friendly. For the bar plot I used blue and a green with a contrasting hue that should also be easy to differentiate for a red/green colorblind person compared to the dark blue.
+
+I used some annotation in the bar chart to help draw the viewer's eye to the fact that peak water use was almost 20 years ago.
+
+Both plots start at zero and use a single scale. I had some consternation over the y axis for the bar graph because I can technically use one scale, but it's not necessarily clear that it's for two very different measures. I just didn't know a good way to show this while also using a graph format that would be at a <5th grade numeracy level.
+
+
+### 8) How I created it: Methods section (see point 1: all relevant code should be included); additionally, include a bit about the process. Please include an early draft of your visualization (it might be a completely different), and why you changed it/what you tweaked to get to your final visualization.
+
+#### Rough Start
+
+```{r}
+population_time <- Water %>% 
+  group_by(Location)
+
+population_plot <- ggplot(Water, aes(x = Year, y = Population)) +
+  geom_area()
+
+population_plot
+```
+
+Obviously I needed to do some grouping. I had not used geom_area at all yet and thought it could be useful for showing the huge boom in population.
+
+#### This is when I decided that a facet wrap by location wasn't going to work on just the first Water.CSV file so I created a second CSV file just for Las Vegas data to play around with.
+
+```{r}
+
+ggplot(Water, aes(x = Year, y = Population)) +
+  geom_area(fill = "blue", alpha = 0.3) +
+  theme_minimal() +
+  facet_wrap(~Location)
+
+```
+
+If I couldn't use location as a variable I thought that emphasizing "peak water" could be an interesting component of the graph. I played around with a ton of different geoms to see what worked best. I went back to John's original graph for some inspiration.
+
+```{r}
+VegasWater2 <- VegasWater %>% 
+  group_by(Measure)
+
+ggplot(VegasWater2, aes(Year, Measure, group = Type, color = Type)) +
+  geom_line() +
+  geom_point() +
+  labs(x = "Year", y = "Measure") +
+  ggtitle("Water Usage Trends, Las Vegas and Southern California") +
+  scale_y_continuous(labels = comma) +
+  theme_minimal()
+```
+
+To get from this to the final graph I decided that the geom_area was just not working. I flipped through Nathan Yau's books and noticed that most of his examples were actually pretty clean and simple. Maybe using fancy new geoms wasn't the best thing for this particular visualization. I ended up basing mine off of his comparison graph of educational attainment (pg 123 figure 3-27). Initially I thought using a horizontal time axis would be cool because then the bars would be stacked and really easy to compare, but my peanut gallery said she found it confusing when time wasn't on the x-axis. So I went with a really basic bar graph.
+
+I spent a ton of time fussing with theme details but ultimately decided it was kind of lame, but worked best, just to use the Economist theme. It just looked more official than anything I had come up with.
+
+```{r}
+p <-ggplot(VegasWater, aes(Year, Measure))
+
+vegas_bars <- p + geom_bar(stat = "identity", aes(fill = Type), position = "dodge", width = 0.65) +
+  labs(x = "Year", y = "Measure") +
+  ggtitle("Water Usage Trends, Las Vegas") +
+  scale_fill_manual(values = c('#1231B2','#73a089'),
+                    name = "",
+                      labels=c("Water Use in Acre Feet", "Population of Las Vegas")) + scale_color_hue(l = 75, c = 50) +
+  scale_y_continuous(labels = comma) +
+  theme(panel.grid.major = element_blank()) 
+
+vegas_bars +
+  geom_vline(xintercept = 2002, linetype="dashed", color = "snow4", size=0.8) +
+  annotate('text', x=2000, y=1650000, label="Peak Water Use", color="#2277A0", family="Lato", hjust=0.5, size = 3) 
+```
+
+I still wasn't entirely sure about this since I felt like the different units of measure on the same axis was wonky so I also made a ratio graph. Ultimately I think this graph is more accurate, but I also think it requires more expertise and is less comprehensible.
+
+I like that the ratio makes the two different locations look much more comparable than in my first attempt. I also like how the continuous coloration still shows differences in water use between the two locations.
+
+I used the FiveThirtyEight theme for this one because it had a really clean, gold layout that I thought "popped" for something someone would scroll past on social media.
+
+```{r}
+
+facet_locations <- ggplot(Water_Measure, aes(Year, Acre_Pop, color = Acre_Pop)) +
+  geom_line() +
+  geom_point(size = 2) + 
+  labs(x = "Year", 
+       y = "Proportion of Acre Feet of Water to Pop.") +
+  ylim(0, 0.3)
+  
+  facet_locations +
+  scale_color_viridis(trans = "reverse") +
+  facet_wrap(~Location) +
+    ggtitle("Water Usage Trends, Las Vegas and Southern CA") +
+    theme(axis.title = element_text(), axis.title.x = element_blank()) + ylab('Water Acre Feet Use per Total Population')
+
+```
+
