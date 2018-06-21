@@ -1,8 +1,8 @@
 ---
-title: Gapminder Fail Sad Plot 2.0.1
+title: Gapminder Fail Sad Plot 2
 author: Alex Michel
 date: '2018-06-20'
-slug: gapminder-fail-sad-plot-2-0-1
+slug: gapminder-fail-sad-plot-2
 categories:
   - blog
 tags:
