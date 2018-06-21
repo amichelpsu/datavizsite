@@ -139,8 +139,6 @@ highlighting2 <- highlighting %>%
 
 LE_plot <- ggplot(highlighting2, aes(x=date, y=life))
 
-LE_plot + geom_line() +
-  gghighlight(max(change_LE) < 1)
 
 ```
 
