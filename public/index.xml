@@ -168,8 +168,7 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/projects/small-project/</guid>
-      <description>Here are some of my slides
-John Fleck is a professor of water management at the University of New Mexico. He is the father of one of my good friends from high school and he is like, the guy on water policy in the Southwest. I was trying to come up with some ideas for my final visualization project when I saw John going back and forth with some people on Twitter over data that shows that water usage across the Southwest is actually going down &amp;ndash; and has been for some time (this is not at all what you see in the news).</description>
+      <description>knitr::include_url(&amp;quot;(../../slides/Whats_Up_Water.html&amp;quot;)  John Fleck is a professor of water management at the University of New Mexico. He is the father of one of my good friends from high school and he is like, the guy on water policy in the Southwest. I was trying to come up with some ideas for my final visualization project when I saw John going back and forth with some people on Twitter over data that shows that water usage across the Southwest is actually going down &amp;ndash; and has been for some time (this is not at all what you see in the news).</description>
     </item>
     
   </channel>

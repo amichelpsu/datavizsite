@@ -5,7 +5,10 @@ date = "18-06-2018"
 tags = ["projects"]
 +++
 
-Here are some of my [slides](../../slides/Whats_Up_Water.html)
+
+```{r echo = FALSE}
+knitr::include_url("(../../slides/Whats_Up_Water.html")
+```
 
 John Fleck is a [professor of water management](https://econ.unm.edu/people/Faculty/profile/john-fleck.html) at the University of New Mexico. He is the father of one of my good friends from high school and he is like, the guy on water policy in the Southwest.  I was trying to come up with some ideas for my final visualization project when I saw John going back and forth with some people on Twitter over data that shows that water usage across the Southwest is actually _going down_ -- and has been for some time (this is not at all what you see in the news).
 
