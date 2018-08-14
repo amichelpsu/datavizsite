@@ -27,8 +27,9 @@ mono_light(base_color = "#23395b")
 
 
 ```{r out.width = "70%", fig.align = "center", echo = FALSE}
-knitr::include_graphics("http://bit.ly/cs631-pygmy")
+knitr::include_graphics("https://ibb.co/jjEpvp")
 ```
+
 
 
 ---
