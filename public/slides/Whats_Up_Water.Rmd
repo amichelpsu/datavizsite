@@ -22,19 +22,13 @@ options(htmltools.dir.version = FALSE)
 library(xaringanthemer)
 mono_light(base_color = "#23395b")
 ```
+
 ##I was trying to think of an idea for the final visualization when I saw this...
 
-.pull-left[ 
-```{r echo = FALSE}
-knitr::include_graphics("Images/JohnFleckTwitter_1.JPG")
-```
-]
 
-.pull-right[
-```{r echo = FALSE}
-knitr::include_graphics("Images/JohnFleckTwitter_3.JPG")
+```{r out.width = "70%", fig.align = "center", echo = FALSE}
+knitr::include_graphics("http://bit.ly/cs631-pygmy")
 ```
-]
 
 
 ---
