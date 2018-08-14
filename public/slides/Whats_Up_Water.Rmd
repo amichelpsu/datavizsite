@@ -26,8 +26,8 @@ mono_light(base_color = "#23395b")
 ##I was trying to think of an idea for the final visualization when I saw this...
 
 
-```{r out.width = "70%", fig.align = "center", echo = FALSE}
-knitr::include_graphics("https://ibb.co/jjEpvp")
+```{r, include = FALSE}
+knitr::include_graphics("https://imgur.com/ioBNvlY")
 ```
 
 
