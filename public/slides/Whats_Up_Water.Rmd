@@ -26,8 +26,7 @@ mono_light(base_color = "#23395b")
 ##I was trying to think of an idea for the final visualization when I saw this...
 
 
-background-image: url("https://ibb.co/jjEpvp")
-background-size: auto
+[People arguing about USGS data on Twitter](https://twitter.com/jfleck/status/993541236748238851)
 
 
 ---
