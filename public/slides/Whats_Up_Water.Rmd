@@ -23,10 +23,17 @@ library(xaringanthemer)
 mono_light(base_color = "#23395b")
 ```
 
-##I was trying to think of an idea for the final visualization when I saw this...
+
+####I was trying to think of an idea for the final visualization when I saw this...
 
 
-[People arguing about USGS data on Twitter](https://twitter.com/jfleck/status/993541236748238851)
+
+[People arguing about USGS water data on Twitter](https://twitter.com/jfleck/status/993541236748238851)
+
+```{r, out.width = "80%", fig.align = "center", echo = FALSE}
+knitr::include_graphics("https://pbs.twimg.com/media/DcnHP7sUwAM3G9y.jpg")
+```
+
 
 
 ---
@@ -231,7 +238,7 @@ class: inverse
 Which visualization will help us win the Twitter flame war? One that communicates information quickly (social media lightening speed) to a lay audience who is unfamiliar with water management research.
 
 .pull-left[
-```{r echo = FALSE}
+```{r}
 knitr::include_graphics("images/JohnFleckTwitter_2.JPG")
 ```
 ]
@@ -242,3 +249,25 @@ knitr::include_graphics("images/JohnFleckTwitter_4.JPG")
 ```
 ]
 
+---
+class: inverse
+
+# Lessons Learned
+
+### - When arguing on Twitter include your sources and citations 
+
+### - Include your sources and citations in a thread as well as the plot
+
+### - If you have your own data, you can use something like Open Science Framework (OSF) to make your raw data accessible 
+
+### - Think about your audience, what jargon do they know/not know, how's their numeracy, can your plot stand on its own or does it need some additional context
+
+---
+
+Thanks to John for letting me use his data!
+
+If you're interested in learning more about water in the Colorado River Basin check out John's book, dubbed "illuminating" by the New York Times.
+
+```{r out.width = "50%", fig.align = "center", echo = FALSE}
+knitr::include_graphics("https://images-na.ssl-images-amazon.com/images/I/51dwDKpZ5OL._SX332_BO1,204,203,200_.jpg")
+```
